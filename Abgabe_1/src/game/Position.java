@@ -4,7 +4,7 @@ public class Position {
     private double x;
     private double y;
 
-    Position(double x, double y) {
+    public Position(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -35,6 +35,6 @@ public class Position {
 
     @Override
     public String toString() {
-        return "Position (" + (int) Math.round(x) + " " + (int) Math.round(y) + ")";
+        return "Position (" + (int) Math.round(x) + ", " + (int) Math.round(y) + ")";
     }
 }
