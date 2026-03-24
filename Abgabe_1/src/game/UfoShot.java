@@ -8,30 +8,31 @@ public class UfoShot {
     Position position;
     double speedInPixel;
     double size;
+    double rotation;
+    double width;
+    double height;
 
-    UfoShot(GameView gameView) {
+    public UfoShot(GameView gameView) {
         this.gameView = gameView;
         this.position = new Position(1100, 650);
-        //this.speedInPixel = 3;
         this.size = 30;
+        this.width = 150;
+        this.height = 33;
     }
 
-    void updatePosition() {
-        //this.position.right();
+    public void updatePosition() {
+        this.position.left();
     }
 
     public void addToCanvas() {
-        double width = 150;
-        double height = 33;
-//        // OuterBorder(Black)
-//        gameView.addRectangleToCanvas(position.getX(), position.getY(), width, height, 5, false, Color.BLACK);
-        //InnerBorder(White)
+
+        // InnerBorder(White)
         gameView.addRectangleToCanvas(position.getX(), position.getY(), width, height, 5, false, Color.WHITE);
-        //Green Box
+        // Green Box
         gameView.addRectangleToCanvas(position.getX() + 2.5, position.getY() + 2.5, width, height, 0, true, Color.GREEN);
-        //Yellow Box
+        // Yellow Box
         gameView.addRectangleToCanvas(position.getX() + 130 + 2.5, position.getY() + 2.5, width - 130, height, 0, true, Color.YELLOW);
-        //Text
+        // Text
         gameView.addTextToCanvas("Objekt 2", position.getX() + 2.5, position.getY() - 2.5, size, true, Color.BLUE, 0);
     }
 

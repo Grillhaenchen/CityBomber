@@ -17,7 +17,7 @@ public class Ufo {
         this.rotation = 0;
     }
 
-    void updatePosition() {
+    public void updatePosition() {
         this.position.right();
         this.rotation += 1;
     }
@@ -29,6 +29,6 @@ public class Ufo {
 
     @Override
     public String toString() {
-        return "UFO: " + this.position.toString();
+        return "Ufo: " + position;
     }
 }
