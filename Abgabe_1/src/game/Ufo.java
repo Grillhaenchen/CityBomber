@@ -18,7 +18,7 @@ public class Ufo {
     }
 
     public void updatePosition() {
-        this.position.right();
+        this.position.right(speedInPixel);
         this.rotation += 1;
     }
 

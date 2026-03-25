@@ -18,10 +18,12 @@ public class UfoShot {
         this.size = 30;
         this.width = 150;
         this.height = 33;
+        this.rotation = 2;
+        this.speedInPixel = 2;
     }
 
     public void updatePosition() {
-        this.position.left();
+        this.position.left(speedInPixel);
     }
 
     public void addToCanvas() {
