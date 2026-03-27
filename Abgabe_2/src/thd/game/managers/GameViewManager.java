@@ -1,6 +1,7 @@
 package thd.game.managers;
 
 import thd.game.utilities.GameView;
+import thd.gameobjects.movable.UserCar;
 
 public class GameViewManager {
 
@@ -9,11 +10,13 @@ public class GameViewManager {
 
     public GameViewManager() {
         gameView = new GameView();
-        gameManager=new GameManager(gameView);
+        gameManager = new GameManager(gameView);
+
+
         startGameLoop();
     }
+
     private void startGameLoop() {
         gameManager.processFrame();
-        gameView.plotCanvas();
     }
 }
