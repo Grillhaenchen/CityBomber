@@ -23,12 +23,18 @@ public class UserShot {
         height = 1;
     }
 
-
+    /**
+     * Update the Position of the Game Piece on the GameView
+     * @see thd.game.utilities.GameView
+     */
     public void updatePosition() {
 
     }
 
-
+    /**
+     * Add the Game Piece to the GameView
+     * @see thd.game.utilities.GameView
+     */
     public void addToCanvas() {
         gameView.addImageToCanvas("shot.png", position.getX(), position.getY(), 1, 0);
     }

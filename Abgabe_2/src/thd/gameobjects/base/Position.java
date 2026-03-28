@@ -3,9 +3,10 @@ package thd.gameobjects.base;
 import thd.game.utilities.GameView;
 
 /**
- * This Class is for Postioning of every Piece in the GameView class
+ * This Class is for Postioning of every Piece in the {@link thd.game.utilities.GameView}
  * <br>
  * It has a X and Y coordinate
+ * @see thd.game.utilities.GameView
  */
 public class Position {
 

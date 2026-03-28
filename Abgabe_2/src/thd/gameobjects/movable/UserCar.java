@@ -22,10 +22,18 @@ public class UserCar {
         height = 1;
     }
 
+    /**
+     * Update the Position of the Game Piece on the GameView
+     * @see thd.game.utilities.GameView
+     */
     public void updatePosition() {
 
     }
 
+    /**
+     * Add the Game Piece to the GameView
+     * @see thd.game.utilities.GameView
+     */
     public void addToCanvas() {
         gameView.addImageToCanvas("car_red_driving.png", position.getX(), position.getY(), 1, 0);
     }
