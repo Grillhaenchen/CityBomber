@@ -7,7 +7,10 @@ import thd.gameobjects.unmovable.Gate;
 import thd.gameobjects.unmovable.Start;
 import thd.gameobjects.unmovable.Street;
 
-public class GameManager {
+/**
+ * The GameManager handles all the Game Items and processes the Frame.
+ */
+class GameManager {
 
     private final GameView gameView;
     private UserCar userCar;
@@ -16,7 +19,12 @@ public class GameManager {
     private Gate gate;
     private Street street;
 
-    public GameManager(GameView gameView) {
+    /**
+     * Create a new GameManager.
+     *
+     * @param gameView GameView instance
+     */
+    GameManager(GameView gameView) {
         this.gameView = gameView;
         userCar = new UserCar(gameView);
         shot = new UserShot(gameView);

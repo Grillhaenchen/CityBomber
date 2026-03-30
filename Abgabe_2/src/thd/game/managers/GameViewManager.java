@@ -4,11 +4,21 @@ import thd.game.utilities.GameView;
 
 import java.awt.*;
 
+/**
+ * The GameViewManager handles all the Window Infaormations.
+ * <br>
+ * It also handles the Gameloop.
+ */
 public class GameViewManager {
 
     private final GameView gameView;
-    GameManager gameManager;
+    private final GameManager gameManager;
 
+    /**
+     * The GameViewManager handles all the Window Infaormations.
+     * <br>
+     * It also handles the Gameloop.
+     */
     public GameViewManager() {
         gameView = new GameView();
         gameView.updateWindowTitle("City Bomber");

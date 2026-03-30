@@ -3,10 +3,12 @@ package thd.gameobjects.base;
 import thd.game.utilities.GameView;
 
 /**
- * This Class is for Postioning of every Piece in the {@link thd.game.utilities.GameView}
+ * Class to locate all Game Pieces in {@link GameView}.
  * <br>
- * It has a X and Y coordinate
- * @see thd.game.utilities.GameView
+ * The Position values refer to the GameView with a Resoulution of 1280x720 Pixels.
+ * The Root Point is in the upper left with (0, 0).
+ *
+ * @see GameView
  */
 public class Position {
 

@@ -3,6 +3,9 @@ package thd.gameobjects.unmovable;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.Position;
 
+/**
+ * This Class handels the Map where the user can drive. *
+ */
 public class Street {
 
     private final GameView gameView;
@@ -15,6 +18,11 @@ public class Street {
     private double speedInPixel;
     private double rotation;
 
+    /**
+     * Create a Street Object.
+     *
+     * @param gameView GameView instance
+     */
     public Street(GameView gameView) {
         this.gameView = gameView;
         this.position = new Position((double) GameView.WIDTH / 2, (double) GameView.HEIGHT / 2);
@@ -24,15 +32,17 @@ public class Street {
     }
 
     /**
-     * Update the Position of the Game Piece on the GameView
+     * Update the Position of the Game Piece on the GameView.
+     *
      * @see thd.game.utilities.GameView
      */
-    public void updatePosition() {
+    private void updatePosition() {
 
     }
 
     /**
-     * Add the Game Piece to the GameView
+     * Add the Game Piece to the GameView.
+     *
      * @see thd.game.utilities.GameView
      */
     public void addToCanvas() {
