@@ -145,6 +145,38 @@ public class Position {
         y += pixel;
     }
 
+    /**
+     * Moves towards the given position with the given speed.
+     *
+     * @param other        Another position.
+     * @param speedInPixel Speed of movement in a single frame.
+     */
+    public void moveToPosition(Position other, double speedInPixel) {
+        double distance = distance(other);
+        if (distance <= speedInPixel) {
+            updateCoordinates(other);
+        } else {
+            right((other.x - x) / distance * speedInPixel);
+            down((other.y - y) / distance * speedInPixel);
+        }
+    }
+
+    /**
+     * Checks if this position is similar to the other position.
+     *
+     * @param other Another position.
+     * @return True if this position has the same x- and y-coordinates as the other position,
+     * when both are rounded to <code>int</code>.
+     */
+    public boolean similarTo(Position other) {
+        return Math.round(x) == Math.round(other.x)
+                && Math.round(y) == Math.round(other.y);
+    }
+
+    private double distance(Position other) {
+        return Math.sqrt(Math.pow(Math.abs(other.getX() - getX()), 2) + Math.abs(other.getX() - getX()) + Math.pow(Math.abs(other.getY() - getY()), 2));
+    }
+
     @Override
     public String toString() {
         return "Position (" + (int) Math.round(x) + ", " + (int) Math.round(y) + ")";

@@ -1,6 +1,7 @@
 package thd.game.managers;
 
 import thd.game.utilities.GameView;
+import thd.gameobjects.movable.RandomBall;
 import thd.gameobjects.movable.UserCar;
 import thd.gameobjects.movable.UserShot;
 import thd.gameobjects.unmovable.Gate;
@@ -19,6 +20,8 @@ class GameManager {
     private Gate gate;
     private Street street;
 
+    private RandomBall randomBall;
+
     /**
      * Create a new GameManager.
      *
@@ -32,6 +35,7 @@ class GameManager {
         gate = new Gate(gameView);
         street = new Street(gameView);
 
+        randomBall=new RandomBall(gameView);
     }
 
     void processFrame(){
@@ -41,5 +45,7 @@ class GameManager {
         start.addToCanvas();
         gate.addToCanvas();
         street.addToCanvas();
+
+        randomBall.updatePosition();
     }
 }
