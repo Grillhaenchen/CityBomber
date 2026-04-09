@@ -9,7 +9,7 @@ public class StartGame {
     /**
      * Main Method.
      *
-     * @param args
+     * @param args Console arguments
      */
     public static void main(String[] args) {
         new GameViewManager();
