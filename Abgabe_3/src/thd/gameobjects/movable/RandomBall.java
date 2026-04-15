@@ -1,11 +1,15 @@
 package thd.gameobjects.movable;
 
 import thd.game.utilities.GameView;
+import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.Position;
 
 import java.awt.*;
 
-public class RandomBall {
+/**
+ * Randomball Class who moves Randowm.
+ */
+public class RandomBall extends GameObject {
     private final GameView gameView;
     private final Position position;
 
@@ -17,7 +21,13 @@ public class RandomBall {
     private double speedInPixel;
     private double rotation;
 
+    /**
+     * Creates a RandomBall object.
+     *
+     * @param gameView instance of GameView
+     */
     public RandomBall(GameView gameView) {
+        super(gameView);
         this.quadraticMovementPattern = new QuadraticMovementPattern();
         this.gameView = gameView;
         this.position = new RandomMovementPattern().startPosition();
@@ -29,10 +39,22 @@ public class RandomBall {
         speedInPixel = 4;
     }
 
+    /**
+     * Get Position of RandomBall.
+     *
+     * @return Position
+     */
+    @Override
     public Position getPosition() {
         return position;
     }
 
+    /**
+     * Add the Game Piece to the GameView.
+     *
+     * @see thd.game.utilities.GameView
+     */
+    @Override
     public void addToCanvas() {
         gameView.addOvalToCanvas(targetPosition.getY(), targetPosition.getX(), size, size, 2, false, Color.WHITE);
 
@@ -43,6 +65,12 @@ public class RandomBall {
         }
     }
 
+    /**
+     * Update the Position of the Game Piece on the GameView.
+     *
+     * @see thd.game.utilities.GameView
+     */
+    @Override
     public void updatePosition() {
         if (gameView.timer(3000, 0, this)) {
             speedInPixel++;

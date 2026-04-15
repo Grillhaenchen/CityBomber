@@ -1,23 +1,22 @@
 package thd.gameobjects.movable;
 
 import thd.game.utilities.GameView;
+import thd.gameobjects.base.MovementPattern;
 import thd.gameobjects.base.Position;
 
-import java.util.Random;
-
-class RandomMovementPattern {
-
-    private final Random random;
+class RandomMovementPattern extends MovementPattern {
 
     RandomMovementPattern() {
-        random = new Random();
+        super();
     }
 
-    Position startPosition() {
+    @Override
+    public Position startPosition() {
         return new Position(GameView.WIDTH / 2d, GameView.HEIGHT / 2d);
     }
 
-    Position nextPosition() {
+    @Override
+    public Position nextPosition() {
         return new Position(random.nextInt(GameView.WIDTH), random.nextInt(GameView.HEIGHT));
     }
 }

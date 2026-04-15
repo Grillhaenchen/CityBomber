@@ -1,12 +1,13 @@
 package thd.gameobjects.unmovable;
 
 import thd.game.utilities.GameView;
+import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.Position;
 
 /**
  * This is the Gate UI element in at the Progress bar.
  */
-public class Gate {
+public class Gate extends GameObject {
 
     private final GameView gameView;
     private final Position position;
@@ -24,6 +25,7 @@ public class Gate {
      * @param gameView GameView instance
      */
     public Gate(GameView gameView) {
+        super(gameView);
         this.gameView = gameView;
         this.position = new Position(0, (double) GameView.HEIGHT / 2);
         size = 1;
@@ -36,7 +38,8 @@ public class Gate {
      *
      * @see thd.game.utilities.GameView
      */
-    private void updatePosition() {
+    @Override
+    public void updatePosition() {
 
     }
 
@@ -45,6 +48,7 @@ public class Gate {
      *
      * @see thd.game.utilities.GameView
      */
+    @Override
     public void addToCanvas() {
         gameView.addImageToCanvas("gate.png", position.getX(), position.getY(), 1, 0);
     }

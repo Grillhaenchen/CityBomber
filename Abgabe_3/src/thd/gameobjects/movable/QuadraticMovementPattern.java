@@ -1,8 +1,9 @@
 package thd.gameobjects.movable;
 
+import thd.gameobjects.base.MovementPattern;
 import thd.gameobjects.base.Position;
 
-class QuadraticMovementPattern {
+class QuadraticMovementPattern extends MovementPattern {
 
     private final Position[] pattern;
     private int currentIndex;
@@ -15,14 +16,16 @@ class QuadraticMovementPattern {
                 new Position(100, 600)};
     }
 
-    Position nextPosition() {
+    @Override
+    public Position nextPosition() {
         if (currentIndex >= pattern.length) {
             currentIndex = 0;
         }
         return pattern[currentIndex++];
     }
 
-    Position startPosition() {
+    @Override
+    public Position startPosition() {
         currentIndex = 0;
         return nextPosition();
     }

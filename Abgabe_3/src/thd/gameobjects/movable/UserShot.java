@@ -1,12 +1,13 @@
 package thd.gameobjects.movable;
 
 import thd.game.utilities.GameView;
+import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.Position;
 
 /**
  * If the User Fire a bullet this Class handles all the collision detection and the UI element.
  */
-public class UserShot {
+public class UserShot extends GameObject {
 
     private final GameView gameView;
     private final Position position;
@@ -24,6 +25,7 @@ public class UserShot {
      * @param gameView GameView instance
      */
     public UserShot(GameView gameView) {
+        super(gameView);
         this.gameView = gameView;
         this.position = new Position((double) GameView.WIDTH / 2, (double) GameView.HEIGHT / 2);
         size = 1;
@@ -36,7 +38,8 @@ public class UserShot {
      *
      * @see thd.game.utilities.GameView
      */
-    private void updatePosition() {
+    @Override
+    public void updatePosition() {
 
     }
 
@@ -45,6 +48,7 @@ public class UserShot {
      *
      * @see thd.game.utilities.GameView
      */
+    @Override
     public void addToCanvas() {
         gameView.addImageToCanvas("shot.png", position.getX(), position.getY(), 1, 0);
     }

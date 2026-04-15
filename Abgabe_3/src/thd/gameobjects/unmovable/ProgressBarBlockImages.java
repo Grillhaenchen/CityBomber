@@ -1,9 +1,10 @@
 package thd.gameobjects.unmovable;
 
 import thd.game.utilities.GameView;
+import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.Position;
 
-class ProgressBarBlockImages {
+class ProgressBarBlockImages extends GameObject {
 
     /**
      * this is the Progressbar on the left side of the gameUI.
@@ -52,6 +53,7 @@ class ProgressBarBlockImages {
     private double rotation;
 
     ProgressBarBlockImages(GameView gameView) {
+        super(gameView);
         this.gameView = gameView;
         this.position = new Position(0, (double) GameView.HEIGHT / 2);
         size = 1;
@@ -64,7 +66,8 @@ class ProgressBarBlockImages {
      *
      * @see thd.game.utilities.GameView
      */
-    private void updatePosition() {
+    @Override
+    public void updatePosition() {
 
     }
 
@@ -73,7 +76,8 @@ class ProgressBarBlockImages {
      *
      * @see thd.game.utilities.GameView
      */
-    private void addToCanvas() {
+    @Override
+    public void addToCanvas() {
         gameView.addBlockImageToCanvas(block, 1, 1, 2, 2);
     }
 }
