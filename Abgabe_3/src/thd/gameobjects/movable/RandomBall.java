@@ -2,7 +2,6 @@ package thd.gameobjects.movable;
 
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.GameObject;
-import thd.gameobjects.base.Position;
 
 import java.awt.*;
 
@@ -11,15 +10,20 @@ import java.awt.*;
  */
 public class RandomBall extends GameObject {
 
+    private final RandomMovementPattern randomMovementPattern;
+    private final QuadraticMovementPattern quadraticMovementPattern;
+
     /**
      * Creates a RandomBall object.
      *
      * @param gameView instance of GameView
      */
     public RandomBall(GameView gameView) {
-        super(gameView, new RandomMovementPattern().startPosition(), new QuadraticMovementPattern().nextPosition());
-        position.updateCoordinates(position);
-        targetPosition.updateCoordinates(position);
+        super(gameView);
+        randomMovementPattern = new RandomMovementPattern();
+        quadraticMovementPattern = new QuadraticMovementPattern();
+        position.updateCoordinates(randomMovementPattern.startPosition());
+        targetPosition.updateCoordinates(quadraticMovementPattern.nextPosition());
 
         size = 55;
         width = 1;
@@ -59,7 +63,7 @@ public class RandomBall extends GameObject {
         }
 
         if (position.similarTo(targetPosition)) {
-            targetPosition.updateCoordinates(new QuadraticMovementPattern().nextPosition());
+            targetPosition.updateCoordinates(quadraticMovementPattern.nextPosition());
         }
     }
 }
