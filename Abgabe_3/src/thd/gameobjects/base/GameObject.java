@@ -7,14 +7,27 @@ import thd.game.utilities.GameView;
  */
 public class GameObject {
 
-    private final GameView gameView;
-    private final Position position;
-    private final Position targetPosition;
-    private double speedInPixel;
-    private double rotation;
-    private double size;
-    private double width;
-    private double height;
+    protected final GameView gameView;
+    protected final Position position;
+    protected final Position targetPosition;
+    protected double speedInPixel;
+    protected double rotation;
+    protected double size;
+    protected double width;
+    protected double height;
+
+    /**
+     * Create a new GameObject.
+     *
+     * @param gameView       GameView to show the game object on.
+     * @param position       Position to show the game object on.
+     * @param targetPosition TargetPosition to show the game object on.
+     */
+    public GameObject(GameView gameView, Position position, Position targetPosition) {
+        this.gameView = gameView;
+        this.position = position;
+        this.targetPosition = targetPosition;
+    }
 
     /**
      * Crates a new GameObject.
@@ -23,8 +36,8 @@ public class GameObject {
      */
     public GameObject(GameView gameView) {
         this.gameView = gameView;
-        position = new Position();
-        targetPosition = new Position();
+        this.position = new Position(0, 0);
+        this.targetPosition = new Position(0, 0);
     }
 
     /**

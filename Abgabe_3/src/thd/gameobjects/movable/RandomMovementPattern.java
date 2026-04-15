@@ -11,12 +11,12 @@ class RandomMovementPattern extends MovementPattern {
     }
 
     @Override
-    public Position startPosition() {
+    protected Position startPosition() {
         return new Position(GameView.WIDTH / 2d, GameView.HEIGHT / 2d);
     }
 
     @Override
-    public Position nextPosition() {
+    protected Position nextPosition() {
         return new Position(random.nextInt(GameView.WIDTH), random.nextInt(GameView.HEIGHT));
     }
 }

@@ -16,7 +16,7 @@ class OwnMovementPattern extends MovementPattern {
     }
 
     @Override
-    public Position nextPosition() {
+    protected Position nextPosition() {
         if (currentIndex >= pattern.length) {
             currentIndex = 0;
         }
@@ -24,7 +24,7 @@ class OwnMovementPattern extends MovementPattern {
     }
 
     @Override
-    public Position startPosition() {
+    protected Position startPosition() {
         currentIndex = 0;
         return nextPosition();
     }

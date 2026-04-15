@@ -8,8 +8,7 @@ import thd.gameobjects.base.Position;
  * With this Class can the  User interact and drive through the Map.
  */
 public class UserCar extends GameObject {
-    private final GameView gameView;
-    private final Position position;
+
     private final OwnMovementPattern ownMovementPattern;
 
     /**
@@ -18,9 +17,7 @@ public class UserCar extends GameObject {
      * @param gameView GameView instance
      */
     public UserCar(GameView gameView) {
-        super(gameView);
-        this.gameView = gameView;
-        this.position = new Position(0, (double) GameView.HEIGHT / 2);
+        super(gameView, new Position(0, (double) GameView.HEIGHT / 2), new Position(0, (double) GameView.HEIGHT / 2));
         this.ownMovementPattern = new OwnMovementPattern();
     }
 

@@ -9,25 +9,13 @@ import thd.gameobjects.base.Position;
  */
 public class Gate extends GameObject {
 
-    private final GameView gameView;
-    private final Position position;
-
-    private final double size;
-    private final double width;
-    private final double height;
-
-    private double speedInPixel;
-    private double rotation;
-
     /**
      * This is the UI element for the end in the Progress bar.
      *
      * @param gameView GameView instance
      */
     public Gate(GameView gameView) {
-        super(gameView);
-        this.gameView = gameView;
-        this.position = new Position(0, (double) GameView.HEIGHT / 2);
+        super(gameView, new Position(0, (double) GameView.HEIGHT / 2), new Position(0, (double) GameView.HEIGHT / 2));
         size = 1;
         width = 1;
         height = 1;
