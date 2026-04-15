@@ -1,6 +1,7 @@
 package thd.game.managers;
 
 import thd.game.utilities.GameView;
+import thd.gameobjects.movable.FollowerBall;
 import thd.gameobjects.movable.RandomBall;
 import thd.gameobjects.movable.UserCar;
 import thd.gameobjects.movable.UserShot;
@@ -21,6 +22,7 @@ class GameManager {
     private Street street;
 
     private RandomBall randomBall;
+    private final FollowerBall followerBall;
 
     /**
      * Create a new GameManager.
@@ -35,7 +37,8 @@ class GameManager {
         gate = new Gate(gameView);
         street = new Street(gameView);
 
-        randomBall=new RandomBall(gameView);
+        randomBall = new RandomBall(gameView);
+        followerBall = new FollowerBall(gameView, randomBall);
     }
 
     void processFrame(){
@@ -46,6 +49,9 @@ class GameManager {
         gate.addToCanvas();
         street.addToCanvas();
 
+        randomBall.addToCanvas();
         randomBall.updatePosition();
+        followerBall.addToCanvas();
+        followerBall.updatePosition();
     }
 }

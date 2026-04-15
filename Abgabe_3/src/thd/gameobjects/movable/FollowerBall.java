@@ -13,12 +13,14 @@ public class FollowerBall {
     private final double width;
     private final double height;
     private final Position targetPosition;
+    private final RandomBall followMe;
     private double speedInPixel;
     private double rotation;
 
     public FollowerBall(GameView gameView, RandomBall followMe) {
         this.gameView = gameView;
         this.position = new Position(0, 0);
+        this.followMe = followMe;
         this.targetPosition = new Position(followMe.getPosition());
         size = 55;
         width = 1;
@@ -32,6 +34,6 @@ public class FollowerBall {
     }
 
     public void updatePosition() {
-        position.moveToPosition(targetPosition, speedInPixel);
+        position.moveToPosition(followMe.getPosition(), speedInPixel);
     }
 }

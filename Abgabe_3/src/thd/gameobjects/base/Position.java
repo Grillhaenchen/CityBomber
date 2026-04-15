@@ -173,8 +173,14 @@ public class Position {
                 && Math.round(y) == Math.round(other.y);
     }
 
-    private double distance(Position other) {
-        return Math.sqrt(Math.pow(Math.abs(other.getX() - getX()), 2) + Math.abs(other.getX() - getX()) + Math.pow(Math.abs(other.getY() - getY()), 2));
+    /**
+     * Calculate the difference between two positions.
+     *
+     * @param other Positon for comparison
+     * @return Distance
+     */
+    public double distance(Position other) {
+        return Math.sqrt(Math.pow(Math.abs(other.getX() - getX()), 2) + Math.pow(Math.abs(other.getY() - getY()), 2));
     }
 
     @Override
