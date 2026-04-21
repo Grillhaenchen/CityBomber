@@ -42,9 +42,12 @@ public class UserCar extends GameObject {
      */
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("car_red_driving.png", position.getX(), position.getY(), size, 0);
+
         if (shotInProgress) {
             gameView.addTextToCanvas("X", position.getX(), position.getY(), 20, true, Color.BLACK, 0, "droidsansmono.ttf");
+            shotInProgress = false;
+        } else {
+            gameView.addImageToCanvas("car_red_driving.png", position.getX(), position.getY(), size, 0);
         }
     }
 
