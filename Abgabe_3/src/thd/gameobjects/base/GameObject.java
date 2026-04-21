@@ -78,4 +78,9 @@ public class GameObject {
     public double getHeight() {
         return height;
     }
+
+
+    public void updateStatus(){
+
+    }
 }

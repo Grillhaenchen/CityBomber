@@ -12,22 +12,30 @@ import thd.gameobjects.unmovable.Street;
  */
 class GameManager extends UserControlledGameObjectPool{
 
+    private GameObjectManager gameObjectManager;
+
     /**
      * Create a new GameManager.
      *
      * @param gameView GameView instance
      */
     GameManager(GameView gameView) {
-        this.gameView = gameView;
+        super(gameView);
+        gameObjectManager = new GameObjectManager();
         userCar = new UserCar(gameView);
         shot = new UserShot(gameView);
         start = new Start(gameView);
         gate = new Gate(gameView);
         street = new Street(gameView);
 
+        gameObjectManager.add(userCar);
+        gameObjectManager.add(shot);
+        gameObjectManager.add(gate);
+        gameObjectManager.add(street);
     }
 
-    public void processFrame(){
+    @Override
+    protected void processFrame() {
         super.processFrame();
         userCar.addToCanvas();
         userCar.updatePosition();

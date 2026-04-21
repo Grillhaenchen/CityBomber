@@ -78,4 +78,11 @@ public class GameObject {
     public double getHeight() {
         return height;
     }
+
+    /**
+     * Updates the Status of a GameObject.
+     */
+    public void updateStatus(){
+
+    }
 }

@@ -40,4 +40,6 @@ public class UserCar extends GameObject {
     public void addToCanvas() {
         gameView.addImageToCanvas("car_red_driving.png", position.getX(), position.getY(), 1, 0);
     }
+
+
 }
