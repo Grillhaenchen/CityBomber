@@ -36,6 +36,9 @@ public class GameObjectManager {
     void processFrame() {
         updateLists();
         for (GameObject gameObject : gameObjects) {
+            gameObject.updateStatus();
+            gameObject.updatePosition();
+            gameObject.addToCanvas();
         }
     }
 
@@ -45,9 +48,13 @@ public class GameObjectManager {
     }
 
     private void removeFromGameObjects() {
+        gameObjects.removeAll(gameObjectsToBeRemoved);
+        gameObjectsToBeRemoved.clear();
     }
 
     private void addToGameObjects() {
+        gameObjects.addAll(gameObjectsToBeAdded);
+        gameObjectsToBeAdded.clear();
     }
 
 }

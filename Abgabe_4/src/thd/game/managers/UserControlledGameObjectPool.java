@@ -1,14 +1,15 @@
 package thd.game.managers;
 
 import thd.game.utilities.GameView;
-import thd.gameobjects.movable.UserCar;
-import thd.gameobjects.movable.UserShot;
+import thd.gameobjects.movable.*;
 import thd.gameobjects.unmovable.Gate;
+import thd.gameobjects.unmovable.Score;
 import thd.gameobjects.unmovable.Start;
 import thd.gameobjects.unmovable.Street;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.Random;
 
 /**
  * Class for UserInput.
@@ -21,6 +22,10 @@ class UserControlledGameObjectPool {
     protected Start start;
     protected Gate gate;
     protected Street street;
+    protected Helicopter helicopter;
+    protected PoliceCar policeCar;
+    protected RandomCar randomCar;
+    protected Score score;
 
     UserControlledGameObjectPool(GameView gameView) {
         this.gameView = gameView;

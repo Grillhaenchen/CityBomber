@@ -2,6 +2,7 @@ package thd.gameobjects.movable;
 
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.GameObject;
+import thd.gameobjects.base.Position;
 
 /**
  * PoliceCar can spawn more than one follows the UserCar.
@@ -13,7 +14,7 @@ public class PoliceCar extends GameObject {
      * @param gameView Instance of GameView
      */
     public PoliceCar(GameView gameView) {
-        super(gameView);
+        super(gameView, new Position(30, 100), new Position(30, 100));
     }
 
     @Override

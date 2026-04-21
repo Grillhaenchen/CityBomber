@@ -1,9 +1,9 @@
 package thd.game.managers;
 
 import thd.game.utilities.GameView;
-import thd.gameobjects.movable.UserCar;
-import thd.gameobjects.movable.UserShot;
+import thd.gameobjects.movable.*;
 import thd.gameobjects.unmovable.Gate;
+import thd.gameobjects.unmovable.Score;
 import thd.gameobjects.unmovable.Start;
 import thd.gameobjects.unmovable.Street;
 
@@ -12,7 +12,7 @@ import thd.gameobjects.unmovable.Street;
  */
 class GameManager extends UserControlledGameObjectPool{
 
-    private GameObjectManager gameObjectManager;
+    private final GameObjectManager gameObjectManager;
 
     /**
      * Create a new GameManager.
@@ -21,28 +21,32 @@ class GameManager extends UserControlledGameObjectPool{
      */
     GameManager(GameView gameView) {
         super(gameView);
-        gameObjectManager = new GameObjectManager();
+        this.gameObjectManager = new GameObjectManager();
         userCar = new UserCar(gameView);
         shot = new UserShot(gameView);
         start = new Start(gameView);
         gate = new Gate(gameView);
         street = new Street(gameView);
+        helicopter = new Helicopter(gameView);
+        policeCar = new PoliceCar(gameView);
+        randomCar = new RandomCar(gameView);
+        score = new Score(gameView);
+
 
         gameObjectManager.add(userCar);
         gameObjectManager.add(shot);
         gameObjectManager.add(gate);
         gameObjectManager.add(street);
+        gameObjectManager.add(score);
+
+        gameObjectManager.add(helicopter);
+        gameObjectManager.add(policeCar);
+        gameObjectManager.add(randomCar);
     }
 
     @Override
     protected void processFrame() {
         super.processFrame();
-        userCar.addToCanvas();
-        userCar.updatePosition();
-        shot.addToCanvas();
-        start.addToCanvas();
-        gate.addToCanvas();
-        street.addToCanvas();
-
+        gameObjectManager.processFrame();
     }
 }
