@@ -9,7 +9,6 @@ import thd.gameobjects.unmovable.Street;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.Random;
 
 /**
  * Class for UserInput.

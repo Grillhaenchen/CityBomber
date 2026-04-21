@@ -10,9 +10,7 @@ import thd.gameobjects.unmovable.Street;
 /**
  * The GameManager handles all the Game Items and processes the Frame.
  */
-class GameManager extends UserControlledGameObjectPool{
-
-    private final GameObjectManager gameObjectManager;
+class GameManager extends GamePlayManager {
 
     /**
      * Create a new GameManager.
@@ -33,20 +31,23 @@ class GameManager extends UserControlledGameObjectPool{
         score = new Score(gameView);
 
 
-        gameObjectManager.add(userCar);
-        gameObjectManager.add(shot);
-        gameObjectManager.add(gate);
-        gameObjectManager.add(street);
-        gameObjectManager.add(score);
+        spawnGameObject(userCar);
+        spawnGameObject(shot);
+        spawnGameObject(gate);
+        spawnGameObject(street);
+        spawnGameObject(score);
 
-        gameObjectManager.add(helicopter);
-        gameObjectManager.add(policeCar);
-        gameObjectManager.add(randomCar);
+        spawnGameObject(helicopter);
+        spawnGameObject(policeCar);
+        spawnGameObject(randomCar);
     }
 
     @Override
     protected void processFrame() {
         super.processFrame();
-        gameObjectManager.processFrame();
+        gameManagement();
+    }
+
+    private void gameManagement() {
     }
 }
