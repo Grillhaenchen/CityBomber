@@ -12,6 +12,7 @@ public class GameObjectManager {
     private final List<GameObject> gameObjects;
     private final List<GameObject> gameObjectsToBeAdded;
     private final List<GameObject> gameObjectsToBeRemoved;
+    private static final int MAXIMUM_NUMBER_OF_GAME_OBJECTS = 500;
 
     GameObjectManager() {
         this.gameObjects = new LinkedList<>();
@@ -33,7 +34,7 @@ public class GameObjectManager {
         gameObjectsToBeRemoved.addAll(gameObjects);
     }
 
-    void processFrame() {
+    void processFrame() throws TooManyGameObjectsExeption {
         updateLists();
         for (GameObject gameObject : gameObjects) {
             gameObject.updateStatus();
@@ -42,9 +43,13 @@ public class GameObjectManager {
         }
     }
 
-    private void updateLists() {
+    private void updateLists() throws TooManyGameObjectsExeption {
         removeFromGameObjects();
         addToGameObjects();
+        if (gameObjects.size() >= MAXIMUM_NUMBER_OF_GAME_OBJECTS) {
+            throw new TooManyGameObjectsExeption("Max Amount of GameElements reached (max " + MAXIMUM_NUMBER_OF_GAME_OBJECTS + ")");
+
+        }
     }
 
     private void removeFromGameObjects() {

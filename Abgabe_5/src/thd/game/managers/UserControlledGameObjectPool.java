@@ -25,12 +25,13 @@ class UserControlledGameObjectPool {
     protected PoliceCar policeCar;
     protected RandomCar randomCar;
     protected Score score;
+    protected Square square;
 
     UserControlledGameObjectPool(GameView gameView) {
         this.gameView = gameView;
     }
 
-    protected void processFrame() {
+    protected void processFrame() throws TooManyGameObjectsExeption {
         Integer[] pressedKeys = gameView.keyCodesOfCurrentlyPressedKeys();
         for (int keyCode : pressedKeys) {
             if (keyCode == KeyEvent.VK_A) {

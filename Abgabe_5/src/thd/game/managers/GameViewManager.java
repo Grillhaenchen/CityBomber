@@ -19,7 +19,7 @@ public class GameViewManager {
      * <br>
      * It also handles the Gameloop.
      */
-    public GameViewManager() {
+    public GameViewManager() throws TooManyGameObjectsExeption {
         gameView = new GameView();
         gameView.updateWindowTitle("City Bomber");
         gameView.updateStatusText("Kilian Mayerhofer - Java Programmierung SS 2026");
@@ -30,7 +30,7 @@ public class GameViewManager {
         startGameLoop();
     }
 
-    private void startGameLoop() {
+    private void startGameLoop() throws TooManyGameObjectsExeption {
         while (gameView.isVisible()) {
             gameManager.processFrame();
             gameView.plotCanvas();

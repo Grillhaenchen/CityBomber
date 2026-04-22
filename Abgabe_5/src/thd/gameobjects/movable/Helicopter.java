@@ -1,5 +1,6 @@
 package thd.gameobjects.movable;
 
+import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.Position;
@@ -12,9 +13,10 @@ public class Helicopter extends GameObject {
      * Creates a Object of Helicopter.
      *
      * @param gameView Instance of GameView
+     * @param gamePlayManager Instance of GamePlayManager
      */
-    public Helicopter(GameView gameView) {
-        super(gameView);
+    public Helicopter(GameView gameView, GamePlayManager gamePlayManager) {
+        super(gameView, gamePlayManager);
         position.updateCoordinates(new Position(30, 40));
     }
 

@@ -1,15 +1,17 @@
 package thd.gameobjects.base;
 
+import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
 
 /**
  * Represents an object in the game.
  */
-public class GameObject {
+public abstract class GameObject {
 
     protected final GameView gameView;
     protected final Position position;
     protected final Position targetPosition;
+    protected final GamePlayManager gamePlayManager;
     protected double speedInPixel;
     protected double rotation;
     protected double size;
@@ -19,23 +21,27 @@ public class GameObject {
     /**
      * Create a new GameObject.
      *
-     * @param gameView       GameView to show the game object on.
-     * @param position       Position to show the game object on.
-     * @param targetPosition TargetPosition to show the game object on.
+     * @param gameView        GameView to show the game object on.
+     * @param position        Position to show the game object on.
+     * @param targetPosition  TargetPosition to show the game object on.
+     * @param gamePlayManager Instance of GamePlayManager
      */
-    public GameObject(GameView gameView, Position position, Position targetPosition) {
+    public GameObject(GameView gameView, Position position, Position targetPosition, GamePlayManager gamePlayManager) {
         this.gameView = gameView;
         this.position = position;
         this.targetPosition = targetPosition;
+        this.gamePlayManager = gamePlayManager;
     }
 
     /**
      * Crates a new GameObject.
      *
      * @param gameView GameView to show the game object on.
+     * @param gamePlayManager Instance of GamePlayManager
      */
-    public GameObject(GameView gameView) {
+    public GameObject(GameView gameView, GamePlayManager gamePlayManager) {
         this.gameView = gameView;
+        this.gamePlayManager = gamePlayManager;
         this.position = new Position(0, 0);
         this.targetPosition = new Position(0, 0);
     }
@@ -49,8 +55,7 @@ public class GameObject {
     /**
      * Draws the game object to the canvas.
      */
-    public void addToCanvas() {
-    }
+    public abstract void addToCanvas();
 
     /**
      * Returns the current position of the game object.
@@ -83,6 +88,8 @@ public class GameObject {
      * Updates the Status of a GameObject.
      */
     public void updateStatus(){
-
+        if (position.getX() > 1280 || position.getX() < 0 || position.getY() < 0 || position.getY() > 720) {
+            gamePlayManager.destroyGameObject(this);
+        }
     }
 }

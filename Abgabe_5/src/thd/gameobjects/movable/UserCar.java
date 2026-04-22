@@ -1,28 +1,30 @@
 package thd.gameobjects.movable;
 
+import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.GameObject;
+import thd.gameobjects.base.MainCharacter;
 import thd.gameobjects.base.Position;
-
-import java.awt.*;
 
 /**
  * With this Class can the  User interact and drive through the Map.
  */
-public class UserCar extends GameObject {
+public class UserCar extends GameObject implements MainCharacter {
 
-    private boolean shotInProgress;
+    private final int shotDurationInMilliseconds;
 
     /**
      * Creates a User car .
      *
-     * @param gameView GameView instance
+     * @param gameView    GameView instance
+     * @param gamePlayManager Instance of GamePlayManager
      */
-    public UserCar(GameView gameView) {
-        super(gameView);
-        position.updateCoordinates(new Position(((double) GameView.WIDTH / 2), ((double) GameView.HEIGHT / 2) - 120));
-        shotInProgress = false;
+    public UserCar(GameView gameView, GamePlayManager gamePlayManager) {
+        super(gameView, gamePlayManager);
+        position.updateCoordinates(new Position(((double) GameView.WIDTH / 2), ((double) GameView.HEIGHT / 2) - 90));
+
         size = 1;
+        shotDurationInMilliseconds = 300;
     }
 
     /**
@@ -43,9 +45,6 @@ public class UserCar extends GameObject {
     @Override
     public void addToCanvas() {
         gameView.addImageToCanvas("car_red_driving.png", position.getX(), position.getY(), size, 0);
-        if (shotInProgress) {
-            gameView.addTextToCanvas("X", position.getX(), position.getY(), 20, true, Color.BLACK, 0, "droidsansmono.ttf");
-        }
     }
 
     /**
@@ -79,8 +78,11 @@ public class UserCar extends GameObject {
     /**
      * Displays shoot.
      */
+    @Override
     public void shoot() {
-        shotInProgress = true;
+        if (gameView.timer(shotDurationInMilliseconds, 0, this)) {
+            gamePlayManager.spawnGameObject(new UserShot(gameView, gamePlayManager));
+        }
     }
 
     @Override

@@ -19,20 +19,18 @@ class GameManager extends GamePlayManager {
      */
     GameManager(GameView gameView) {
         super(gameView);
-        this.gameObjectManager = new GameObjectManager();
-        userCar = new UserCar(gameView);
-        shot = new UserShot(gameView);
-        start = new Start(gameView);
-        gate = new Gate(gameView);
-        street = new Street(gameView);
-        helicopter = new Helicopter(gameView);
-        policeCar = new PoliceCar(gameView);
-        randomCar = new RandomCar(gameView);
-        score = new Score(gameView);
+        userCar = new UserCar(gameView, this);
+        shot = new UserShot(gameView, this);
+        start = new Start(gameView, this);
+        gate = new Gate(gameView, this);
+        street = new Street(gameView, this);
+        helicopter = new Helicopter(gameView, this);
+        policeCar = new PoliceCar(gameView, this);
+        randomCar = new RandomCar(gameView, this);
+        score = new Score(gameView, this);
 
-
+        square = new Square(gameView, this);
         spawnGameObject(userCar);
-        spawnGameObject(shot);
         spawnGameObject(gate);
         spawnGameObject(street);
         spawnGameObject(score);
@@ -40,10 +38,12 @@ class GameManager extends GamePlayManager {
         spawnGameObject(helicopter);
         spawnGameObject(policeCar);
         spawnGameObject(randomCar);
+
+        spawnGameObject(square);
     }
 
     @Override
-    protected void processFrame() {
+    protected void processFrame() throws TooManyGameObjectsExeption {
         super.processFrame();
         gameManagement();
     }

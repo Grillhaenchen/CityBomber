@@ -1,5 +1,6 @@
 package thd.gameobjects.unmovable;
 
+import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.Position;
@@ -12,10 +13,11 @@ public class Street extends GameObject {
     /**
      * Create a Street Object.
      *
-     * @param gameView GameView instance
+     * @param gameView    GameView instance
+     * @param gamePlayManager GamePlayManager Instance
      */
-    public Street(GameView gameView) {
-        super(gameView, new Position((double) GameView.WIDTH / 2, (double) GameView.HEIGHT / 2), new Position((double) GameView.WIDTH / 2, (double) GameView.HEIGHT / 2));
+    public Street(GameView gameView, GamePlayManager gamePlayManager) {
+        super(gameView, new Position((double) (GameView.WIDTH / 2) - 350, (double) (GameView.HEIGHT / 2) + 100), new Position((double) GameView.WIDTH / 2, (double) GameView.HEIGHT / 2), gamePlayManager);
         size = 1;
         width = 1;
         height = 1;

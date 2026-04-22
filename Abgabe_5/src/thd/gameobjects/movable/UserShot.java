@@ -1,5 +1,6 @@
 package thd.gameobjects.movable;
 
+import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.Position;
@@ -12,13 +13,15 @@ public class UserShot extends GameObject {
     /**
      * Creates a Bullet.
      *
-     * @param gameView GameView instance
+     * @param gameView    GameView instance
+     * @param gamePlayManager GamePlayManager Instance
      */
-    public UserShot(GameView gameView) {
-        super(gameView, new Position((double) GameView.WIDTH / 2, (double) GameView.HEIGHT / 2), new Position((double) GameView.WIDTH / 2, (double) GameView.HEIGHT / 2));
+    public UserShot(GameView gameView, GamePlayManager gamePlayManager) {
+        super(gameView, new Position((double) GameView.WIDTH / 2, (double) GameView.HEIGHT / 2), new Position((double) GameView.WIDTH / 2, (double) GameView.HEIGHT / 2), gamePlayManager);
         size = 1;
         width = 1;
         height = 1;
+        speedInPixel = 4;
     }
 
     /**
@@ -28,7 +31,10 @@ public class UserShot extends GameObject {
      */
     @Override
     public void updatePosition() {
-
+        position.up(speedInPixel);
+        if (position.getY() < 20) {
+            gamePlayManager.destroyGameObject(this);
+        }
     }
 
     /**

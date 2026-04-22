@@ -10,6 +10,7 @@ public class GameObject {
     protected final GameView gameView;
     protected final Position position;
     protected final Position targetPosition;
+    protected final GamePlayManager gamePlayManager;
     protected double speedInPixel;
     protected double rotation;
     protected double size;

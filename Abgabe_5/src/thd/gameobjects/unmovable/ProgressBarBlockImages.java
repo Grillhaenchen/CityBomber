@@ -1,5 +1,6 @@
 package thd.gameobjects.unmovable;
 
+import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.Position;
@@ -46,8 +47,8 @@ class ProgressBarBlockImages extends GameObject {
             """;
 
 
-    ProgressBarBlockImages(GameView gameView) {
-        super(gameView, new Position(0, (double) GameView.HEIGHT / 2), new Position(0, (double) GameView.HEIGHT / 2));
+    ProgressBarBlockImages(GameView gameView, GamePlayManager gamePlayManager) {
+        super(gameView, new Position(0, (double) GameView.HEIGHT / 2), new Position(0, (double) GameView.HEIGHT / 2), gamePlayManager);
     }
 
     /**

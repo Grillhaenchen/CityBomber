@@ -1,5 +1,6 @@
 package thd.gameobjects.unmovable;
 
+import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.Position;
@@ -12,10 +13,11 @@ public class Start extends GameObject {
     /**
      * This is the Start UI element in at the Progress bar.
      *
-     * @param gameView GameView instance
+     * @param gameView    GameView instance
+     * @param gamePlayManager GamePlayManager Instance
      */
-    public Start(GameView gameView) {
-        super(gameView, new Position(0, (double) GameView.HEIGHT / 2), new Position(0, (double) GameView.HEIGHT / 2));
+    public Start(GameView gameView, GamePlayManager gamePlayManager) {
+        super(gameView, new Position(0, (double) GameView.HEIGHT / 2), new Position(0, (double) GameView.HEIGHT / 2), gamePlayManager);
         size = 1;
         width = 1;
         height = 1;
