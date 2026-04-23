@@ -20,7 +20,7 @@ public class PoliceCar extends CollidingGameObject {
         position.updateCoordinates(new Position(30, 100));
         width = 30;
         height = 75;
-        super.hitBoxOffsets(15, 10, 0, 0);
+        super.hitBoxOffsets(5, 0, 0, 0);
     }
 
     @Override

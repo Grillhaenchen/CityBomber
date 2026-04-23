@@ -17,9 +17,9 @@ public class RandomCar extends CollidingGameObject {
      */
     public RandomCar(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
-        width = 30;
-        height = 75;
-        super.hitBoxOffsets(15, 10, 0, 0);
+        width = 70;
+        height = 120;
+        super.hitBoxOffsets(8, 0, 0, 0);
         position.updateCoordinates(new Position(650, 100));
     }
 
