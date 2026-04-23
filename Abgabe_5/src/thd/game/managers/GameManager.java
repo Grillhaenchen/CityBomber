@@ -43,7 +43,7 @@ class GameManager extends GamePlayManager {
     }
 
     @Override
-    protected void processFrame() throws TooManyGameObjectsExeption {
+    protected void processFrame() throws TooManyGameObjectsException {
         super.processFrame();
         gameManagement();
     }

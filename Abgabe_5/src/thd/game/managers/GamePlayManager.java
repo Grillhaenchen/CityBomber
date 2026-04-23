@@ -50,10 +50,9 @@ public class GamePlayManager extends UserControlledGameObjectPool {
     /**
      * Process a Frame in the GameView.
      *
-     * @throws TooManyGameObjectsExeption thows when the more than 500 GameObjects are Displayed.
      */
     @Override
-    protected void processFrame() throws TooManyGameObjectsExeption {
+    protected void processFrame() throws TooManyGameObjectsException {
         super.processFrame();
         gameObjectManager.processFrame();
         gamePlayManagement();

@@ -32,9 +32,6 @@ public class UserShot extends GameObject {
     @Override
     public void updatePosition() {
         position.up(speedInPixel);
-        if (position.getY() < 20) {
-            gamePlayManager.destroyGameObject(this);
-        }
     }
 
     /**
@@ -45,5 +42,12 @@ public class UserShot extends GameObject {
     @Override
     public void addToCanvas() {
         gameView.addImageToCanvas("shot.png", position.getX(), position.getY(), 1, 0);
+    }
+
+    @Override
+    public void updateStatus(){
+        if (position.getY() < 20) {
+            gamePlayManager.destroyGameObject(this);
+        }
     }
 }

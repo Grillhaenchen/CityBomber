@@ -31,7 +31,7 @@ class UserControlledGameObjectPool {
         this.gameView = gameView;
     }
 
-    protected void processFrame() throws TooManyGameObjectsExeption {
+    protected void processFrame() throws TooManyGameObjectsException {
         Integer[] pressedKeys = gameView.keyCodesOfCurrentlyPressedKeys();
         for (int keyCode : pressedKeys) {
             if (keyCode == KeyEvent.VK_A) {

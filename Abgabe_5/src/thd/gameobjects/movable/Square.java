@@ -23,4 +23,10 @@ public class Square extends GameObject {
         position.right(speedInPixel);
     }
 
+    @Override
+    public void updateStatus() {
+        if (position.getX() > 1280 || position.getX() < 0 || position.getY() < 0 || position.getY() > 720) {
+            gamePlayManager.destroyGameObject(this);
+        }
+    }
 }
