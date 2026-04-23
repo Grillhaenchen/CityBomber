@@ -2,17 +2,20 @@ package thd.gameobjects.movable;
 
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
-import thd.gameobjects.base.GameObject;
+import thd.gameobjects.base.CollidingGameObject;
 import thd.gameobjects.base.MainCharacter;
 import thd.gameobjects.base.Position;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * With this Class can the  User interact and drive through the Map.
  */
-public class UserCar extends GameObject implements MainCharacter {
+public class UserCar extends CollidingGameObject implements MainCharacter {
 
     private final int shotDurationInMilliseconds;
-
+    private final List<CollidingGameObject> collidingGameObjectsForPathDecision;
     /**
      * Creates a User car .
      *
@@ -22,9 +25,18 @@ public class UserCar extends GameObject implements MainCharacter {
     public UserCar(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
         position.updateCoordinates(new Position(((double) GameView.WIDTH / 2), ((double) GameView.HEIGHT / 2) - 90));
-
+        width = 30;
+        height = 75;
         size = 1;
+        super.hitBoxOffsets(15, 10, 0, 0);
         shotDurationInMilliseconds = 300;
+        collidingGameObjectsForPathDecision = new LinkedList<CollidingGameObject>();
+        collidingGameObjectsForPathDecision.add(new PoliceCar(gameView, gamePlayManager));
+    }
+
+    @Override
+    public void reactToCollisionWith(CollidingGameObject other) {
+
     }
 
     /**
@@ -52,6 +64,13 @@ public class UserCar extends GameObject implements MainCharacter {
      */
     public void left() {
         position.left(1);
+        for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
+            if (collidesWith(collidingGameObject)) {
+                position.right(speedInPixel); // Bewegung im Fall einer Kollision wieder zurücknehmen!
+                gamePlayManager.lifeLost();
+                break;
+            }
+        }
     }
 
     /**

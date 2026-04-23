@@ -3,6 +3,8 @@ package thd.gameobjects.base;
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
 
+import java.util.Objects;
+
 /**
  * Represents an object in the game.
  */
@@ -91,5 +93,33 @@ public abstract class GameObject {
         if (position.getX() > 1280 || position.getX() < 0 || position.getY() < 0 || position.getY() > 720) {
             gamePlayManager.destroyGameObject(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object object) {
+
+        if (this == object) {
+            return true;
+        }
+
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+
+        GameObject that = (GameObject) object;
+
+        return Double.compare(that.speedInPixel, speedInPixel) == 0
+                && Double.compare(that.rotation, rotation) == 0
+                && Double.compare(that.size, size) == 0
+                && Double.compare(that.width, width) == 0
+                && Double.compare(that.height, height) == 0
+                && Objects.equals(position, that.position)
+                && Objects.equals(targetPosition, that.targetPosition);
+    }
+
+    @Override
+    public int hashCode() {
+        // Der Hash-Code muss auf denselben Feldern basieren wie die equals-Methode
+        return Objects.hash(position, targetPosition, speedInPixel, rotation, size, width, height);
     }
 }

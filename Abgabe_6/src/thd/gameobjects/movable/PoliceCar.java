@@ -2,13 +2,13 @@ package thd.gameobjects.movable;
 
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
-import thd.gameobjects.base.GameObject;
+import thd.gameobjects.base.CollidingGameObject;
 import thd.gameobjects.base.Position;
 
 /**
  * PoliceCar can spawn more than one follows the UserCar.
  */
-public class PoliceCar extends GameObject {
+public class PoliceCar extends CollidingGameObject {
     /**
      * Creates a Police Car.
      *
@@ -16,7 +16,16 @@ public class PoliceCar extends GameObject {
      * @param gamePlayManager Instance of GamePlayManager
      */
     public PoliceCar(GameView gameView, GamePlayManager gamePlayManager) {
-        super(gameView, new Position(30, 100), new Position(30, 100), gamePlayManager);
+        super(gameView, gamePlayManager);
+        position.updateCoordinates(new Position(30, 100));
+        width = 30;
+        height = 75;
+        super.hitBoxOffsets(15, 10, 0, 0);
+    }
+
+    @Override
+    public void reactToCollisionWith(CollidingGameObject other) {
+        gamePlayManager.addPoints(30);
     }
 
     @Override

@@ -2,6 +2,8 @@ package thd.gameobjects.base;
 
 import thd.game.utilities.GameView;
 
+import java.util.Objects;
+
 /**
  * Class to locate all Game Pieces in {@link GameView}.
  * <br>
@@ -181,6 +183,25 @@ public class Position {
      */
     public double distance(Position other) {
         return Math.sqrt(Math.pow(Math.abs(other.getX() - getX()), 2) + Math.pow(Math.abs(other.getY() - getY()), 2));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Position position = (Position) o;
+
+        return Double.compare(position.x, x) == 0
+                && Double.compare(position.y, y) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 
     @Override

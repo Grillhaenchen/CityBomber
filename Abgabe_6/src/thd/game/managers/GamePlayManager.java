@@ -11,6 +11,10 @@ public class GamePlayManager extends UserControlledGameObjectPool {
     private final GameObjectManager gameObjectManager;
     private int currentNumberOfVisibleSquares;
 
+    private static final int LIVES = 3;
+    protected int lives;
+    protected int points;
+
     /**
      * Create a instance of GamePlayManager.
      *
@@ -19,6 +23,7 @@ public class GamePlayManager extends UserControlledGameObjectPool {
     protected GamePlayManager(GameView gameView) {
         super(gameView);
         this.gameObjectManager = new GameObjectManager();
+        lives = LIVES;
     }
 
     /**
@@ -61,5 +66,21 @@ public class GamePlayManager extends UserControlledGameObjectPool {
         if (gameView.timer(1000, 0, this) && currentNumberOfVisibleSquares < 5) {
             currentNumberOfVisibleSquares++;
         }
+    }
+
+    /**
+     * remove one life.
+     */
+    public void lifeLost() {
+        lives--;
+    }
+
+    /**
+     * add Points.
+     *
+     * @param points the amount of point you will add
+     */
+    public void addPoints(int points) {
+        this.points += points;
     }
 }

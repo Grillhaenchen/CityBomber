@@ -2,13 +2,13 @@ package thd.gameobjects.movable;
 
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
-import thd.gameobjects.base.GameObject;
+import thd.gameobjects.base.CollidingGameObject;
 import thd.gameobjects.base.Position;
 
 /**
  * A RandomCar Class that dirves on the Road.
  */
-public class RandomCar extends GameObject {
+public class RandomCar extends CollidingGameObject {
     /**
      * Creates a RandomCar.
      *
@@ -17,8 +17,15 @@ public class RandomCar extends GameObject {
      */
     public RandomCar(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
-
+        width = 30;
+        height = 75;
+        super.hitBoxOffsets(15, 10, 0, 0);
         position.updateCoordinates(new Position(650, 100));
+    }
+
+    @Override
+    public void reactToCollisionWith(CollidingGameObject other) {
+
     }
 
     @Override

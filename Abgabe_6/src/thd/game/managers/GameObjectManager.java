@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Class that handels all GameObjects.
  */
-public class GameObjectManager {
+public class GameObjectManager extends CollisionManager {
     private final List<GameObject> gameObjects;
     private final List<GameObject> gameObjectsToBeAdded;
     private final List<GameObject> gameObjectsToBeRemoved;
@@ -41,6 +41,7 @@ public class GameObjectManager {
             gameObject.updatePosition();
             gameObject.addToCanvas();
         }
+        manageCollisions(true);
     }
 
     private void updateLists() throws TooManyGameObjectsException {
@@ -53,12 +54,20 @@ public class GameObjectManager {
     }
 
     private void removeFromGameObjects() {
-        gameObjects.removeAll(gameObjectsToBeRemoved);
+
+        for (GameObject gameObject : gameObjectsToBeRemoved) {
+            gameObjects.remove(gameObject);
+            super.removeFromCollisionManagement(gameObject);
+        }
         gameObjectsToBeRemoved.clear();
     }
 
     private void addToGameObjects() {
         gameObjects.addAll(gameObjectsToBeAdded);
+        for (GameObject gameObject : gameObjectsToBeAdded) {
+            gameObjects.add(gameObject);
+            super.addToCollisionManagement(gameObject);
+        }
         gameObjectsToBeAdded.clear();
     }
 
