@@ -70,5 +70,14 @@ public class GameObjectManager extends CollisionManager {
         }
         gameObjectsToBeAdded.clear();
     }
-
+    private void sortIntoGameObjects(GameObject toAdd) {
+        int indexToSortIn = 0;
+        for (GameObject gameObject : gameObjects) {
+            if (gameObject.getDistanceToBackground() >= toAdd.getDistanceToBackground()) {
+                break;
+            }
+            indexToSortIn++;
+        }
+        gameObjects.add(indexToSortIn, toAdd);
+    }
 }

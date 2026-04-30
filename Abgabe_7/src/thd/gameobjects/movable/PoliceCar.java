@@ -21,6 +21,7 @@ public class PoliceCar extends CollidingGameObject {
         width = 30;
         height = 75;
         super.hitBoxOffsets(5, 0, 0, 0);
+        distanceToBackground = Integer.MAX_VALUE - 2;
     }
 
     @Override

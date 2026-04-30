@@ -21,6 +21,7 @@ public class Street extends GameObject {
         size = 1;
         width = 1;
         height = 1;
+        distanceToBackground=Integer.MIN_VALUE;
     }
 
     /**

@@ -49,6 +49,7 @@ class ProgressBarBlockImages extends GameObject {
 
     ProgressBarBlockImages(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, new Position(0, (double) GameView.HEIGHT / 2), new Position(0, (double) GameView.HEIGHT / 2), gamePlayManager);
+        distanceToBackground=Integer.MAX_VALUE;
     }
 
     /**

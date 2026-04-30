@@ -10,7 +10,7 @@ import thd.gameobjects.unmovable.Street;
 /**
  * The GameManager handles all the Game Items and processes the Frame.
  */
-class GameManager extends GamePlayManager {
+class GameManager extends GameWorldManager {
 
     /**
      * Create a new GameManager.
@@ -19,24 +19,7 @@ class GameManager extends GamePlayManager {
      */
     GameManager(GameView gameView) {
         super(gameView);
-        userCar = new UserCar(gameView, this);
-        shot = new UserShot(gameView, this);
-        start = new Start(gameView, this);
-        gate = new Gate(gameView, this);
-        street = new Street(gameView, this);
-        helicopter = new Helicopter(gameView, this);
-        policeCar = new PoliceCar(gameView, this);
-        randomCar = new RandomCar(gameView, this);
-        score = new Score(gameView, this);
 
-        spawnGameObject(userCar);
-        spawnGameObject(gate);
-        spawnGameObject(street);
-        spawnGameObject(score);
-
-        spawnGameObject(helicopter);
-        spawnGameObject(policeCar);
-        spawnGameObject(randomCar);
     }
 
     @Override

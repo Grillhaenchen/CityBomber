@@ -32,6 +32,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
         shotDurationInMilliseconds = 300;
         collidingGameObjectsForPathDecision = new LinkedList<CollidingGameObject>();
         collidingGameObjectsForPathDecision.add(new PoliceCar(gameView, gamePlayManager));
+        distanceToBackground = Integer.MAX_VALUE - 1;
     }
 
     @Override

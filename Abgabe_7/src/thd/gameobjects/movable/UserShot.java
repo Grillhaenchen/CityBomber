@@ -24,6 +24,7 @@ public class UserShot extends CollidingGameObject {
         height = 20;
         super.hitBoxOffsets(5, 5, 0, 0);
         speedInPixel = 4;
+        distanceToBackground = Integer.MAX_VALUE - 1;
     }
 
     @Override

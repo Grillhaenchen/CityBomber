@@ -50,6 +50,15 @@ public abstract class GameObject {
     }
 
     /**
+     * Get the Distance to the Background.
+     *
+     * @return Distance to Background
+     */
+    public int getDistanceToBackground() {
+        return this.distanceToBackground;
+    }
+
+    /**
      * Updates the position of the game object.
      */
     public void updatePosition() {
@@ -115,7 +124,8 @@ public abstract class GameObject {
                 && Double.compare(that.width, width) == 0
                 && Double.compare(that.height, height) == 0
                 && Objects.equals(position, that.position)
-                && Objects.equals(targetPosition, that.targetPosition);
+                && Objects.equals(targetPosition, that.targetPosition)
+                && distanceToBackground == that.distanceToBackground;
     }
 
     @Override
