@@ -25,7 +25,10 @@ public class PoliceCar extends CollidingGameObject {
 
     @Override
     public void reactToCollisionWith(CollidingGameObject other) {
-        gamePlayManager.addPoints(30);
+        if (other instanceof UserShot) {
+            gamePlayManager.destroyGameObject(this);
+            gamePlayManager.addPoints(30);
+        }
     }
 
     @Override

@@ -6,7 +6,7 @@ import thd.gameobjects.base.GameObject;
 /**
  * Class for the GamePlayManager his main purpose is the creation of GameObjects and the remove of them.
  */
-public class GamePlayManager extends UserControlledGameObjectPool {
+public class GamePlayManager extends WorldShiftManager {
 
     private final GameObjectManager gameObjectManager;
     private int currentNumberOfVisibleSquares;
@@ -31,6 +31,7 @@ public class GamePlayManager extends UserControlledGameObjectPool {
      *
      * @param gameObject Instance of some GameObject.
      */
+    @Override
     public void spawnGameObject(GameObject gameObject) {
         gameObjectManager.add(gameObject);
     }
@@ -40,6 +41,7 @@ public class GamePlayManager extends UserControlledGameObjectPool {
      *
      * @param gameObject Instance of GameObject.
      */
+    @Override
     public void destroyGameObject(GameObject gameObject) {
         gameObjectManager.remove(gameObject);
     }
@@ -47,6 +49,7 @@ public class GamePlayManager extends UserControlledGameObjectPool {
     /**
      * Removes All GameObjects from GameView.
      */
+    @Override
     protected void destroyAllGameObjects() {
         gameObjectManager.removeAll();
     }

@@ -25,7 +25,10 @@ public class RandomCar extends CollidingGameObject {
 
     @Override
     public void reactToCollisionWith(CollidingGameObject other) {
-
+        if (other instanceof UserShot) {
+            gamePlayManager.destroyGameObject(this);
+            gamePlayManager.addPoints(30);
+        }
     }
 
     @Override

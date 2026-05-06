@@ -63,7 +63,7 @@ public class GameObjectManager extends CollisionManager {
     }
 
     private void addToGameObjects() {
-        gameObjects.addAll(gameObjectsToBeAdded);
+
         for (GameObject gameObject : gameObjectsToBeAdded) {
             gameObjects.add(gameObject);
             super.addToCollisionManagement(gameObject);
