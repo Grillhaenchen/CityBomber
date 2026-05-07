@@ -3,7 +3,6 @@ package thd.gameobjects.movable;
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.CollidingGameObject;
-import thd.gameobjects.base.Position;
 
 /**
  * If the User Fire a bullet this Class handles all the collision detection and the UI element.
@@ -18,13 +17,11 @@ public class UserShot extends CollidingGameObject {
      */
     public UserShot(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
-        position.updateCoordinates(new Position((double) GameView.WIDTH / 2, (double) GameView.HEIGHT / 2));
         size = 1;
         width = 20;
         height = 20;
         super.hitBoxOffsets(5, 5, 0, 0);
         speedInPixel = 4;
-        distanceToBackground = Integer.MAX_VALUE - 1;
     }
 
     @Override

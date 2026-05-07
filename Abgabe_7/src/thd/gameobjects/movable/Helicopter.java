@@ -17,8 +17,7 @@ public class Helicopter extends GameObject {
      */
     public Helicopter(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
-        position.updateCoordinates(new Position(30, 40));
-        distanceToBackground = Integer.MAX_VALUE;
+        position.updateCoordinates(new Position(((double) GameView.WIDTH / 2), ((double) GameView.HEIGHT / 2) + 190));
     }
 
     @Override

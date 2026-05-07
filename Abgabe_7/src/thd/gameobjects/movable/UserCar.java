@@ -25,19 +25,18 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
     public UserCar(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
         position.updateCoordinates(new Position(((double) GameView.WIDTH / 2), ((double) GameView.HEIGHT / 2) - 90));
-        width = 30;
-        height = 75;
+        width = 70;
+        height = 120;
         size = 1;
-        super.hitBoxOffsets(15, 10, 0, 0);
+        super.hitBoxOffsets(10, 15, 0, 0);
         shotDurationInMilliseconds = 300;
         collidingGameObjectsForPathDecision = new LinkedList<CollidingGameObject>();
         collidingGameObjectsForPathDecision.add(new PoliceCar(gameView, gamePlayManager));
-        distanceToBackground = Integer.MAX_VALUE - 1;
+        collidingGameObjectsForPathDecision.add(new RandomCar(gameView, gamePlayManager));
     }
 
     @Override
     public void reactToCollisionWith(CollidingGameObject other) {
-
     }
 
     /**
@@ -67,7 +66,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
         position.left(1);
         for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
             if (collidesWith(collidingGameObject)) {
-                position.right(speedInPixel); // Bewegung im Fall einer Kollision wieder zurücknehmen!
+                position.right(3); // Bewegung im Fall einer Kollision wieder zurücknehmen!
                 gamePlayManager.lifeLost();
                 break;
             }
@@ -79,6 +78,14 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
      */
     public void right() {
         position.right(1);
+
+        for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
+            if (collidesWith(collidingGameObject)) {
+                position.left(3); // Bewegung im Fall einer Kollision wieder zurücknehmen!
+                gamePlayManager.lifeLost();
+                break;
+            }
+        }
     }
 
     /**
@@ -86,6 +93,13 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
      */
     public void up() {
         position.up(1);
+        for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
+            if (collidesWith(collidingGameObject)) {
+                position.down(3); // Bewegung im Fall einer Kollision wieder zurücknehmen!
+                gamePlayManager.lifeLost();
+                break;
+            }
+        }
     }
 
     /**
@@ -93,6 +107,13 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
      */
     public void down() {
         position.down(1);
+        for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
+            if (collidesWith(collidingGameObject)) {
+                position.up(3); // Bewegung im Fall einer Kollision wieder zurücknehmen!
+                gamePlayManager.lifeLost();
+                break;
+            }
+        }
     }
 
     /**
@@ -101,15 +122,16 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
     @Override
     public void shoot() {
         if (gameView.timer(shotDurationInMilliseconds, 0, this)) {
-            gamePlayManager.spawnGameObject(new UserShot(gameView, gamePlayManager));
+            UserShot shot = new UserShot(gameView, gamePlayManager);
+            shot.getPosition().updateCoordinates(new Position(position.getX() + 25, position.getY()));
+
+            gamePlayManager.spawnGameObject(shot);
         }
     }
 
     @Override
     public void updateStatus() {
-        if (gameView.timer(5000, 0, this)) {
-            size++;
-        }
+
     }
 }
 

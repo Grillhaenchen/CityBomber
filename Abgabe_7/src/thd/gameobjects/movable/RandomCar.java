@@ -21,12 +21,14 @@ public class RandomCar extends CollidingGameObject {
         height = 120;
         super.hitBoxOffsets(8, 0, 0, 0);
         position.updateCoordinates(new Position(650, 100));
-        distanceToBackground = Integer.MAX_VALUE - 2;
     }
 
     @Override
     public void reactToCollisionWith(CollidingGameObject other) {
-
+        if (other instanceof UserShot) {
+            gamePlayManager.destroyGameObject(this);
+            gamePlayManager.addPoints(30);
+        }
     }
 
     @Override

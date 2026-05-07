@@ -3,10 +3,7 @@ package thd.game.managers;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.GameObject;
 import thd.gameobjects.movable.*;
-import thd.gameobjects.unmovable.Gate;
-import thd.gameobjects.unmovable.Score;
-import thd.gameobjects.unmovable.Start;
-import thd.gameobjects.unmovable.Street;
+import thd.gameobjects.unmovable.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -42,6 +39,10 @@ public class GameWorldManager extends GamePlayManager {
         policeCar = new PoliceCar(gameView, this);
         randomCar = new RandomCar(gameView, this);
         score = new Score(gameView, this);
+        progressBarBlockImages = new ProgressBarBlockImages(gameView, this);
+        houseLeft = new HouseLeft(gameView, this);
+        houseRight = new HouseRight(gameView, this);
+        countdown = new Countdown(gameView, this);
         spawnGameObjects();
         spawnGameObjectsFromWorldString();
         worldOffsetColumns = 14;
@@ -50,14 +51,20 @@ public class GameWorldManager extends GamePlayManager {
     }
 
     public void spawnGameObjects() {
-        spawnGameObject(userCar);
+        spawnGameObject(houseLeft);
+        spawnGameObject(houseRight);
         spawnGameObject(gate);
+        spawnGameObject(start);
+        spawnGameObject(progressBarBlockImages);
         spawnGameObject(street);
         spawnGameObject(score);
+        spawnGameObject(countdown);
 
         spawnGameObject(helicopter);
         spawnGameObject(policeCar);
         spawnGameObject(randomCar);
+
+        spawnGameObject(userCar);
     }
 
     void spawnGameObjectsFromWorldString() {
@@ -89,9 +96,4 @@ public class GameWorldManager extends GamePlayManager {
         addToShiftableGameObjectsIfShiftable(gameObject);
     }
 
-    @Override
-    protected void processFrameUpdate() {
-        super.processFrameUpdate();
-        activateGameObjects();
-    }
 }
