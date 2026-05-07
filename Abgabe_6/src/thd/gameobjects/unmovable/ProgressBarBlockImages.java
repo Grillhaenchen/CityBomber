@@ -3,9 +3,11 @@ package thd.gameobjects.unmovable;
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.GameObject;
-import thd.gameobjects.base.Position;
 
-class ProgressBarBlockImages extends GameObject {
+/**
+ * Class of PrograssBar displayed on the left side of the UI.
+ */
+public class ProgressBarBlockImages extends GameObject {
 
     /**
      * this is the Progressbar on the left side of the gameUI.
@@ -44,11 +46,19 @@ class ProgressBarBlockImages extends GameObject {
             R
             R
             R
+            R
+            R            
             """;
 
-
-    ProgressBarBlockImages(GameView gameView, GamePlayManager gamePlayManager) {
-        super(gameView, new Position(0, (double) GameView.HEIGHT / 2), new Position(0, (double) GameView.HEIGHT / 2), gamePlayManager);
+    /**
+     * Create a Progressbar.
+     *
+     * @param gameView        Instance of GameView
+     * @param gamePlayManager Instance of GamePlayManager
+     */
+    public ProgressBarBlockImages(GameView gameView, GamePlayManager gamePlayManager) {
+        super(gameView, gamePlayManager);
+        getPosition().updateCoordinates(48, (double) (GameView.HEIGHT / 2) + 71);
     }
 
     /**
@@ -68,6 +78,6 @@ class ProgressBarBlockImages extends GameObject {
      */
     @Override
     public void addToCanvas() {
-        gameView.addBlockImageToCanvas(block, 1, 1, 2, 2);
+        gameView.addBlockImageToCanvas(block, getPosition().getX(), getPosition().getY(), 5, 0);
     }
 }

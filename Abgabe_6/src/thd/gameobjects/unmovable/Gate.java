@@ -4,7 +4,6 @@ package thd.gameobjects.unmovable;
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.GameObject;
-import thd.gameobjects.base.Position;
 
 /**
  * This is the Gate UI element in at the Progress bar.
@@ -18,10 +17,11 @@ public class Gate extends GameObject {
      * @param gamePlayManager GamePlayManager Instance
      */
     public Gate(GameView gameView, GamePlayManager gamePlayManager) {
-        super(gameView, new Position(0, (double) GameView.HEIGHT / 2), new Position(0, (double) GameView.HEIGHT / 2), gamePlayManager);
-        size = 1;
-        width = 1;
-        height = 1;
+        super(gameView, gamePlayManager);
+        getPosition().updateCoordinates(10, (double) (GameView.HEIGHT / 2) + 50);
+        size = 0.5;
+        width = 150;
+        height = 43;
     }
 
     /**
@@ -41,6 +41,6 @@ public class Gate extends GameObject {
      */
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("gate.png", position.getX(), position.getY(), 1, 0);
+        gameView.addImageToCanvas("gate.png", position.getX(), position.getY(), size, 0);
     }
 }

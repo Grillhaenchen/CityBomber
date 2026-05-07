@@ -123,7 +123,8 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
     public void shoot() {
         if (gameView.timer(shotDurationInMilliseconds, 0, this)) {
             UserShot shot = new UserShot(gameView, gamePlayManager);
-            shot.getPosition().updateCoordinates(this.position);
+            shot.getPosition().updateCoordinates(new Position(position.getX() + 25, position.getY()));
+
             gamePlayManager.spawnGameObject(shot);
         }
     }

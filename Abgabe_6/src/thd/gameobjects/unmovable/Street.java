@@ -17,10 +17,11 @@ public class Street extends GameObject {
      * @param gamePlayManager GamePlayManager Instance
      */
     public Street(GameView gameView, GamePlayManager gamePlayManager) {
-        super(gameView, new Position((double) (GameView.WIDTH / 2) - 350, (double) (GameView.HEIGHT / 2) + 100), new Position((double) GameView.WIDTH / 2, (double) GameView.HEIGHT / 2), gamePlayManager);
+        super(gameView, gamePlayManager);
+        getPosition().updateCoordinates(new Position((double) (GameView.WIDTH / 2) - 350, 0));
         size = 1;
-        width = 1;
-        height = 1;
+        width = 800;
+        height = 200;
     }
 
     /**
@@ -40,6 +41,10 @@ public class Street extends GameObject {
      */
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("road_4row.png", position.getX(), position.getY(), 1, 0);
+        gameView.addImageToCanvas("road_4row.png", position.getX(), position.getY(), size, 0);
+        gameView.addImageToCanvas("road_4row.png", position.getX(), position.getY() + 200, size, 0);
+        gameView.addImageToCanvas("road_4row.png", position.getX(), position.getY() + 400, size, 0);
+        gameView.addImageToCanvas("road_4row.png", position.getX(), position.getY() + 600, size, 0);
+
     }
 }

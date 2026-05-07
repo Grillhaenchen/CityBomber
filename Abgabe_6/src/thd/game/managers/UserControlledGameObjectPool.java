@@ -2,10 +2,7 @@ package thd.game.managers;
 
 import thd.game.utilities.GameView;
 import thd.gameobjects.movable.*;
-import thd.gameobjects.unmovable.Gate;
-import thd.gameobjects.unmovable.Score;
-import thd.gameobjects.unmovable.Start;
-import thd.gameobjects.unmovable.Street;
+import thd.gameobjects.unmovable.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -25,6 +22,10 @@ class UserControlledGameObjectPool {
     protected PoliceCar policeCar;
     protected RandomCar randomCar;
     protected Score score;
+    protected HouseLeft houseLeft;
+    protected HouseRight houseRight;
+    protected ProgressBarBlockImages progressBarBlockImages;
+    protected Countdown countdown;
 
     UserControlledGameObjectPool(GameView gameView) {
         this.gameView = gameView;
