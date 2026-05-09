@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
-public class GameWorldManager extends GamePlayManager {
+class GameWorldManager extends GamePlayManager {
     private final int worldOffsetColumns;
     private final int worldOffsetLines;
     private final String world;
@@ -106,7 +106,11 @@ public class GameWorldManager extends GamePlayManager {
 
                 if (spawnObject != null) {
                     spawnObject.getPosition().updateCoordinates(x, y);
-                    spawnGameObject(spawnObject);
+                    if (spawnObject instanceof Helicopter) {
+                        addActivatableGameObject(spawnObject);
+                    } else {
+                        spawnGameObject(spawnObject);
+                    }
                 }
             }
         }
@@ -132,15 +136,17 @@ public class GameWorldManager extends GamePlayManager {
             GameObject gameObject = iterator.next();
 
             if (gameObject instanceof RandomCar randomCar) {
-                if (randomCar.tryToActivate(randomCar)) {
+                if (randomCar.tryToActivate(userCar)) {
                     spawnGameObject(randomCar);
+                    iterator.remove();
                 }
             } else if (gameObject instanceof Helicopter helicopter) {
-                if (helicopter.tryToActivate(helicopter)) {
+                if (helicopter.tryToActivate(userCar)) {
                     spawnGameObject(helicopter);
+                    iterator.remove();
                 }
             } else if (gameObject instanceof PoliceCar policeCar) {
-                if (policeCar.tryToActivate(policeCar)) {
+                if (policeCar.tryToActivate(userCar)) {
                     spawnGameObject(policeCar);
                     iterator.remove();
                 }

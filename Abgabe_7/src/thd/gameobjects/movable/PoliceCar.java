@@ -2,19 +2,16 @@ package thd.gameobjects.movable;
 
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
-import thd.gameobjects.base.ActivatableGameObject;
-import thd.gameobjects.base.CollidingGameObject;
-import thd.gameobjects.base.Position;
-import thd.gameobjects.base.ShiftableGameObject;
+import thd.gameobjects.base.*;
 
 /**
  * PoliceCar can spawn more than one follows the UserCar.
  */
-public class PoliceCar extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
+public class PoliceCar extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject<UserCar> {
     /**
      * Creates a Police Car.
      *
-     * @param gameView Instance of GameView
+     * @param gameView        Instance of GameView
      * @param gamePlayManager Instance of GamePlayManager
      */
     public PoliceCar(GameView gameView, GamePlayManager gamePlayManager) {
@@ -52,7 +49,7 @@ public class PoliceCar extends CollidingGameObject implements ShiftableGameObjec
     }
 
     @Override
-    public boolean tryToActivate(Object info) {
+    public boolean tryToActivate(UserCar info) {
         return true;
     }
 }

@@ -2,6 +2,7 @@ package thd.gameobjects.base;
 
 import thd.game.utilities.GameView;
 
+import java.util.Comparator;
 import java.util.Objects;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Objects;
  *
  * @see GameView
  */
-public class Position {
+public class Position implements Comparable<Position> {
 
     private double x;
     private double y;
@@ -207,5 +208,18 @@ public class Position {
     @Override
     public String toString() {
         return "Position (" + (int) Math.round(x) + ", " + (int) Math.round(y) + ")";
+    }
+
+    @Override
+    public int compareTo(Position o) {
+        int result = Double.compare(distance(o), o.distance(this));
+
+        if (result == 0) {
+            result = Double.compare(this.y, o.y);
+            if (result == 0) {
+                result = Double.compare(this.x, o.x);
+            }
+        }
+        return result;
     }
 }

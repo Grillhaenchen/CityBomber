@@ -10,11 +10,11 @@ import thd.gameobjects.base.ShiftableGameObject;
 /**
  * Class for the Helicopter who follow the UserCar and shot on it.
  */
-public class Helicopter extends GameObject implements ShiftableGameObject, ActivatableGameObject {
+public class Helicopter extends GameObject implements ShiftableGameObject, ActivatableGameObject<UserCar> {
     /**
      * Creates a Object of Helicopter.
      *
-     * @param gameView Instance of GameView
+     * @param gameView        Instance of GameView
      * @param gamePlayManager Instance of GamePlayManager
      */
     public Helicopter(GameView gameView, GamePlayManager gamePlayManager) {
@@ -39,7 +39,10 @@ public class Helicopter extends GameObject implements ShiftableGameObject, Activ
     }
 
     @Override
-    public boolean tryToActivate(Object info) {
-        return false;
+    public boolean tryToActivate(UserCar info) {
+        if (info.getPosition().getY() != 5) {
+            return false;
+        }
+        return true;
     }
 }
