@@ -30,7 +30,6 @@ public class GameObjectManager extends CollisionManager {
 
     void removeAll() {
         gameObjectsToBeAdded.clear();
-
         gameObjectsToBeRemoved.addAll(gameObjects);
     }
 
@@ -63,13 +62,15 @@ public class GameObjectManager extends CollisionManager {
     }
 
     private void addToGameObjects() {
-        gameObjects.addAll(gameObjectsToBeAdded);
-        for (GameObject gameObject : gameObjectsToBeAdded) {
-            gameObjects.add(gameObject);
-            super.addToCollisionManagement(gameObject);
+
+        for (GameObject toAdd : gameObjectsToBeAdded) {
+            gameObjects.add(toAdd);
+            addToCollisionManagement(toAdd);
+            sortIntoGameObjects(toAdd);
         }
         gameObjectsToBeAdded.clear();
     }
+
     private void sortIntoGameObjects(GameObject toAdd) {
         int indexToSortIn = 0;
         for (GameObject gameObject : gameObjects) {

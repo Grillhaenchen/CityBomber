@@ -9,7 +9,6 @@ import java.util.List;
 class CollisionManager {
 
     private final List<CollidingGameObject> collidingGameObjects;
-
     protected CollisionManager() {
         collidingGameObjects = new LinkedList<>();
     }

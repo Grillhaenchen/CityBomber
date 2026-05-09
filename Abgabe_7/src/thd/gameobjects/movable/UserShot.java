@@ -3,11 +3,12 @@ package thd.gameobjects.movable;
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.CollidingGameObject;
+import thd.gameobjects.base.ShiftableGameObject;
 
 /**
  * If the User Fire a bullet this Class handles all the collision detection and the UI element.
  */
-public class UserShot extends CollidingGameObject {
+public class UserShot extends CollidingGameObject implements ShiftableGameObject {
 
     /**
      * Creates a Bullet.

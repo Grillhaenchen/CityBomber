@@ -21,6 +21,7 @@ public class HouseLeft extends GameObject {
         size = 0.75;
         width = 150;
         height = 43;
+        distanceToBackground = 1;
     }
 
     @Override

@@ -5,6 +5,7 @@ import thd.game.utilities.GameView;
 import thd.gameobjects.base.CollidingGameObject;
 import thd.gameobjects.base.MainCharacter;
 import thd.gameobjects.base.Position;
+import thd.gameobjects.base.ShiftableGameObject;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * With this Class can the  User interact and drive through the Map.
  */
-public class UserCar extends CollidingGameObject implements MainCharacter {
+public class UserCar extends CollidingGameObject implements MainCharacter, ShiftableGameObject {
 
     private final int shotDurationInMilliseconds;
     private final List<CollidingGameObject> collidingGameObjectsForPathDecision;
@@ -28,6 +29,8 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
         width = 70;
         height = 120;
         size = 1;
+        speedInPixel = 10;
+        distanceToBackground = 99;
         super.hitBoxOffsets(10, 15, 0, 0);
         shotDurationInMilliseconds = 300;
         collidingGameObjectsForPathDecision = new LinkedList<CollidingGameObject>();
@@ -63,7 +66,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
      * Moves the Car left.
      */
     public void left() {
-        position.left(1);
+        gamePlayManager.moveWorldToLeft(speedInPixel);
         for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
             if (collidesWith(collidingGameObject)) {
                 position.right(3); // Bewegung im Fall einer Kollision wieder zurücknehmen!
@@ -77,8 +80,8 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
      * Moves the Car right.
      */
     public void right() {
-        position.right(1);
 
+        gamePlayManager.moveWorldToRight(speedInPixel);
         for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
             if (collidesWith(collidingGameObject)) {
                 position.left(3); // Bewegung im Fall einer Kollision wieder zurücknehmen!
@@ -92,7 +95,8 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
      * Moves car up.
      */
     public void up() {
-        position.up(1);
+
+        gamePlayManager.moveWorldUp(speedInPixel);
         for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
             if (collidesWith(collidingGameObject)) {
                 position.down(3); // Bewegung im Fall einer Kollision wieder zurücknehmen!
@@ -106,7 +110,8 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
      * Moves Car down.
      */
     public void down() {
-        position.down(1);
+
+        gamePlayManager.moveWorldDown(speedInPixel);
         for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
             if (collidesWith(collidingGameObject)) {
                 position.up(3); // Bewegung im Fall einer Kollision wieder zurücknehmen!

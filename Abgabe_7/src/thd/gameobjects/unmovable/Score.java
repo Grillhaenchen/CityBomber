@@ -19,6 +19,7 @@ public class Score extends GameObject {
     public Score(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
         getPosition().updateCoordinates((double) GameView.WIDTH / 2, 0);
+        distanceToBackground = 100;
     }
 
     /**

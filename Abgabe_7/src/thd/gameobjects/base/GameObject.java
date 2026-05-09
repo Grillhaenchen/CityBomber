@@ -55,7 +55,7 @@ public abstract class GameObject {
      * @return Distance to Background
      */
     public int getDistanceToBackground() {
-        return this.distanceToBackground;
+        return distanceToBackground;
     }
 
     /**
@@ -131,6 +131,6 @@ public abstract class GameObject {
     @Override
     public int hashCode() {
         // Der Hash-Code muss auf denselben Feldern basieren wie die equals-Methode
-        return Objects.hash(position, targetPosition, speedInPixel, rotation, size, width, height);
+        return Objects.hash(position, targetPosition, speedInPixel, rotation, size, width, height, distanceToBackground);
     }
 }

@@ -33,6 +33,7 @@ public class GamePlayManager extends WorldShiftManager {
      */
     @Override
     public void spawnGameObject(GameObject gameObject) {
+        super.spawnGameObject(gameObject);
         gameObjectManager.add(gameObject);
     }
 
@@ -43,6 +44,7 @@ public class GamePlayManager extends WorldShiftManager {
      */
     @Override
     public void destroyGameObject(GameObject gameObject) {
+        super.destroyGameObject(gameObject);
         gameObjectManager.remove(gameObject);
     }
 
@@ -51,6 +53,7 @@ public class GamePlayManager extends WorldShiftManager {
      */
     @Override
     protected void destroyAllGameObjects() {
+        super.destroyAllGameObjects();
         gameObjectManager.removeAll();
     }
 
@@ -85,5 +88,9 @@ public class GamePlayManager extends WorldShiftManager {
      */
     public void addPoints(int points) {
         this.points += points;
+    }
+
+    protected void processFrameUpdate() {
+
     }
 }

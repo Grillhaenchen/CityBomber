@@ -4,11 +4,12 @@ import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.Position;
+import thd.gameobjects.base.ShiftableGameObject;
 
 /**
  * This Class handels the Map where the user can drive. *
  */
-public class Street extends GameObject {
+public class Street extends GameObject implements ShiftableGameObject {
 
     /**
      * Create a Street Object.
@@ -22,6 +23,7 @@ public class Street extends GameObject {
         size = 1;
         width = 800;
         height = 200;
+        distanceToBackground = 1;
     }
 
     /**

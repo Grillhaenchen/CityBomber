@@ -7,19 +7,12 @@ import thd.gameobjects.unmovable.*;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 public class GameWorldManager extends GamePlayManager {
-    int worldOffsetColumns;
-    int worldOffsetLines;
-
-    String world = """ 
-            B   P  P    \s
-              P      P  \s 
-            P          P\s 
-                        \s 
-                        \s 
-                        \s 
-            R       U  R\s""";
+    private final int worldOffsetColumns;
+    private final int worldOffsetLines;
+    private final String world;
 
     private final List<GameObject> activatableGameObjects;
 
@@ -30,6 +23,23 @@ public class GameWorldManager extends GamePlayManager {
      */
     protected GameWorldManager(GameView gameView) {
         super(gameView);
+
+        world = """ 
+                    PP  P              B                 \s
+                  P P B   P            B                 \s 
+                P   P B     P          B                 \s 
+                    P B                B                 \s 
+                    P B                B                 \s 
+                    P B                B                 \s 
+                R   P B  U  R          B                 \s
+                    P B B              B          P  P   \s
+                  P P B   P            B                 \s 
+                P   P B     P          B                 \s 
+                    P B                B                 \s 
+                    P B                B                 \s 
+                    P B                B                 \s 
+                R   P B  U  R          B                 \s""";
+
         userCar = new UserCar(gameView, this);
         shot = new UserShot(gameView, this);
         start = new Start(gameView, this);
@@ -43,14 +53,20 @@ public class GameWorldManager extends GamePlayManager {
         houseLeft = new HouseLeft(gameView, this);
         houseRight = new HouseRight(gameView, this);
         countdown = new Countdown(gameView, this);
+        activatableGameObjects = new LinkedList<>();
         spawnGameObjects();
         spawnGameObjectsFromWorldString();
         worldOffsetColumns = 14;
         worldOffsetLines = 4;
-        activatableGameObjects=new LinkedList<>();
     }
 
-    public void spawnGameObjects() {
+    @Override
+    protected void processFrame() {
+        super.processFrame();
+        activateGameObjects();
+    }
+
+    private void spawnGameObjects() {
         spawnGameObject(houseLeft);
         spawnGameObject(houseRight);
         spawnGameObject(gate);
@@ -60,33 +76,38 @@ public class GameWorldManager extends GamePlayManager {
         spawnGameObject(score);
         spawnGameObject(countdown);
 
-        spawnGameObject(helicopter);
-        spawnGameObject(policeCar);
-        spawnGameObject(randomCar);
+        addActivatableGameObject(helicopter);
+        addActivatableGameObject(policeCar);
+        addActivatableGameObject(randomCar);
 
         spawnGameObject(userCar);
     }
 
-    void spawnGameObjectsFromWorldString() {
+
+    private void spawnGameObjectsFromWorldString() {
         String[] lines = world.split("\\R");
         final int WORLD_FACTOR = 100;
 
         for (int row = 0; row < lines[0].length(); row++) {
             for (int column = 0; column < lines.length; column++) {
-                if (lines[column].charAt(row) == 'U') {
-                    UserCar userCar1 = new UserCar(gameView, this);
-                    userCar1.getPosition().updateCoordinates(row * 100, column + 100);
-                    spawnGameObject(userCar1);
-                } else if (lines[column].charAt(row) == 'P') {
-                    PoliceCar policeCar1 = new PoliceCar(gameView, this);
-                    policeCar1.getPosition().updateCoordinates(row * 100, column + 100);
-                    spawnGameObject(policeCar1);
-                } else if (lines[column].charAt(row) == 'R') {
-                    RandomCar randomCar1 = new RandomCar(gameView, this);
-                    randomCar1.getPosition().updateCoordinates(row * 100, column + 100);
-                    spawnGameObject(randomCar1);
+                double x = (column - worldOffsetColumns) * WORLD_FACTOR;
+                double y = (row - worldOffsetLines) * WORLD_FACTOR;
+                char character = lines[column].charAt(row);
+                GameObject spawnObject = null;
+                if (character == 'U') {
+                    spawnObject = new UserCar(gameView, this);
+                } else if (character == 'P') {
+                    spawnObject = new PoliceCar(gameView, this);
+                } else if (character == 'R') {
+                    spawnObject = new RandomCar(gameView, this);
+                } else if (character == 'B') {
+                    spawnObject = new Street(gameView, this);
                 }
 
+                if (spawnObject != null) {
+                    spawnObject.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(spawnObject);
+                }
             }
         }
     }
@@ -96,4 +117,40 @@ public class GameWorldManager extends GamePlayManager {
         addToShiftableGameObjectsIfShiftable(gameObject);
     }
 
+    private void prepareSpawnGameObject(GameObject gameObject, double row, double column) {
+        gameObject.getPosition().updateCoordinates((row - worldOffsetLines), (column - worldOffsetColumns));
+
+        // gameObject.getPosition().updateCoordinates((row) * WORLD_MULTIPLIER, (column) * WORLD_MULTIPLIER);
+        // spawnGameObject(gameObject);
+        addToShiftableGameObjectsIfShiftable(gameObject);
+    }
+
+    private void activateGameObjects() {
+        ListIterator<GameObject> iterator = activatableGameObjects.listIterator();
+
+        while (iterator.hasNext()) {
+            GameObject gameObject = iterator.next();
+
+            if (gameObject instanceof RandomCar randomCar) {
+                if (randomCar.tryToActivate(randomCar)) {
+                    spawnGameObject(randomCar);
+                }
+            } else if (gameObject instanceof Helicopter helicopter) {
+                if (helicopter.tryToActivate(helicopter)) {
+                    spawnGameObject(helicopter);
+                }
+            } else if (gameObject instanceof PoliceCar policeCar) {
+                if (policeCar.tryToActivate(policeCar)) {
+                    spawnGameObject(policeCar);
+                    iterator.remove();
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void processFrameUpdate() {
+        super.processFrameUpdate();
+        activateGameObjects();
+    }
 }

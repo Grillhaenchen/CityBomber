@@ -2,13 +2,15 @@ package thd.gameobjects.movable;
 
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
+import thd.gameobjects.base.ActivatableGameObject;
 import thd.gameobjects.base.CollidingGameObject;
 import thd.gameobjects.base.Position;
+import thd.gameobjects.base.ShiftableGameObject;
 
 /**
  * A RandomCar Class that dirves on the Road.
  */
-public class RandomCar extends CollidingGameObject {
+public class RandomCar extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
     /**
      * Creates a RandomCar.
      *
@@ -45,5 +47,10 @@ public class RandomCar extends CollidingGameObject {
     public void addToCanvas() {
         gameView.addImageToCanvas("car_blue.png", position.getX(), position.getY(), 1, 0);
 
+    }
+
+    @Override
+    public boolean tryToActivate(Object info) {
+        return false;
     }
 }
