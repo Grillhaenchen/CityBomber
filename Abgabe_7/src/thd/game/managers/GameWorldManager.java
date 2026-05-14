@@ -26,7 +26,7 @@ class GameWorldManager extends GamePlayManager {
 
         world = """ 
                             \s
-                L  S       R\s 
+                L  S       R\s
                        P    \s 
                 L  S       R\s 
                             \s 
@@ -37,8 +37,31 @@ class GameWorldManager extends GamePlayManager {
                 L  S       R\s 
                         C   \s 
                 L  S       R\s 
+                            \s
+                L  S       R\s 
                             \s 
-                L  S       R\s""";
+                L  S       R\s 
+                            \s
+                L  S       R\s
+                          P \s 
+                L  S       R\s 
+                        C   \s 
+                L  S       R\s 
+                            \s 
+                L  S       R\s 
+                            \s 
+                L  S       R\s 
+                            \s
+                L  S       R\s
+                          P \s 
+                L  S       R\s 
+                        C   \s 
+                L  S       R\s 
+                            \s  
+                L  SU      R\s""";
+
+        worldOffsetColumns = 27;
+        worldOffsetLines = 0;
 
         userCar = new UserCar(gameView, this);
         shot = new UserShot(gameView, this);
@@ -56,8 +79,6 @@ class GameWorldManager extends GamePlayManager {
         activatableGameObjects = new LinkedList<>();
         spawnGameObjects();
         spawnGameObjectsFromWorldString();
-        worldOffsetColumns = 14;
-        worldOffsetLines = 4;
     }
 
     @Override
@@ -67,22 +88,13 @@ class GameWorldManager extends GamePlayManager {
     }
 
     private void spawnGameObjects() {
-//        spawnGameObject(houseLeft);
-//        spawnGameObject(houseRight);
         spawnGameObject(gate);
         spawnGameObject(start);
         spawnGameObject(progressBarBlockImages);
-//        spawnGameObject(street);
         spawnGameObject(score);
         spawnGameObject(countdown);
-
         addActivatableGameObject(helicopter);
-//        addActivatableGameObject(policeCar);
-//        addActivatableGameObject(randomCar);
-
-        spawnGameObject(userCar);
     }
-
 
     private void spawnGameObjectsFromWorldString() {
         String[] lines = world.split("\\R");
@@ -104,6 +116,8 @@ class GameWorldManager extends GamePlayManager {
                     spawnObject = new HouseRight(gameView, this);
                 } else if (character == 'S') {
                     spawnObject = new Street(gameView, this);
+                } else if (character == 'U') {
+                    spawnObject = userCar;
                 }
 
                 if (spawnObject != null) {

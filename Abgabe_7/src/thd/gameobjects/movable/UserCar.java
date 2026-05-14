@@ -25,7 +25,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
      */
     public UserCar(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
-        position.updateCoordinates(new Position(((double) GameView.WIDTH / 2), ((double) GameView.HEIGHT / 2) - 90));
+        //this.position.updateCoordinates(new Position(((double) GameView.WIDTH / 2), ((double) GameView.HEIGHT / 2) - 90));
         width = 70;
         height = 120;
         size = 1;
@@ -66,10 +66,11 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
      * Moves the Car left.
      */
     public void left() {
-        gamePlayManager.moveWorldToLeft(speedInPixel);
+        //gamePlayManager.moveWorldToLeft(speedInPixel);
+        position.left(3);
         for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
             if (collidesWith(collidingGameObject)) {
-                position.right(3); // Bewegung im Fall einer Kollision wieder zurücknehmen!
+                position.right(3);
                 gamePlayManager.lifeLost();
                 break;
             }
@@ -81,10 +82,11 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
      */
     public void right() {
 
-        gamePlayManager.moveWorldToRight(speedInPixel);
+//        gamePlayManager.moveWorldToRight(speedInPixel);
+        this.position.right(30);
         for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
             if (collidesWith(collidingGameObject)) {
-                position.left(3); // Bewegung im Fall einer Kollision wieder zurücknehmen!
+                this.position.left(3);
                 gamePlayManager.lifeLost();
                 break;
             }
