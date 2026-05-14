@@ -3,11 +3,12 @@ package thd.gameobjects.unmovable;
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.GameObject;
+import thd.gameobjects.base.ShiftableGameObject;
 
 /**
  * Creates the Left side of the Map.
  */
-public class HouseLeft extends GameObject {
+public class HouseLeft extends GameObject implements ShiftableGameObject {
 
     /**
      * This is the UI element for the end in the Progress bar.
@@ -18,7 +19,7 @@ public class HouseLeft extends GameObject {
     public HouseLeft(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
         getPosition().updateCoordinates(0, 0);
-        size = 0.75;
+        size = 0.5;
         width = 150;
         height = 43;
         distanceToBackground = 1;
@@ -26,9 +27,7 @@ public class HouseLeft extends GameObject {
 
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("house1.png", position.getX(), position.getY(), size, 180);
-        gameView.addImageToCanvas("house1.png", position.getX(), position.getY() + 300, size, 180);
-        gameView.addImageToCanvas("house1.png", position.getX(), position.getY() + 600, size, 180);
+        gameView.addImageToCanvas("house1.png", position.getX()+20, position.getY(), size, 180);
     }
 
 }

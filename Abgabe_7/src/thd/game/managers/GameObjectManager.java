@@ -64,7 +64,7 @@ public class GameObjectManager extends CollisionManager {
     private void addToGameObjects() {
 
         for (GameObject toAdd : gameObjectsToBeAdded) {
-            gameObjects.add(toAdd);
+            //gameObjects.add(toAdd);
             addToCollisionManagement(toAdd);
             sortIntoGameObjects(toAdd);
         }

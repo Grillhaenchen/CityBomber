@@ -30,7 +30,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
         height = 120;
         size = 1;
         speedInPixel = 10;
-        distanceToBackground = 99;
+        distanceToBackground = 500;
         super.hitBoxOffsets(10, 15, 0, 0);
         shotDurationInMilliseconds = 300;
         collidingGameObjectsForPathDecision = new LinkedList<CollidingGameObject>();

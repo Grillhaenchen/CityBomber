@@ -25,20 +25,20 @@ class GameWorldManager extends GamePlayManager {
         super(gameView);
 
         world = """ 
-                    PP  P              B                 \s
-                  P P B   P            B                 \s 
-                P   P B     P          B                 \s 
-                    P B                B                 \s 
-                    P B                B                 \s 
-                    P B                B                 \s 
-                R   P B  U  R          B                 \s
-                    P B B              B          P  P   \s
-                  P P B   P            B                 \s 
-                P   P B     P          B                 \s 
-                    P B                B                 \s 
-                    P B                B                 \s 
-                    P B                B                 \s 
-                R   P B  U  R          B                 \s""";
+                            \s
+                L  S       R\s 
+                       P    \s 
+                L  S       R\s 
+                            \s 
+                L  S       R\s 
+                            \s
+                L  S       R\s
+                          P \s 
+                L  S       R\s 
+                        C   \s 
+                L  S       R\s 
+                            \s 
+                L  S       R\s""";
 
         userCar = new UserCar(gameView, this);
         shot = new UserShot(gameView, this);
@@ -67,18 +67,18 @@ class GameWorldManager extends GamePlayManager {
     }
 
     private void spawnGameObjects() {
-        spawnGameObject(houseLeft);
-        spawnGameObject(houseRight);
+//        spawnGameObject(houseLeft);
+//        spawnGameObject(houseRight);
         spawnGameObject(gate);
         spawnGameObject(start);
         spawnGameObject(progressBarBlockImages);
-        spawnGameObject(street);
+//        spawnGameObject(street);
         spawnGameObject(score);
         spawnGameObject(countdown);
 
         addActivatableGameObject(helicopter);
-        addActivatableGameObject(policeCar);
-        addActivatableGameObject(randomCar);
+//        addActivatableGameObject(policeCar);
+//        addActivatableGameObject(randomCar);
 
         spawnGameObject(userCar);
     }
@@ -90,17 +90,19 @@ class GameWorldManager extends GamePlayManager {
 
         for (int row = 0; row < lines[0].length(); row++) {
             for (int column = 0; column < lines.length; column++) {
-                double x = (column - worldOffsetColumns) * WORLD_FACTOR;
-                double y = (row - worldOffsetLines) * WORLD_FACTOR;
+                double y = (column - worldOffsetColumns) * WORLD_FACTOR;
+                double x = (row - worldOffsetLines) * WORLD_FACTOR;
                 char character = lines[column].charAt(row);
                 GameObject spawnObject = null;
-                if (character == 'U') {
-                    spawnObject = new UserCar(gameView, this);
+                if (character == 'L') {
+                    spawnObject = new HouseLeft(gameView, this);
                 } else if (character == 'P') {
                     spawnObject = new PoliceCar(gameView, this);
-                } else if (character == 'R') {
+                } else if (character == 'C') {
                     spawnObject = new RandomCar(gameView, this);
-                } else if (character == 'B') {
+                } else if (character == 'R') {
+                    spawnObject = new HouseRight(gameView, this);
+                } else if (character == 'S') {
                     spawnObject = new Street(gameView, this);
                 }
 
@@ -108,6 +110,12 @@ class GameWorldManager extends GamePlayManager {
                     spawnObject.getPosition().updateCoordinates(x, y);
                     if (spawnObject instanceof Helicopter) {
                         addActivatableGameObject(spawnObject);
+                    } else if (spawnObject instanceof Street) {
+                        spawnObject.getPosition().updateCoordinates(x - 30, y);
+                        spawnGameObject(spawnObject);
+                    } else if (spawnObject instanceof HouseRight) {
+                        spawnObject.getPosition().updateCoordinates(x - 30, y);
+                        spawnGameObject(spawnObject);
                     } else {
                         spawnGameObject(spawnObject);
                     }

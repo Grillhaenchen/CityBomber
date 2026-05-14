@@ -59,6 +59,7 @@ public class ProgressBarBlockImages extends GameObject {
     public ProgressBarBlockImages(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
         getPosition().updateCoordinates(48, (double) (GameView.HEIGHT / 2) + 71);
+        distanceToBackground = Integer.MAX_VALUE;
     }
 
     /**

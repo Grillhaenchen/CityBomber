@@ -22,6 +22,7 @@ public class Countdown extends GameObject {
         height = 20;
         size = 0.5;
         width = 210;
+        distanceToBackground = Integer.MAX_VALUE;
     }
 
     @Override

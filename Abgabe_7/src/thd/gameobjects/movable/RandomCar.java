@@ -2,7 +2,10 @@ package thd.gameobjects.movable;
 
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
-import thd.gameobjects.base.*;
+import thd.gameobjects.base.ActivatableGameObject;
+import thd.gameobjects.base.CollidingGameObject;
+import thd.gameobjects.base.Position;
+import thd.gameobjects.base.ShiftableGameObject;
 
 /**
  * A RandomCar Class that dirves on the Road.
@@ -18,6 +21,7 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
         super(gameView, gamePlayManager);
         width = 70;
         height = 120;
+        distanceToBackground = 400;
         super.hitBoxOffsets(8, 0, 0, 0);
         position.updateCoordinates(new Position(650, 100));
     }

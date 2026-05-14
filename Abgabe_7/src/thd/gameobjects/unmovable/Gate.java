@@ -22,6 +22,7 @@ public class Gate extends GameObject {
         size = 0.5;
         width = 150;
         height = 43;
+        distanceToBackground = Integer.MAX_VALUE;
     }
 
     /**

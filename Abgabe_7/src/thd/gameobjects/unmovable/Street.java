@@ -19,11 +19,11 @@ public class Street extends GameObject implements ShiftableGameObject {
      */
     public Street(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
-        getPosition().updateCoordinates(new Position((double) (GameView.WIDTH / 2) - 350, 0));
+        getPosition().updateCoordinates(new Position((double) (GameView.WIDTH / 2) - 390, 0));
         size = 1;
         width = 800;
         height = 200;
-        distanceToBackground = 1;
+        distanceToBackground = 300;
     }
 
     /**
@@ -44,9 +44,7 @@ public class Street extends GameObject implements ShiftableGameObject {
     @Override
     public void addToCanvas() {
         gameView.addImageToCanvas("road_4row.png", position.getX(), position.getY(), size, 0);
-        gameView.addImageToCanvas("road_4row.png", position.getX(), position.getY() + 200, size, 0);
-        gameView.addImageToCanvas("road_4row.png", position.getX(), position.getY() + 400, size, 0);
-        gameView.addImageToCanvas("road_4row.png", position.getX(), position.getY() + 600, size, 0);
+
 
     }
 }

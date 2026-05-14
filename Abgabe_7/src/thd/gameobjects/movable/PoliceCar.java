@@ -20,6 +20,7 @@ public class PoliceCar extends CollidingGameObject implements ShiftableGameObjec
         size = 2;
         width = 35 * size;
         height = 65 * size;
+        distanceToBackground = 400;
 
         super.hitBoxOffsets(5 * size, 5 * size, 0, 0);
     }
