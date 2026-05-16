@@ -17,15 +17,16 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
 
     private final int shotDurationInMilliseconds;
     private final List<CollidingGameObject> collidingGameObjectsForPathDecision;
+
     /**
      * Creates a User car .
      *
-     * @param gameView    GameView instance
+     * @param gameView        GameView instance
      * @param gamePlayManager Instance of GamePlayManager
      */
     public UserCar(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
-        //this.position.updateCoordinates(new Position(((double) GameView.WIDTH / 2), ((double) GameView.HEIGHT / 2) - 90));
+
         width = 70;
         height = 120;
         size = 1;
@@ -66,11 +67,15 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
      * Moves the Car left.
      */
     public void left() {
-        //gamePlayManager.moveWorldToLeft(speedInPixel);
-        position.left(3);
+        if (position.getX() > GameView.WIDTH / 2d - 200) {
+            position.left(speedInPixel);
+        } else {
+            gamePlayManager.moveWorldToRight(speedInPixel);
+        }
+
         for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
             if (collidesWith(collidingGameObject)) {
-                position.right(3);
+                position.right(speedInPixel);
                 gamePlayManager.lifeLost();
                 break;
             }
@@ -81,12 +86,14 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
      * Moves the Car right.
      */
     public void right() {
-
-//        gamePlayManager.moveWorldToRight(speedInPixel);
-        this.position.right(30);
+        if (position.getX() < GameView.WIDTH / 2d - 200) {
+            position.right(speedInPixel);
+        } else {
+            gamePlayManager.moveWorldToLeft(speedInPixel);
+        }
         for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
             if (collidesWith(collidingGameObject)) {
-                this.position.left(3);
+                this.position.left(speedInPixel);
                 gamePlayManager.lifeLost();
                 break;
             }
@@ -98,10 +105,15 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
      */
     public void up() {
 
-        gamePlayManager.moveWorldUp(speedInPixel);
+        if (position.getY() > 20) {
+            position.up(speedInPixel);
+        } else {
+            gamePlayManager.moveWorldDown(speedInPixel);
+        }
+
         for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
             if (collidesWith(collidingGameObject)) {
-                position.down(3); // Bewegung im Fall einer Kollision wieder zurücknehmen!
+                position.down(speedInPixel);
                 gamePlayManager.lifeLost();
                 break;
             }
@@ -112,11 +124,15 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
      * Moves Car down.
      */
     public void down() {
+        if (position.getY() < 420) {
+            position.down(speedInPixel);
+        } else {
+            gamePlayManager.moveWorldUp(speedInPixel);
+        }
 
-        gamePlayManager.moveWorldDown(speedInPixel);
         for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
             if (collidesWith(collidingGameObject)) {
-                position.up(3); // Bewegung im Fall einer Kollision wieder zurücknehmen!
+                position.up(speedInPixel);
                 gamePlayManager.lifeLost();
                 break;
             }
