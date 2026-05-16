@@ -1,5 +1,6 @@
 package thd.game.managers;
 
+import thd.game.level.Level;
 import thd.game.utilities.GameView;
 import thd.gameobjects.movable.*;
 import thd.gameobjects.unmovable.*;
@@ -26,6 +27,7 @@ class UserControlledGameObjectPool {
     protected HouseRight houseRight;
     protected ProgressBarBlockImages progressBarBlockImages;
     protected Countdown countdown;
+    protected Level level;
 
     UserControlledGameObjectPool(GameView gameView) {
         this.gameView = gameView;
