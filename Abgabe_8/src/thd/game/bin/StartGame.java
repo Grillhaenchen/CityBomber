@@ -5,7 +5,7 @@ import thd.game.managers.GameViewManager;
 /**
  * sdfsf.
  */
-public class StartGame {
+public class  StartGame {
     /**
      * sdfsf.
      *
