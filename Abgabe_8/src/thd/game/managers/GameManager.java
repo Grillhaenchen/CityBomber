@@ -7,10 +7,12 @@ import thd.gameobjects.unmovable.Score;
 import thd.gameobjects.unmovable.Start;
 import thd.gameobjects.unmovable.Street;
 
+import java.util.Timer;
+
 /**
  * The GameManager handles all the Game Items and processes the Frame.
  */
-class GameManager extends GameWorldManager {
+class GameManager extends LevelManager {
 
     /**
      * Create a new GameManager.
@@ -19,7 +21,7 @@ class GameManager extends GameWorldManager {
      */
     GameManager(GameView gameView) {
         super(gameView);
-
+        initializeLevel();
     }
 
     @Override
@@ -29,5 +31,19 @@ class GameManager extends GameWorldManager {
     }
 
     private void gameManagement() {
+        if (endOfGame()) {
+            initializeGame();
+        } else if (endOfLevel()) {
+            switchToNextLevel();
+            initializeLevel();
+        }
+    }
+
+    private boolean endOfLevel() {
+        return gameView.timer(3000, 0, this);
+    }
+
+    private boolean endOfGame() {
+        return lives == 0 || (!hasNextLevel() && endOfLevel());
     }
 }
