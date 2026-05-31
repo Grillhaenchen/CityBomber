@@ -1,17 +1,13 @@
 package thd.game.managers;
 
-import thd.game.level.Level;
-import thd.game.level.Level1;
-import thd.game.level.Level2;
-import thd.game.level.Level3;
+import thd.game.level.*;
 import thd.game.utilities.GameView;
 
 import java.util.List;
 
-public class LevelManager extends GameWorldManager {
+class LevelManager extends GameWorldManager {
 
-    private static final int LIVES = 3;
-    List<Level> levels;
+    private List<Level> levels;
 
     /**
      * Create a instance of GamePlayManager.3
@@ -25,7 +21,11 @@ public class LevelManager extends GameWorldManager {
     }
 
     protected boolean hasNextLevel() {
-        return levels.iterator().hasNext();
+        if (levels.size() <= levels.indexOf(level) + 1) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     protected void switchToNextLevel() {
@@ -52,7 +52,6 @@ public class LevelManager extends GameWorldManager {
 //        Den Punktestand aus dem vorherigen Level übernehmen.
 //                o
 //        Einen Countdown neu starten.
-//➔
 //        Kopieren Sie diesen Text als Kommentar zur Erinnerung für später in diese Methode.
     }
 

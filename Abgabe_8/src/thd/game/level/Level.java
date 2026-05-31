@@ -1,11 +1,12 @@
 package thd.game.level;
 
+/**
+ * Base Class for all Levels.
+ */
 public class Level {
-    private String levelName;
-    private int levelNumber;
-    String world;
-    int offsetColumn;
-    int offsetRow;
-
-
+    public String name;
+    public int number;
+    public String world;
+    public int worldOffsetColumns;
+    public int worldOffsetLines;
 }

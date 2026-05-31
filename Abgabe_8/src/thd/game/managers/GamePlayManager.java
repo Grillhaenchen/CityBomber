@@ -11,7 +11,7 @@ public class GamePlayManager extends WorldShiftManager {
     private final GameObjectManager gameObjectManager;
     private int currentNumberOfVisibleSquares;
 
-    private static final int LIVES = 3;
+    protected static final int LIVES = 3;
     protected int lives;
     protected int points;
 

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Class that handels all GameObjects.
  */
-public class GameObjectManager extends CollisionManager {
+class GameObjectManager extends CollisionManager {
     private final List<GameObject> gameObjects;
     private final List<GameObject> gameObjectsToBeAdded;
     private final List<GameObject> gameObjectsToBeRemoved;

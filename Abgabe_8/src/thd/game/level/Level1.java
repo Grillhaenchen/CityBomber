@@ -1,6 +1,12 @@
 package thd.game.level;
 
+/**
+ * This is the Class for Level 1.
+ */
 public class Level1 extends Level {
+    /**
+     * Create a instance of Level 1.
+     */
     public Level1() {
         world = """ 
                             \s
@@ -38,8 +44,9 @@ public class Level1 extends Level {
                             \s  
                 L  SU      R\s""";
 
-        offsetColumn = 27;
-        offsetRow = 0;
+        worldOffsetColumns = 27;
+        worldOffsetLines = 0;
+        number = 1;
     }
 
 }

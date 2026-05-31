@@ -91,9 +91,9 @@ class GameWorldManager extends GamePlayManager {
     protected void initializeLevel() {
         activatableGameObjects.clear();
         destroyAllGameObjects();
+        clearListsForPathDecisionsInGameObjects();
         spawnGameObjects();
         spawnGameObjectsFromWorldString();
-        clearListsForPathDecisionsInGameObjects();
     }
 
     private void clearListsForPathDecisionsInGameObjects() {
@@ -105,7 +105,6 @@ class GameWorldManager extends GamePlayManager {
 //    private void spawnGameObjectsFromWorldString() {
 //        String[] lines = world.split("\\R");
 //        final int WORLD_FACTOR = 100;
-//
 //        for (int row = 0; row < lines[0].length(); row++) {
 //            for (int column = 0; column < lines.length; column++) {
 //                double y = (column - worldOffsetColumns) * WORLD_FACTOR;
@@ -125,7 +124,6 @@ class GameWorldManager extends GamePlayManager {
 //                } else if (character == 'U') {
 //                    spawnObject = userCar;
 //                }
-//
 //                if (spawnObject != null) {
 //                    spawnObject.getPosition().updateCoordinates(x, y);
 //                    if (spawnObject instanceof Helicopter) {
@@ -151,7 +149,6 @@ class GameWorldManager extends GamePlayManager {
 
 //    private void prepareSpawnGameObject(GameObject gameObject, double row, double column) {
 //        gameObject.getPosition().updateCoordinates((row - worldOffsetLines), (column - worldOffsetColumns));
-//
 //        // gameObject.getPosition().updateCoordinates((row) * WORLD_MULTIPLIER, (column) * WORLD_MULTIPLIER);
 //        // spawnGameObject(gameObject);
 //        addToShiftableGameObjectsIfShiftable(gameObject);

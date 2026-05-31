@@ -17,6 +17,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
 
     private final int shotDurationInMilliseconds;
     private final List<CollidingGameObject> collidingGameObjectsForPathDecision;
+    private State currentState;
 
     /**
      * Creates a User car .
@@ -37,6 +38,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
         collidingGameObjectsForPathDecision = new LinkedList<CollidingGameObject>();
         collidingGameObjectsForPathDecision.add(new PoliceCar(gameView, gamePlayManager));
         collidingGameObjectsForPathDecision.add(new RandomCar(gameView, gamePlayManager));
+        currentState = State.STANDARD;
     }
 
     @Override
@@ -154,7 +156,29 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
 
     @Override
     public void updateStatus() {
+        switch (currentState) {
+            case LEFT:
+                break;
+            case RIGHT:
+                break;
+            case JUMPING:
+                break;
+            case STANDARD:
+                break;
+            case null, default:
+                break;
+        }
+    }
 
+    private enum State {
+        STANDARD,
+        DAMAGED,
+        EXPLODING,
+        EXPLODED,
+        LEFT,
+        RIGHT,
+        CLIMBING,
+        JUMPING,
     }
 }
 

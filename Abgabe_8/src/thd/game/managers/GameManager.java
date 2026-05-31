@@ -21,7 +21,7 @@ class GameManager extends LevelManager {
      */
     GameManager(GameView gameView) {
         super(gameView);
-        initializeLevel();
+        initializeGame();
     }
 
     @Override
@@ -45,5 +45,16 @@ class GameManager extends LevelManager {
 
     private boolean endOfGame() {
         return lives == 0 || (!hasNextLevel() && endOfLevel());
+    }
+
+    @Override
+    protected void initializeLevel() {
+        super.initializeLevel();
+    }
+
+    @Override
+    protected void initializeGame() {
+        super.initializeGame();
+        initializeLevel();
     }
 }
