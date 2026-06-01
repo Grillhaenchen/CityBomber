@@ -20,43 +20,6 @@ class GameWorldManager extends GamePlayManager {
      */
     protected GameWorldManager(GameView gameView) {
         super(gameView);
-
-//        world = """
-//                            \s
-//                L  S       R\s
-//                       P    \s
-//                L  S       R\s
-//                            \s
-//                L  S       R\s
-//                            \s
-//                L  S       R\s
-//                          P \s
-//                L  S       R\s
-//                        C   \s
-//                L  S       R\s
-//                            \s
-//                L  S       R\s
-//                            \s
-//                L  S       R\s
-//                            \s
-//                L  S       R\s
-//                          P \s
-//                L  S       R\s
-//                        C   \s
-//                L  S       R\s
-//                            \s
-//                L  S       R\s
-//                            \s
-//                L  S       R\s
-//                            \s
-//                L  S       R\s
-//                          P \s
-//                L  S       R\s
-//                        C   \s
-//                L  S       R\s
-//                            \s
-//                L  SU      R\s""";
-
         userCar = new UserCar(gameView, this);
         shot = new UserShot(gameView, this);
         start = new Start(gameView, this);
@@ -100,59 +63,61 @@ class GameWorldManager extends GamePlayManager {
     }
 
     private void spawnGameObjectsFromWorldString() {
+        String[] lines = level.world.split("\\R");
+        final int WORLD_FACTOR = 100;
+        for (int row = 0; row < lines[0].length(); row++) {
+            for (int column = 0; column < lines.length; column++) {
+                double y = (column - level.worldOffsetColumns) * WORLD_FACTOR;
+                double x = (row - level.worldOffsetLines) * WORLD_FACTOR;
+                GameObject spawnObject = createGameObject(row, lines[column]);
+
+                if (spawnObject != null) {
+                    spawnObject.getPosition().updateCoordinates(x, y);
+                    switch (spawnObject) {
+                        case Helicopter helicopter1 -> addActivatableGameObject(spawnObject);
+                        case Street street1 -> {
+                            spawnObject.getPosition().updateCoordinates(x - 30, y);
+                            spawnGameObject(spawnObject);
+                        }
+                        case HouseRight right -> {
+                            spawnObject.getPosition().updateCoordinates(x - 30, y);
+                            spawnGameObject(spawnObject);
+                        }
+                        default -> spawnGameObject(spawnObject);
+                    }
+                }
+            }
+        }
     }
 
-//    private void spawnGameObjectsFromWorldString() {
-//        String[] lines = world.split("\\R");
-//        final int WORLD_FACTOR = 100;
-//        for (int row = 0; row < lines[0].length(); row++) {
-//            for (int column = 0; column < lines.length; column++) {
-//                double y = (column - worldOffsetColumns) * WORLD_FACTOR;
-//                double x = (row - worldOffsetLines) * WORLD_FACTOR;
-//                char character = lines[column].charAt(row);
-//                GameObject spawnObject = null;
-//                if (character == 'L') {
-//                    spawnObject = new HouseLeft(gameView, this);
-//                } else if (character == 'P') {
-//                    spawnObject = new PoliceCar(gameView, this);
-//                } else if (character == 'C') {
-//                    spawnObject = new RandomCar(gameView, this);
-//                } else if (character == 'R') {
-//                    spawnObject = new HouseRight(gameView, this);
-//                } else if (character == 'S') {
-//                    spawnObject = new Street(gameView, this);
-//                } else if (character == 'U') {
-//                    spawnObject = userCar;
-//                }
-//                if (spawnObject != null) {
-//                    spawnObject.getPosition().updateCoordinates(x, y);
-//                    if (spawnObject instanceof Helicopter) {
-//                        addActivatableGameObject(spawnObject);
-//                    } else if (spawnObject instanceof Street) {
-//                        spawnObject.getPosition().updateCoordinates(x - 30, y);
-//                        spawnGameObject(spawnObject);
-//                    } else if (spawnObject instanceof HouseRight) {
-//                        spawnObject.getPosition().updateCoordinates(x - 30, y);
-//                        spawnGameObject(spawnObject);
-//                    } else {
-//                        spawnGameObject(spawnObject);
-//                    }
-//                }
-//            }
-//        }
-//    }
+    private GameObject createGameObject(int row, String lines) {
+        char character = lines.charAt(row);
+        GameObject spawnObject = switch (character) {
+            case 'L' -> new HouseLeft(gameView, this);
+            case 'P' -> new PoliceCar(gameView, this);
+            case 'C' -> new RandomCar(gameView, this);
+            case 'R' -> new HouseRight(gameView, this);
+            case 'S' -> new Street(gameView, this);
+            case 'U' -> userCar;
+            case 'D' -> new DirtRoad(gameView, this);
+            case 'E' -> new Dirt(gameView, this);
+            case 'F' -> new Field(gameView, this);
+            default -> null;
+        };
+        return spawnObject;
+    }
 
     private void addActivatableGameObject(GameObject gameObject) {
         activatableGameObjects.add(gameObject);
         addToShiftableGameObjectsIfShiftable(gameObject);
     }
 
-//    private void prepareSpawnGameObject(GameObject gameObject, double row, double column) {
-//        gameObject.getPosition().updateCoordinates((row - worldOffsetLines), (column - worldOffsetColumns));
-//        // gameObject.getPosition().updateCoordinates((row) * WORLD_MULTIPLIER, (column) * WORLD_MULTIPLIER);
-//        // spawnGameObject(gameObject);
-//        addToShiftableGameObjectsIfShiftable(gameObject);
-//    }
+    private void prepareSpawnGameObject(GameObject gameObject, double row, double column) {
+        gameObject.getPosition().updateCoordinates((row - level.worldOffsetLines), (column - level.worldOffsetColumns));
+        // gameObject.getPosition().updateCoordinates((row) * WORLD_MULTIPLIER, (column) * WORLD_MULTIPLIER);
+        // spawnGameObject(gameObject);
+        addToShiftableGameObjectsIfShiftable(gameObject);
+    }
 
     private void activateGameObjects() {
         ListIterator<GameObject> iterator = activatableGameObjects.listIterator();

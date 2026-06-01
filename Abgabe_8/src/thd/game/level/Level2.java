@@ -16,33 +16,33 @@ public class Level2 extends Level {
                             \s 
                 L  S       R\s 
                             \s
-                L  S       R\s
+                L  S       F\s
                           P \s 
-                L  S       R\s 
+                L  S       F\s 
                         C   \s 
-                L  S       R\s 
+                L  S       F\s 
                             \s
-                L  S       R\s 
+                L  S       F\s 
                             \s 
-                L  S       R\s 
+                L  S       F\s 
                             \s
-                L  S       R\s
+                L  S       F\s
                           P \s 
-                L  S       R\s 
+                L  S       F\s 
                         C   \s 
-                L  S       R\s 
+                L  S       F\s 
                             \s 
-                L  S       R\s 
+                L  S       F\s 
                             \s 
-                L  S       R\s 
+                L  S       F\s 
                             \s
-                L  S       R\s
+                L  S       F\s
                           P \s 
-                L  S       R\s 
+                L  S       F\s 
                         C   \s 
-                L  S       R\s 
+                L  S       F\s 
                             \s  
-                L  SU      R\s""";
+                L  SU      F\s""";
 
         worldOffsetColumns = 27;
         worldOffsetLines = 0;
