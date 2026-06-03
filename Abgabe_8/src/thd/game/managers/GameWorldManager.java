@@ -64,7 +64,7 @@ class GameWorldManager extends GamePlayManager {
 
     private void spawnGameObjectsFromWorldString() {
         String[] lines = level.world.split("\\R");
-        final int WORLD_FACTOR = 100;
+        final int WORLD_FACTOR = 200;
         for (int row = 0; row < lines[0].length(); row++) {
             for (int column = 0; column < lines.length; column++) {
                 double y = (column - level.worldOffsetColumns) * WORLD_FACTOR;
@@ -76,11 +76,11 @@ class GameWorldManager extends GamePlayManager {
                     switch (spawnObject) {
                         case Helicopter helicopter1 -> addActivatableGameObject(spawnObject);
                         case Street street1 -> {
-                            spawnObject.getPosition().updateCoordinates(x - 30, y);
+                            spawnObject.getPosition().updateCoordinates(x - 130, y);
                             spawnGameObject(spawnObject);
                         }
                         case HouseRight right -> {
-                            spawnObject.getPosition().updateCoordinates(x - 30, y);
+                            spawnObject.getPosition().updateCoordinates(x + 68, y);
                             spawnGameObject(spawnObject);
                         }
                         default -> spawnGameObject(spawnObject);

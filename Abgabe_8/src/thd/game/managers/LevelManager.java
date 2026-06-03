@@ -18,6 +18,7 @@ class LevelManager extends GameWorldManager {
         super(gameView);
         levels = List.of(new Level1(), new Level2(), new Level3());
         level = levels.getFirst();
+
     }
 
     protected boolean hasNextLevel() {
@@ -54,7 +55,7 @@ class LevelManager extends GameWorldManager {
 
     protected void initializeGame() {
         levels = List.of(new Level1(), new Level2(), new Level3());
-        level = levels.get(0);
+        level = levels.get(2);
         lives = LIVES;
         points = 0;
     }
