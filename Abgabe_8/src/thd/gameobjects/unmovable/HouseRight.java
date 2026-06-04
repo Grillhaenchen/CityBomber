@@ -27,8 +27,8 @@ public class HouseRight extends GameObject implements ShiftableGameObject {
 
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("house2.png", position.getX(), position.getY(), size, 0);
-//        gameView.addImageToCanvas("house2.png", position.getX(), position.getY() + 300, size, 0);
-//        gameView.addImageToCanvas("house2.png", position.getX(), position.getY() + 600, size, 0);
+        gameView.addImageToCanvas("house_right.png", position.getX(), position.getY(), size, 0);
+//        gameView.addImageToCanvas("house_right.png", position.getX(), position.getY() + 300, size, 0);
+//        gameView.addImageToCanvas("house_right.png", position.getX(), position.getY() + 600, size, 0);
     }
 }
