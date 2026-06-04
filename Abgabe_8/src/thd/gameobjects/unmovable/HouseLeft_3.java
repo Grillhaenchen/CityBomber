@@ -10,7 +10,7 @@ public class HouseLeft_3 extends GameObject implements ShiftableGameObject {
     /**
      * This is the UI element for the end in the Progress bar.
      *
-     * @param gameView        GameView instance
+     * @param gameView        GameView instance w
      * @param gamePlayManager GamePlayManager Instance
      */
     public HouseLeft_3(GameView gameView, GamePlayManager gamePlayManager) {
@@ -24,6 +24,6 @@ public class HouseLeft_3 extends GameObject implements ShiftableGameObject {
 
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("house_left_2.png", position.getX() + 114, position.getY(), size, 0);
+        gameView.addImageToCanvas("house_left_2.png", position.getX() + 96, position.getY() - 33, size, 0);
     }
 }

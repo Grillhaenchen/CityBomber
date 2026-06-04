@@ -16,7 +16,7 @@ public class HouseLeft_2 extends GameObject implements ShiftableGameObject {
     public HouseLeft_2(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
         getPosition().updateCoordinates(0, 0);
-        size = 0.73;
+        size = 0.63;
         width = 150;
         height = 43;
         distanceToBackground = 1;
@@ -24,6 +24,6 @@ public class HouseLeft_2 extends GameObject implements ShiftableGameObject {
 
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("house_left_2.png", position.getX() + 114, position.getY(), size, 0);
+        gameView.addImageToCanvas("house_left_2.png", position.getX() + 120, position.getY(), size, 0);
     }
 }

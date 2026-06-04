@@ -55,7 +55,7 @@ class LevelManager extends GameWorldManager {
 
     protected void initializeGame() {
         levels = List.of(new Level1(), new Level2(), new Level3());
-        level = levels.get(2);
+        level = levels.get(0);
         lives = LIVES;
         points = 0;
     }
