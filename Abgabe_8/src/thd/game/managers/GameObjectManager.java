@@ -40,7 +40,7 @@ class GameObjectManager extends CollisionManager {
             gameObject.updatePosition();
             gameObject.addToCanvas();
         }
-        manageCollisions(false);
+        manageCollisions(true);
     }
 
     private void updateLists() throws TooManyGameObjectsException {

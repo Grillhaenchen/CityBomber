@@ -2,10 +2,12 @@ package thd.gameobjects.unmovable;
 
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
+import thd.gameobjects.base.CollidingGameObject;
+import thd.gameobjects.base.CollidingWithUserCar;
 import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.ShiftableGameObject;
 
-public class HouseLeft_1 extends GameObject implements ShiftableGameObject {
+public class HouseLeft_1 extends CollidingGameObject implements ShiftableGameObject, CollidingWithUserCar {
 
     /**
      * This is the UI element for the end in the Progress bar.
@@ -15,11 +17,16 @@ public class HouseLeft_1 extends GameObject implements ShiftableGameObject {
      */
     public HouseLeft_1(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
-        getPosition().updateCoordinates(0, 0);
+        super.hitBoxOffsets(114, 5, 0, 0);
         size = 0.73;
         width = 150;
-        height = 43;
+        height = 195;
         distanceToBackground = 1;
+    }
+
+    @Override
+    public void reactToCollisionWith(CollidingGameObject other) {
+
     }
 
     @Override

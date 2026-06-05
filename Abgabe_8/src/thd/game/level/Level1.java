@@ -10,39 +10,39 @@ public class Level1 extends Level {
     public Level1() {
 
         world = """
-                L S  R   \s
-                L S  R   \s
-                L bS  R  \s
-                L GbS  R \s
-                L GGbS  R\s
-                L GGBS  R\s
-                L GBS  R \s
-                L BS  R  \s
-                L S  R   \s
-                L S  R   \s
-                L S  R   \s
-                L S  R   \s
-                L S  R   \s
-                L bS  R  \s
-                L GbS  R \s
-                L GGbS  R\s
-                L GGBS  R\s
-                L GBS  R \s
-                L BS  R  \s
-                L SC R   \s
-                L S  R   \s
-                L S  R   \s
-                L S  R   \s 
-                L S  R   \s 
-                L bS  R  \s 
-                L GbS  R \s 
-                L GGbS  R\s 
+                L S  Rggg\s
+                L S  Rggg\s
+                L bS  Qgg\s
+                L GbS  Qg\s
+                L GGbS  Q\s
+                L GGBS  Q\s
+                L GBS  Qg\s
+                L BS  Rgg\s
+                L S  Rggg\s
+                L S  Rggg\s
+                L S  Rggg\s
+                L S  Rggg\s
+                L S  Rggg\s
+                L bS  Qgg\s
+                L GbS  Qg\s
+                L GGbS  Q\s
+                L GGBS  Q\s
+                L GBS  Qg\s
+                L BS  Rgg\s
+                L SC Rggg\s
+                L S  Rggg\s
+                L S  Rggg\s
+                L S  Rggg\s 
+                L S  Rggg\s 
+                L bS  Qgg\s 
+                L GbS  Qg\s 
+                L GGbS  Q\s 
                 L GGBS PR\s 
-                L GBS  R \s 
-                L BS  R  \s 
-                L SC R   \s 
-                L S  R   \s 
-                L SU R   \s""";
+                L GBS  Qg\s 
+                L BS  Qgg\s 
+                L SC Rggg\s 
+                L S  Rggg\s 
+                L SU Rggg\s""";
 
         worldOffsetColumns = 30;
         worldOffsetLines = 0;
