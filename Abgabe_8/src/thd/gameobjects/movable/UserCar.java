@@ -87,7 +87,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
         for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
             if (collidesWith(collidingGameObject)) {
                 position.right(speedInPixel);
-                //gamePlayManager.lifeLost();
+                gamePlayManager.lifeLost();
                 break;
             }
         }
@@ -105,7 +105,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
         for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
             if (collidesWith(collidingGameObject)) {
                 this.position.left(speedInPixel);
-                //gamePlayManager.lifeLost();
+                gamePlayManager.lifeLost();
                 break;
             }
         }
@@ -125,7 +125,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
         for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
             if (collidesWith(collidingGameObject)) {
                 position.down(speedInPixel);
-                //gamePlayManager.lifeLost();
+                gamePlayManager.lifeLost();
                 break;
             }
         }
@@ -144,7 +144,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
         for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
             if (collidesWith(collidingGameObject)) {
                 position.up(speedInPixel);
-                //gamePlayManager.lifeLost();
+                gamePlayManager.lifeLost();
                 break;
             }
         }

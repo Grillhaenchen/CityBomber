@@ -27,6 +27,6 @@ public class DirtRoad extends GameObject implements ShiftableGameObject {
     @Override
     public void addToCanvas() {
         gameView.addImageToCanvas("dirtroad.png", position.getX() - 135, position.getY(), size, 0);
-        gameView.addImageToCanvas("dirtroad.png", position.getX() - 135, position.getY()+100, size, 0);
+        gameView.addImageToCanvas("dirtroad.png", position.getX() - 135, position.getY() + 100, size, 0);
     }
 }

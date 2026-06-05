@@ -8,12 +8,12 @@ import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.ShiftableGameObject;
 
 /**
- * Creates the Left side of the Map.
+ * This is the UI element for House on the left side.
  */
 public class HouseLeft extends CollidingGameObject implements ShiftableGameObject, CollidingWithUserCar {
 
     /**
-     * This is the UI element for the end in the Progress bar.
+     * This is the UI element for House on the left side.
      *
      * @param gameView        GameView instance
      * @param gamePlayManager GamePlayManager Instance
@@ -27,11 +27,20 @@ public class HouseLeft extends CollidingGameObject implements ShiftableGameObjec
         distanceToBackground = 1;
     }
 
+    /**
+     * If a game object is collided with another game object, it reacts to the collision. This method needs to be
+     * overridden by game objects and implemented with appropriate reactions.
+     *
+     * @param other The other game object that is involved in the collision.
+     */
     @Override
     public void reactToCollisionWith(CollidingGameObject other) {
 
     }
 
+    /**
+     * Draws the game object to the canvas.
+     */
     @Override
     public void addToCanvas() {
         gameView.addImageToCanvas("house_left.png", position.getX() + 114, position.getY(), size, 0);

@@ -105,10 +105,10 @@ class GameWorldManager extends GamePlayManager {
     private GameObject createGameObject(int row, String lines) {
         char character = lines.charAt(row);
         GameObject spawnObject = switch (character) {
-            case 'L' -> SpawnLeftHouse();
+            case 'L' -> spawnLeftHouse();
             case 'P' -> new PoliceCar(gameView, this);
             case 'C' -> new RandomCar(gameView, this);
-            case 'R' -> SpawnRightHouse();
+            case 'R' -> spawnRightHouse();
             case 'S' -> new Street(gameView, this);
             case 'U' -> userCar;
             case 'D' -> new DirtRoad(gameView, this);
@@ -167,24 +167,24 @@ class GameWorldManager extends GamePlayManager {
         activateGameObjects();
     }
 
-    private GameObject SpawnLeftHouse() {
+    private GameObject spawnLeftHouse() {
         int rand = (int) (Math.random() * 100 % 4);
         return switch (rand) {
             case 0 -> new HouseLeft(gameView, this);
-            case 1 -> new HouseLeft_1(gameView, this);
-            case 2 -> new HouseLeft_2(gameView, this);
-            case 3 -> new HouseLeft_3(gameView, this);
+            case 1 -> new HouseLeft1(gameView, this);
+            case 2 -> new HouseLeft2(gameView, this);
+            case 3 -> new HouseLeft3(gameView, this);
             default -> throw new IndexOutOfBoundsException("Spawn HouseLeft out of bounds");
         };
     }
 
-    private GameObject SpawnRightHouse() {
+    private GameObject spawnRightHouse() {
         int rand = (int) (Math.random() * 100 % 4);
         return switch (rand) {
             case 0 -> new HouseRight(gameView, this);
-            case 1 -> new HouseRight_1(gameView, this);
-            case 2 -> new HouseRight_2(gameView, this);
-            case 3 -> new HouseRight_3(gameView, this);
+            case 1 -> new HouseRight1(gameView, this);
+            case 2 -> new HouseRight2(gameView, this);
+            case 3 -> new HouseRight3(gameView, this);
             default -> throw new IndexOutOfBoundsException("Spawn HouseRight out of bounds");
         };
     }

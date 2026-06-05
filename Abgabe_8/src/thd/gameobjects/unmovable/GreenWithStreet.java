@@ -7,10 +7,13 @@ import thd.gameobjects.base.CollidingWithUserCar;
 import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.ShiftableGameObject;
 
+/**
+ * This is the UI element for the green gras with street.
+ */
 public class GreenWithStreet extends CollidingGameObject implements ShiftableGameObject, CollidingWithUserCar {
 
     /**
-     * This is the UI element for the end in the Progress bar.
+     * This is the UI element for the green gras with street.
      *
      * @param gameView        GameView instance w
      * @param gamePlayManager GamePlayManager Instance
@@ -25,6 +28,9 @@ public class GreenWithStreet extends CollidingGameObject implements ShiftableGam
     }
 
     /**
+     * If a game object is collided with another game object, it reacts to the collision. This method needs to be
+     * overridden by game objects and implemented with appropriate reactions.
+     *
      * @param other The other game object that is involved in the collision.
      */
     @Override

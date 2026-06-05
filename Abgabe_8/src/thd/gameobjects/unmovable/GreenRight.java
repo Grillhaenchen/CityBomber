@@ -5,10 +5,13 @@ import thd.game.utilities.GameView;
 import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.ShiftableGameObject;
 
+/**
+ * This is the UI element for the green gras on the right side.
+ */
 public class GreenRight extends GameObject implements ShiftableGameObject {
 
     /**
-     * This is the UI element for the end in the Progress bar.
+     * This is the UI element for the green gras on the right side.
      *
      * @param gameView        GameView instance w
      * @param gamePlayManager GamePlayManager Instance
@@ -22,6 +25,9 @@ public class GreenRight extends GameObject implements ShiftableGameObject {
         distanceToBackground = 301;
     }
 
+    /**
+     * Draws the game object to the canvas.
+     */
     @Override
     public void addToCanvas() {
         gameView.addImageToCanvas("green.png", position.getX() + 70, position.getY(), size, 0);

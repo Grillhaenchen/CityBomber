@@ -7,17 +7,20 @@ import thd.gameobjects.base.CollidingWithUserCar;
 import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.ShiftableGameObject;
 
+/**
+ * This is the UI element for StreetBorder on the Left side.
+ */
 public class StreetBorderLeft extends CollidingGameObject implements ShiftableGameObject, CollidingWithUserCar {
 
     /**
-     * This is the UI element for the end in the Progress bar.
+     * This is the UI element for StreetBorder on the Left side.
      *
      * @param gameView        GameView instance w
      * @param gamePlayManager GamePlayManager Instance
      */
     public StreetBorderLeft(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
-        super.hitBoxOffsets(-120,60,0,0);
+        super.hitBoxOffsets(-120, 60, 0, 0);
         size = 0.5;
         width = 150;
         height = 100;
@@ -25,6 +28,9 @@ public class StreetBorderLeft extends CollidingGameObject implements ShiftableGa
     }
 
     /**
+     * If a game object is collided with another game object, it reacts to the collision. This method needs to be
+     * overridden by game objects and implemented with appropriate reactions.
+     *
      * @param other The other game object that is involved in the collision.
      */
     @Override
@@ -32,9 +38,12 @@ public class StreetBorderLeft extends CollidingGameObject implements ShiftableGa
 
     }
 
+    /**
+     * Draws the game object to the canvas.
+     */
     @Override
     public void addToCanvas() {
-        super.hitBoxOffsets(-120,60,0,0);
+        super.hitBoxOffsets(-120, 60, 0, 0);
         size = 0.5;
         width = 150;
         height = 100;
