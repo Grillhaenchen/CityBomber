@@ -10,43 +10,42 @@ public class Level3 extends Level {
     public Level3() {
 
         world = """
-                L S       R   \s
-                L S   P   R   \s
-                L S       R   \s
-                L  S     S   R\s
-                L   S   S    R\s
-                L    S S     R\s
-                L     S      R\s
-                L    S       R\s
-                L   S   C    R\s
-                L  S         R\s
-                L S          R\s
-                L S   P   S  R\s
-                L S       S  R\s
-                L S       C  R\s
-                L S       S  R\s
-                L  S     S   R\s
-                L   S   S  R  \s
-                L    S S  R   \s
-                L     S  R    \s
-                L    S  R     \s
-                L   S  R      \s
-                L  S  R       \s
-                L S  R        \s
-                L S  R        \s
-                L S  R        \s
-                L  S  R       \s
-                L   S  R      \s
-                L    S  R     \s
-                L    S  R     \s
-                L   S  R      \s
-                L  S  R       \s
-                L S  R        \s
-                L S  R        \s
-                L SU R        \s""";
+                L S  Rggg Rggg\s
+                L S  Rggg Rggg\s
+                L S  Rggg Rggg\s
+                L bS  R  S  gR\s
+                Lg bS   SggggR\s
+                Lgg bS  QggggR\s
+                Lgg BS  QggggR\s
+                Lg BS  QCggggR\s
+                L BS  RggggggR\s
+                L S  RgggggggR\s
+                L S  Rggg S  R\s
+                L S  Rggg S  R\s
+                L S  Rggg C  R\s
+                L S  RgggBS  R\s
+                L bS    BS  Rg\s
+                Lg bS  BS  Rgg\s
+                Lgg bS S  Rggg\s
+                Lgg BS  Rggggg\s
+                Lg BS  Rgggggg\s
+                L BS  Rggggggg\s
+                L S  Rgggggggg\s
+                L S  Rgggggggg\s
+                L S  Rgggggggg\s
+                L bS  Rggggggg\s
+                Lg bS  R ggggg\s
+                Lgg bS  Rggggg\s
+                Lgg BS  Rggggg\s
+                Lg BS  Rgggggg\s
+                L BS  Rggggggg\s
+                L S  Rgggggggg\s
+                L S  Rgggggggg\s
+                L SU Rgggggggg\s""";
 
         worldOffsetColumns = 30;
         worldOffsetLines = 0;
         number = 3;
+        name = "Level 3";
     }
 }

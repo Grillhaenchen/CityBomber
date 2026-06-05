@@ -47,6 +47,7 @@ public class Level1 extends Level {
         worldOffsetColumns = 30;
         worldOffsetLines = 0;
         number = 1;
+        name = "Level 1";
     }
 
 }
