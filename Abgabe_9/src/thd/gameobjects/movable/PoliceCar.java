@@ -8,6 +8,13 @@ import thd.gameobjects.base.*;
  * PoliceCar can spawn more than one follows the UserCar.
  */
 public class PoliceCar extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject<UserCar> {
+    private enum State {
+        Normal,
+        Explode
+    }
+
+    private State currentState;
+
     /**
      * Creates a Police Car.
      *
@@ -16,13 +23,13 @@ public class PoliceCar extends CollidingGameObject implements ShiftableGameObjec
      */
     public PoliceCar(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
-        position.updateCoordinates(new Position(300, 500));
+        super.hitBoxOffsets(5 * size, 5 * size, 0, 0);
         size = 2;
         width = 35 * size;
         height = 65 * size;
         distanceToBackground = 400;
 
-        super.hitBoxOffsets(5 * size, 5 * size, 0, 0);
+        currentState = State.Normal;
     }
 
     @Override

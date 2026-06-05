@@ -11,19 +11,27 @@ import thd.gameobjects.base.ShiftableGameObject;
  * A RandomCar Class that dirves on the Road.
  */
 public class RandomCar extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject<UserCar> {
+
+    private enum State {
+        Normal,
+        Explode
+    }
+
+    private State currentState;
+
     /**
      * Creates a RandomCar.
      *
-     * @param gameView    Instance of GameView
+     * @param gameView        Instance of GameView
      * @param gamePlayManager Instance of GamePlayManager
      */
     public RandomCar(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
+        super.hitBoxOffsets(8, 0, 0, 0);
         width = 70;
         height = 120;
         distanceToBackground = 400;
-        super.hitBoxOffsets(8, 0, 0, 0);
-        position.updateCoordinates(new Position(650, 100));
+        currentState = State.Normal;
     }
 
     @Override

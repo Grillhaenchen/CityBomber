@@ -1,5 +1,6 @@
 package thd.game.managers;
 
+import thd.game.utilities.SortedGameObjectsList;
 import thd.gameobjects.base.GameObject;
 
 import java.util.LinkedList;
@@ -15,7 +16,7 @@ class GameObjectManager extends CollisionManager {
     private static final int MAXIMUM_NUMBER_OF_GAME_OBJECTS = 500;
 
     GameObjectManager() {
-        this.gameObjects = new LinkedList<>();
+        this.gameObjects = new SortedGameObjectsList();
         this.gameObjectsToBeAdded = new LinkedList<>();
         this.gameObjectsToBeRemoved = new LinkedList<>();
     }
@@ -65,19 +66,8 @@ class GameObjectManager extends CollisionManager {
 
         for (GameObject toAdd : gameObjectsToBeAdded) {
             addToCollisionManagement(toAdd);
-            sortIntoGameObjects(toAdd);
+            gameObjects.add(toAdd);
         }
         gameObjectsToBeAdded.clear();
-    }
-
-    private void sortIntoGameObjects(GameObject toAdd) {
-        int indexToSortIn = 0;
-        for (GameObject gameObject : gameObjects) {
-            if (gameObject.getDistanceToBackground() >= toAdd.getDistanceToBackground()) {
-                break;
-            }
-            indexToSortIn++;
-        }
-        gameObjects.add(indexToSortIn, toAdd);
     }
 }

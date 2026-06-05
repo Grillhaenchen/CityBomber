@@ -9,8 +9,43 @@ public class Jimmy extends GameObject {
 
     private enum State {RUNNING, JUMPING, HOVERING}
 
+    public enum RunningState {
+        RUNNING_1(JimmyBlockImages.RUNNING_1),
+        RUNNING_2(JimmyBlockImages.RUNNING_2),
+        RUNNING_3(JimmyBlockImages.RUNNING_3),
+        RUNNING_4(JimmyBlockImages.RUNNING_4),
+        RUNNING_5(JimmyBlockImages.RUNNING_5);
+
+        private final String display;
+
+        RunningState(String display) {
+            this.display = display;
+        }
+    }
+
+    public enum JumpingState {
+        JUMPING_1(JimmyBlockImages.STANDARD, 0),
+        JUMPING_2(JimmyBlockImages.JUMPING, 50),
+        JUMPING_3(JimmyBlockImages.JUMPING, 30),
+        JUMPING_4(JimmyBlockImages.JUMPING, 0),
+        JUMPING_5(JimmyBlockImages.JUMPING, 0),
+        JUMPING_6(JimmyBlockImages.JUMPING, -30),
+        JUMPING_7(JimmyBlockImages.JUMPING, -50),
+        JUMPING_8(JimmyBlockImages.STANDARD, 0);
+
+        private final String display;
+        private final int up;
+
+        JumpingState(String display, int up) {
+            this.display = display;
+            this.up = up;
+        }
+    }
+
     private State currentState;
     private String blockImage;
+    private RunningState runningState;
+    private JumpingState jumpingState;
 
     public Jimmy(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
@@ -21,7 +56,10 @@ public class Jimmy extends GameObject {
         speedInPixel = 5;
         distanceToBackground = 10000;
         resetPosition();
+        runningState = RunningState.RUNNING_1;
+        jumpingState = JumpingState.JUMPING_1;
     }
+
 
     private void resetPosition() {
         position.updateCoordinates(-width, GameView.HEIGHT - height);
@@ -31,11 +69,18 @@ public class Jimmy extends GameObject {
     public void updateStatus() {
         switch (currentState) {
             case RUNNING -> {
-                blockImage = JimmyBlockImages.RUNNING_1;
+                blockImage = runningState.display;
+                if (gameView.timer(80, 0, this)) {
+                    switchToNextRunningState();
+                }
                 position.right(speedInPixel);
             }
             case JUMPING -> {
-                blockImage = JimmyBlockImages.JUMPING;
+                blockImage = jumpingState.display;
+                if (gameView.timer(80, 0, this)) {
+                    switchToNextJumpingState();
+                    position.up(jumpingState.up);
+                }
                 position.right(speedInPixel);
             }
             case HOVERING -> {
@@ -46,7 +91,62 @@ public class Jimmy extends GameObject {
         if (position.getX() > GameView.WIDTH) {
             resetPosition();
             switchToNextState();
+            resetStates();
         }
+    }
+
+    private void switchToNextRunningState() {
+        switch (runningState) {
+            case RUNNING_1 -> {
+                runningState = RunningState.RUNNING_2;
+            }
+            case RUNNING_2 -> {
+                runningState = RunningState.RUNNING_3;
+            }
+            case RUNNING_3 -> {
+                runningState = RunningState.RUNNING_4;
+            }
+            case RUNNING_4 -> {
+                runningState = RunningState.RUNNING_5;
+            }
+            case RUNNING_5 -> {
+                runningState = RunningState.RUNNING_1;
+            }
+        }
+    }
+
+    private void switchToNextJumpingState() {
+        switch (jumpingState) {
+            case JUMPING_1 -> {
+                jumpingState = JumpingState.JUMPING_2;
+            }
+            case JUMPING_2 -> {
+                jumpingState = JumpingState.JUMPING_3;
+            }
+            case JUMPING_3 -> {
+                jumpingState = JumpingState.JUMPING_4;
+            }
+            case JUMPING_4 -> {
+                jumpingState = JumpingState.JUMPING_5;
+            }
+            case JUMPING_5 -> {
+                jumpingState = JumpingState.JUMPING_6;
+            }
+            case JUMPING_6 -> {
+                jumpingState = JumpingState.JUMPING_7;
+            }
+            case JUMPING_7 -> {
+                jumpingState = JumpingState.JUMPING_8;
+            }
+            case JUMPING_8 -> {
+                jumpingState = JumpingState.JUMPING_1;
+            }
+        }
+    }
+
+    private void resetStates() {
+        runningState = RunningState.RUNNING_1;
+        jumpingState = JumpingState.JUMPING_1;
     }
 
     private void switchToNextState() {

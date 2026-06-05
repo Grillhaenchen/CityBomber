@@ -16,6 +16,19 @@ import java.util.List;
  */
 public class UserCar extends CollidingGameObject implements MainCharacter, ShiftableGameObject {
 
+    private enum State {
+        Left(-45),
+        Right(+45),
+        Normal(0);
+
+        private int angle;
+
+        State(int angle) {
+            this.angle = angle;
+        }
+    }
+
+
     private final int shotDurationInMilliseconds;
     private final List<CollidingGameObject> collidingGameObjectsForPathDecision;
     private State currentState;
@@ -28,16 +41,15 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
      */
     public UserCar(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
-
+        super.hitBoxOffsets(10, 15, 0, 0);
         width = 70;
         height = 120;
         size = 1;
         speedInPixel = 10;
         distanceToBackground = 500;
-        super.hitBoxOffsets(10, 15, 0, 0);
         shotDurationInMilliseconds = 300;
         collidingGameObjectsForPathDecision = new LinkedList<CollidingGameObject>();
-        currentState = State.STANDARD;
+        currentState = State.Normal;
     }
 
     /**
@@ -71,13 +83,14 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
      */
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("car_red_driving.png", position.getX(), position.getY(), size, 0);
+        gameView.addImageToCanvas("car_red_driving.png", position.getX(), position.getY(), size, currentState.angle);
     }
 
     /**
      * Moves the Car left.
      */
     public void left() {
+        currentState = State.Left;
         if (position.getX() > GameView.WIDTH / 2d - 200) {
             position.left(speedInPixel);
         } else {
@@ -97,6 +110,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
      * Moves the Car right.
      */
     public void right() {
+        currentState = State.Right;
         if (position.getX() < GameView.WIDTH / 2d - 200) {
             position.right(speedInPixel);
         } else {
@@ -115,7 +129,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
      * Moves car up.
      */
     public void up() {
-
+        currentState = State.Normal;
         if (position.getY() > 20) {
             position.up(speedInPixel);
         } else {
@@ -165,29 +179,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
 
     @Override
     public void updateStatus() {
-        switch (currentState) {
-            case LEFT:
-                break;
-            case RIGHT:
-                break;
-            case JUMPING:
-                break;
-            case STANDARD:
-                break;
-            case null, default:
-                break;
-        }
-    }
 
-    private enum State {
-        STANDARD,
-        DAMAGED,
-        EXPLODING,
-        EXPLODED,
-        LEFT,
-        RIGHT,
-        CLIMBING,
-        JUMPING,
     }
 }
 

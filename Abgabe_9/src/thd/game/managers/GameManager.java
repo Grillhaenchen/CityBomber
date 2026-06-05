@@ -40,7 +40,7 @@ class GameManager extends LevelManager {
     }
 
     private boolean endOfLevel() {
-        //return gameView.timer(3000, 0, this);
+        // return gameView.timer(3000, 0, this);
         return false;
     }
 
