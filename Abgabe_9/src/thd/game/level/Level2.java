@@ -42,8 +42,11 @@ public class Level2 extends Level {
                 L S  Rgggggggg\s
                 L S  Rgggggggg\s
                 L S  Rgggggggg\s
-                L SU Rgggggggg\s""";
-
+                L SU Rgggggggg\s
+                L S  Rgggggggg\s
+                L S  Rgggggggg\s
+                L S  Rgggggggg\s
+                L S  Rgggggggg\s""";
         worldOffsetColumns = 30;
         worldOffsetLines = 0;
         number = 2;

@@ -10,6 +10,7 @@ public class Level1 extends Level {
     public Level1() {
 
         world = """
+                f        \s
                 L S  Rggg\s
                 L S  Rggg\s
                 L bS  Qgg\s
@@ -42,7 +43,11 @@ public class Level1 extends Level {
                 L BS  Qgg\s 
                 L SC Rggg\s 
                 L S  Rggg\s 
-                L SU Rggg\s""";
+                L SU Rggg\s
+                L S  Rggg\s
+                L S  Rggg\s
+                L S  Rggg\s
+                L S  Rggg\s""";
 
         worldOffsetColumns = 30;
         worldOffsetLines = 0;

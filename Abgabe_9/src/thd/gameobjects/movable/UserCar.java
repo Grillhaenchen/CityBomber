@@ -145,6 +145,23 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
         }
     }
 
+    public void moveWithWorld(int speed) {
+        currentState = State.Normal;
+        if (position.getY() > 20) {
+            position.up(speed);
+        } else {
+            gamePlayManager.moveWorldDown(speedInPixel);
+        }
+
+        for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
+            if (collidesWith(collidingGameObject)) {
+                position.down(speedInPixel);
+                gamePlayManager.lifeLost();
+                break;
+            }
+        }
+    }
+
     /**
      * Moves Car down.
      */

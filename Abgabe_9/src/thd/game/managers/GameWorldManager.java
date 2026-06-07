@@ -120,6 +120,7 @@ class GameWorldManager extends GamePlayManager {
             case 'G' -> new Green(gameView, this);
             case 'g' -> new GreenRight(gameView, this);
             case 'Q' -> new GreenWithStreet(gameView, this);
+            case 'f' -> new Finish(gameView, this);
             default -> null;
         };
         return spawnObject;

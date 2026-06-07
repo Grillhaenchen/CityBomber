@@ -41,7 +41,12 @@ public class Level3 extends Level {
                 L BS  Rggggggg\s
                 L S  Rgggggggg\s
                 L S  Rgggggggg\s
-                L SU Rgggggggg\s""";
+                L SU Rgggggggg\s
+                L S  Rgggggggg\s
+                L S  Rgggggggg\s
+                L S  Rgggggggg\s""";
+
+
 
         worldOffsetColumns = 30;
         worldOffsetLines = 0;
