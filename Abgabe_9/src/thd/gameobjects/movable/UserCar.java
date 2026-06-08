@@ -145,6 +145,11 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
         }
     }
 
+    /**
+     * Move the car with the world.
+     *
+     * @param speed speed of the world
+     */
     public void moveWithWorld(int speed) {
         currentState = State.Normal;
         if (position.getY() > 20) {

@@ -42,6 +42,6 @@ public class Finish extends CollidingGameObject implements ShiftableGameObject, 
      */
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("finish.png", position.getX() + 60, position.getY() - 920, 1, 0);
+        gameView.addImageToCanvas("finish.png", position.getX() + 70, position.getY() - 350, 3, 0);
     }
 }
