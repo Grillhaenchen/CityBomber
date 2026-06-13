@@ -35,6 +35,7 @@ class GameWorldManager extends GamePlayManager {
         houseLeft = new HouseLeft(gameView, this);
         houseRight = new HouseRight(gameView, this);
         countdown = new Countdown(gameView, this);
+        overlay = new Overlay(gameView, this, "droidsansmono.ttf");
         activatableGameObjects = new LinkedList<>();
     }
 
@@ -51,6 +52,7 @@ class GameWorldManager extends GamePlayManager {
         spawnGameObject(score);
         spawnGameObject(countdown);
         addActivatableGameObject(helicopter);
+        spawnGameObject(overlay);
     }
 
     protected void initializeLevel() {

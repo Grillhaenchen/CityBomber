@@ -28,6 +28,7 @@ class UserControlledGameObjectPool {
     protected ProgressBarBlockImages progressBarBlockImages;
     protected Countdown countdown;
     protected Level level;
+    protected Overlay overlay;
 
     UserControlledGameObjectPool(GameView gameView) {
         this.gameView = gameView;
@@ -36,9 +37,6 @@ class UserControlledGameObjectPool {
     protected void processFrame() throws TooManyGameObjectsException {
         Integer[] pressedKeys = gameView.keyCodesOfCurrentlyPressedKeys();
         for (int keyCode : pressedKeys) {
-            if (keyCode == KeyEvent.VK_A) {
-                gameView.addTextToCanvas("Taste A gedrückt", 0, 0, 18, true, Color.WHITE, 0);
-            }
             processKeyCode(keyCode);
         }
     }

@@ -1,5 +1,7 @@
 package thd.game.managers;
 
+import thd.game.level.Difficulty;
+import thd.game.level.Level;
 import thd.game.utilities.GameView;
 import thd.gameobjects.movable.*;
 import thd.gameobjects.unmovable.Gate;
@@ -21,7 +23,8 @@ class GameManager extends LevelManager {
      */
     GameManager(GameView gameView) {
         super(gameView);
-        initializeGame();
+
+        startNewGame();
     }
 
     @Override
@@ -32,10 +35,20 @@ class GameManager extends LevelManager {
 
     private void gameManagement() {
         if (endOfGame()) {
-            initializeGame();
+            if (!overlay.isMessageShown()) {
+                overlay.showMessage("Game Over", 2);
+            } else {
+                overlay.stopShowing();
+                startNewGame();
+            }
         } else if (endOfLevel()) {
-            switchToNextLevel();
-            initializeLevel();
+            if (gameView.timer(0, 2000, this)) {
+                overlay.showMessage("Great Job!");
+            } else {
+                overlay.stopShowing();
+                switchToNextLevel();
+                initializeLevel();
+            }
         }
     }
 
@@ -51,11 +64,17 @@ class GameManager extends LevelManager {
     @Override
     protected void initializeLevel() {
         super.initializeLevel();
+        overlay.showMessage(level.name, 2);
     }
 
     @Override
     protected void initializeGame() {
         super.initializeGame();
         initializeLevel();
+    }
+
+    private void startNewGame() {
+        Level.difficulty = Difficulty.EASY;
+        initializeGame();
     }
 }

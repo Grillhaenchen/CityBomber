@@ -9,4 +9,5 @@ public class Level {
     public String world;
     public int worldOffsetColumns;
     public int worldOffsetLines;
+    public static Difficulty difficulty = Difficulty.STANDARD;
 }
