@@ -1,5 +1,6 @@
 package thd.gameobjects.base;
 
+import java.util.Optional;
 import java.util.Random;
 
 /**
@@ -12,11 +13,11 @@ public class MovementPattern {
         random = new Random();
     }
 
-    protected Position nextPosition() {
-        return null;
+    protected Optional<Position> nextPosition() {
+        return Optional.empty();
     }
 
-    protected Position startPosition() {
-        return null;
+    protected Optional<Position>  startPosition() {
+        return Optional.empty();
     }
 }
