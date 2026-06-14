@@ -12,36 +12,36 @@ public class Level1 extends Level {
         world = """
                 f        \s
                 L S  Rggg\s
-                L S  Rggg\s
+                L SV Rggg\s
                 L bS  Qgg\s
                 L GbS  Qg\s
-                L GGbS  Q\s
-                L GGBS  Q\s
+                L GGbSY Q\s
+                L GGBSV Q\s
                 L GBS  Qg\s
                 L BS  Rgg\s
+                L SX Rggg\s
                 L S  Rggg\s
                 L S  Rggg\s
                 L S  Rggg\s
-                L S  Rggg\s
-                L S  Rggg\s
+                L SV Rggg\s
                 L bS  Qgg\s
                 L GbS  Qg\s
-                L GGbS  Q\s
-                L GGBS  Q\s
+                L GGbSY Q\s
+                L GGBSV Q\s
                 L GBS  Qg\s
                 L BS  Rgg\s
-                L SC Rggg\s
+                L SY Rggg\s
                 L S  Rggg\s
                 L S  Rggg\s
                 L S  Rggg\s 
-                L S  Rggg\s 
+                L SV Rggg\s 
                 L bS  Qgg\s 
                 L GbS  Qg\s 
-                L GGbS  Q\s 
-                L GGBS PR\s 
+                L GGbSY Q\s 
+                L GGBSVPR\s 
                 L GBS  Qg\s 
                 L BS  Qgg\s 
-                L SC Rggg\s 
+                L SCXRggg\s 
                 L S  Rggg\s 
                 L SU Rggg\s
                 L S  Rggg\s

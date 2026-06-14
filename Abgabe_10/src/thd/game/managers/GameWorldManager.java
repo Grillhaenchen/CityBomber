@@ -1,9 +1,11 @@
 package thd.game.managers;
 
 import thd.game.utilities.GameView;
+import thd.game.utilities.UiElementNames;
 import thd.gameobjects.base.CollidingGameObject;
 import thd.gameobjects.base.CollidingWithUserCar;
 import thd.gameobjects.base.GameObject;
+import thd.gameobjects.base.RoadUser;
 import thd.gameobjects.movable.*;
 import thd.gameobjects.unmovable.*;
 
@@ -77,6 +79,9 @@ class GameWorldManager extends GamePlayManager {
                 if (spawnObject instanceof CollidingGameObject collidingGameObject) {
                     addGameObjectForCollision(collidingGameObject);
                 }
+                if (spawnObject instanceof RoadUser roadUser) {
+                    userCar.addRoadUsers((GameObject) roadUser);
+                }
 
                 if (spawnObject != null) {
                     spawnObject.getPosition().updateCoordinates(x, y);
@@ -87,7 +92,12 @@ class GameWorldManager extends GamePlayManager {
                             spawnGameObject(spawnObject);
                         }
                         case HouseRight right -> {
+
                             spawnObject.getPosition().updateCoordinates(x + 68, y);
+                            spawnGameObject(spawnObject);
+                        }
+                        case UserCar car -> {
+                            userCar.getPosition().up(50);
                             spawnGameObject(spawnObject);
                         }
                         default -> spawnGameObject(spawnObject);
@@ -106,25 +116,37 @@ class GameWorldManager extends GamePlayManager {
 
     private GameObject createGameObject(int row, String lines) {
         char character = lines.charAt(row);
-        GameObject spawnObject = switch (character) {
-            case 'L' -> spawnLeftHouse();
-            case 'P' -> new PoliceCar(gameView, this);
-            case 'C' -> new RandomCar(gameView, this);
-            case 'R' -> spawnRightHouse();
-            case 'S' -> new Street(gameView, this);
-            case 'U' -> userCar;
-            case 'D' -> new DirtRoad(gameView, this);
-            case 'E' -> new Dirt(gameView, this);
-            case 'F' -> new Field(gameView, this);
-            case 'B' -> new StreetBorderLeft(gameView, this);
-            case 'b' -> new StreetBorderLeftMirror(gameView, this);
-            case 'G' -> new Green(gameView, this);
-            case 'g' -> new GreenRight(gameView, this);
-            case 'Q' -> new GreenWithStreet(gameView, this);
-            case 'f' -> new Finish(gameView, this);
+        UiElementNames names = UiElementNames.fromChar(character);
+
+        return switch (names) {
+            case UiElementNames.LEFT_HOUSE -> spawnLeftHouse();
+            case UiElementNames.RIGHT_HOUSE -> spawnRightHouse();
+
+            case UiElementNames.STREET -> new Street(gameView, this);
+            case UiElementNames.DIRT_ROAD -> new DirtRoad(gameView, this);
+            case UiElementNames.DIRT -> new Dirt(gameView, this);
+            case UiElementNames.STREET_BORDER_LEFT -> new StreetBorderLeft(gameView, this);
+            case UiElementNames.STREET_BORDER_LEFT_MIRROR -> new StreetBorderLeftMirror(gameView, this);
+            case UiElementNames.GREEN -> new Green(gameView, this);
+            case UiElementNames.GREEN_RIGHT -> new GreenRight(gameView, this);
+            case UiElementNames.GREEN_WITH_STREET -> new GreenWithStreet(gameView, this);
+
+            case UiElementNames.POLICE_CAR -> new PoliceCar(gameView, this);
+            case UiElementNames.RANDOM_CAR -> new RandomCar(gameView, this);
+
+            case UiElementNames.USER_CAR -> userCar;
+
+            case UiElementNames.FIELD -> new Field(gameView, this);
+
+            case UiElementNames.FINISH -> new Finish(gameView, this);
+
+            case TRIGGER_TO_LEFT -> new MoveLeftTrigger(gameView, this);
+            case TRIGGER_TO_RIGHT -> new MoveRightTrigger(gameView, this);
+            case TRIGGER_TO_STRAIGHT -> new MoveStraightTrigger(gameView, this);
+
+
             default -> null;
         };
-        return spawnObject;
     }
 
     private void addActivatableGameObject(GameObject gameObject) {
@@ -134,8 +156,6 @@ class GameWorldManager extends GamePlayManager {
 
     private void prepareSpawnGameObject(GameObject gameObject, double row, double column) {
         gameObject.getPosition().updateCoordinates((row - level.worldOffsetLines), (column - level.worldOffsetColumns));
-        // gameObject.getPosition().updateCoordinates((row) * WORLD_MULTIPLIER, (column) * WORLD_MULTIPLIER);
-        // spawnGameObject(gameObject);
         addToShiftableGameObjectsIfShiftable(gameObject);
     }
 

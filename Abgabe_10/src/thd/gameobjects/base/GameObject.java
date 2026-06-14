@@ -79,6 +79,15 @@ public abstract class GameObject {
     }
 
     /**
+     * Returns the target position of the game object.
+     *
+     * @return position of the game object.
+     */
+    public Position getTargetPosition() {
+        return targetPosition;
+    }
+
+    /**
      * Returns width of game object.
      *
      * @return Width of game object

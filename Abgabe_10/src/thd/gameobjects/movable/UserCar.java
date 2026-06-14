@@ -3,18 +3,18 @@ package thd.gameobjects.movable;
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.CollidingGameObject;
+import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.MainCharacter;
 import thd.gameobjects.base.Position;
-import thd.gameobjects.base.ShiftableGameObject;
-import thd.gameobjects.unmovable.*;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * With this Class can the  User interact and drive through the Map.
  */
-public class UserCar extends CollidingGameObject implements MainCharacter, ShiftableGameObject {
+public class UserCar extends CollidingGameObject implements MainCharacter {
 
     private enum State {
         Left(-45),
@@ -31,7 +31,9 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
 
     private final int shotDurationInMilliseconds;
     private final List<CollidingGameObject> collidingGameObjectsForPathDecision;
+    private final List<GameObject> roadUsers;
     private State currentState;
+    private static final int CENTER_OFFSET = 250;
 
     /**
      * Creates a User car .
@@ -49,6 +51,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
         distanceToBackground = 500;
         shotDurationInMilliseconds = 300;
         collidingGameObjectsForPathDecision = new LinkedList<CollidingGameObject>();
+        roadUsers = new ArrayList<GameObject>();
         currentState = State.Normal;
     }
 
@@ -58,7 +61,16 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
      * @param collidingGameObject GameObject who can collide.
      */
     public void addGameObjectsForCollision(CollidingGameObject collidingGameObject) {
-        collidingGameObjectsForPathDecision.add(collidingGameObject);
+        // collidingGameObjectsForPathDecision.add(collidingGameObject);
+    }
+
+    /**
+     * add all roadcars.
+     *
+     * @param gameObject items on the road.
+     */
+    public void addRoadUsers(GameObject gameObject) {
+        roadUsers.add(gameObject);
     }
 
     @Override
@@ -91,7 +103,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
      */
     public void left() {
         currentState = State.Left;
-        if (position.getX() > GameView.WIDTH / 2d - 200) {
+        if (position.getX() > GameView.WIDTH / 2.0 - CENTER_OFFSET) {
             position.left(speedInPixel);
         } else {
             gamePlayManager.moveWorldToRight(speedInPixel);
@@ -104,6 +116,8 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
                 break;
             }
         }
+
+        shiftGameObjects(speedInPixel, 0);
     }
 
     /**
@@ -111,7 +125,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
      */
     public void right() {
         currentState = State.Right;
-        if (position.getX() < GameView.WIDTH / 2d - 200) {
+        if (position.getX() < GameView.WIDTH / 2.0 + CENTER_OFFSET) {
             position.right(speedInPixel);
         } else {
             gamePlayManager.moveWorldToLeft(speedInPixel);
@@ -123,67 +137,15 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
                 break;
             }
         }
+
+        shiftGameObjects(-speedInPixel, 0);
     }
 
     /**
-     * Moves car up.
+     * Show normal State of Car.
      */
-    public void up() {
+    public void displayNormalState() {
         currentState = State.Normal;
-        if (position.getY() > 20) {
-            position.up(speedInPixel);
-        } else {
-            gamePlayManager.moveWorldDown(speedInPixel);
-        }
-
-        for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
-            if (collidesWith(collidingGameObject)) {
-                position.down(speedInPixel);
-                gamePlayManager.lifeLost();
-                break;
-            }
-        }
-    }
-
-    /**
-     * Move the car with the world.
-     *
-     * @param speed speed of the world
-     */
-    public void moveWithWorld(int speed) {
-        currentState = State.Normal;
-        if (position.getY() > 20) {
-            position.up(speed);
-        } else {
-            gamePlayManager.moveWorldDown(speedInPixel);
-        }
-
-        for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
-            if (collidesWith(collidingGameObject)) {
-                position.down(speedInPixel);
-                gamePlayManager.lifeLost();
-                break;
-            }
-        }
-    }
-
-    /**
-     * Moves Car down.
-     */
-    public void down() {
-        if (position.getY() < 420) {
-            position.down(speedInPixel);
-        } else {
-            gamePlayManager.moveWorldUp(speedInPixel);
-        }
-
-        for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
-            if (collidesWith(collidingGameObject)) {
-                position.up(speedInPixel);
-                gamePlayManager.lifeLost();
-                break;
-            }
-        }
     }
 
     /**
@@ -199,9 +161,19 @@ public class UserCar extends CollidingGameObject implements MainCharacter, Shift
         }
     }
 
+    /**
+     * update the status.
+     */
     @Override
     public void updateStatus() {
 
+    }
+
+    private void shiftGameObjects(double shiftX, double shiftY) {
+//        for (GameObject gameObject : roadUsers) {
+//            gameObject.getPosition().right(shiftX);
+//            gameObject.getPosition().down(shiftY);
+//        }
     }
 }
 

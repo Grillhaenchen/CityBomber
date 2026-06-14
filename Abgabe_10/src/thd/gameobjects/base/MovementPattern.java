@@ -13,11 +13,30 @@ public class MovementPattern {
         random = new Random();
     }
 
-    protected Optional<Position> nextPosition() {
+    /**
+     * switch to the next position.
+     *
+     * @return next movement position.
+     */
+    public Optional<Position> nextPosition() {
         return Optional.empty();
     }
 
-    protected Optional<Position>  startPosition() {
+    /**
+     * Return the startposition.
+     *
+     * @return the startposition.
+     */
+    public Optional<Position> startPosition() {
         return Optional.empty();
+    }
+
+    /**
+     * True if have the last position of the pattern.
+     *
+     * @return True if have the last position of the pattern.
+     */
+    public boolean isLastPosition() {
+        return false;
     }
 }

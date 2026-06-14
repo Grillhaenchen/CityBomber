@@ -177,6 +177,21 @@ public class Position implements Comparable<Position> {
     }
 
     /**
+     * Checks if this position is similar to the other position.
+     *
+     * @param other   Another position.
+     * @param accuacy Power of rounding
+     * @return True if this position has the same x- and y-coordinates as the other position,
+     * when both are rounded to <code>int</code>.
+     */
+    public boolean similarTo(Position other, int accuacy) {
+        return Math.abs(x - other.x) <= accuacy && Math.abs(y - other.y) <= accuacy;
+
+//        return ((int) (Math.pow(10, -1 * accuacy) * Math.round(x))) == ((int) (Math.pow(10, -1 * accuacy) * Math.round(other.x)))
+//                && ((int) (Math.pow(10, -1 * accuacy) * Math.round(y))) == ((int) (Math.pow(10, -1 * accuacy) * Math.round(other.y)));
+    }
+
+    /**
      * Calculate the difference between two positions.
      *
      * @param other Positon for comparison

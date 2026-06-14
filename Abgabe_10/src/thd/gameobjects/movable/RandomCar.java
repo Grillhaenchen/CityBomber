@@ -2,15 +2,15 @@ package thd.gameobjects.movable;
 
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
-import thd.gameobjects.base.ActivatableGameObject;
-import thd.gameobjects.base.CollidingGameObject;
-import thd.gameobjects.base.Position;
-import thd.gameobjects.base.ShiftableGameObject;
+import thd.gameobjects.base.*;
+import thd.gameobjects.unmovable.MoveLeftTrigger;
+import thd.gameobjects.unmovable.MoveRightTrigger;
+import thd.gameobjects.unmovable.MoveStraightTrigger;
 
 /**
  * A RandomCar Class that dirves on the Road.
  */
-public class RandomCar extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject<UserCar> {
+public class RandomCar extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject<UserCar>, RoadUser {
 
     private enum State {
         Normal,
@@ -18,6 +18,7 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
     }
 
     private State currentState;
+    private MovementPattern pattern;
 
     /**
      * Creates a RandomCar.
@@ -30,6 +31,7 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
         super.hitBoxOffsets(8, 0, 0, 0);
         width = 70;
         height = 120;
+        speedInPixel = 5;
         distanceToBackground = 400;
         currentState = State.Normal;
     }
@@ -39,12 +41,29 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
         if (other instanceof UserShot) {
             gamePlayManager.destroyGameObject(this);
             gamePlayManager.addPoints(30);
+        } else if (other instanceof MoveLeftTrigger) {
+            pattern = new MoveLeftMovementPattern();
+            pattern.startPosition().ifPresent(targetPosition::updateCoordinates);
+        } else if (other instanceof MoveRightTrigger) {
+            pattern = new MoveRightMovementPattern();
+            pattern.startPosition().ifPresent(targetPosition::updateCoordinates);
+        } else if (other instanceof MoveStraightTrigger) {
+            pattern = new StraightMoveMovmentPattern(position);
+            pattern.startPosition().ifPresent(targetPosition::updateCoordinates);
         }
     }
 
     @Override
     public void updatePosition() {
+        if (pattern != null) {
+            if (position.similarTo(targetPosition, 10) && !pattern.isLastPosition()) {
+                pattern.nextPosition().ifPresent(targetPosition::updateCoordinates);
+            }
 
+            double positionX = position.getX() + targetPosition.getX();
+            Position pos = new Position(positionX, position.getY() - 3);
+            position.moveToPosition(targetPosition, speedInPixel);
+        }
     }
 
     /**
@@ -55,11 +74,10 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
     @Override
     public void addToCanvas() {
         gameView.addImageToCanvas("car_blue.png", position.getX(), position.getY(), 1, 0);
-
     }
 
     @Override
     public boolean tryToActivate(UserCar info) {
-        return false;
+        return true;
     }
 }

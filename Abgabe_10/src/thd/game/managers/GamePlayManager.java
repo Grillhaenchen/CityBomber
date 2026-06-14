@@ -73,7 +73,8 @@ public class GamePlayManager extends WorldShiftManager {
             currentNumberOfVisibleSquares++;
         }
         moveWorldDown(2);
-        userCar.moveWithWorld(2);
+        userCar.displayNormalState();
+
     }
 
     /**

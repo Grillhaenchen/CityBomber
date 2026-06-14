@@ -7,7 +7,7 @@ import thd.gameobjects.base.*;
 /**
  * PoliceCar can spawn more than one follows the UserCar.
  */
-public class PoliceCar extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject<UserCar> {
+public class PoliceCar extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject<UserCar>, RoadUser {
     private enum State {
         Normal,
         Explode

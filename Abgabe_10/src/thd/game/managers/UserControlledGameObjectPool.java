@@ -46,20 +46,12 @@ class UserControlledGameObjectPool {
             userCar.left();
         } else if (keyCode == KeyEvent.VK_D) {
             userCar.right();
-        } else if (keyCode == KeyEvent.VK_W) {
-            userCar.up();
-        } else if (keyCode == KeyEvent.VK_S) {
-            userCar.down();
         } else if (keyCode == KeyEvent.VK_SPACE) {
             userCar.shoot();
         } else if (keyCode == KeyEvent.VK_LEFT) {
             userCar.left();
-        } else if (keyCode == KeyEvent.VK_UP) {
-            userCar.up();
         } else if (keyCode == KeyEvent.VK_RIGHT) {
             userCar.right();
-        } else if (keyCode == KeyEvent.VK_DOWN) {
-            userCar.down();
         }
     }
 }
