@@ -2,15 +2,12 @@ package thd.gameobjects.unmovable;
 
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
-import thd.gameobjects.base.CollidingGameObject;
-import thd.gameobjects.base.CollidingWithUserCar;
-import thd.gameobjects.base.GameObject;
-import thd.gameobjects.base.ShiftableGameObject;
+import thd.gameobjects.base.*;
 
 /**
  * This is the UI element for House on the left side.
  */
-public class HouseLeft extends CollidingGameObject implements ShiftableGameObject, CollidingWithUserCar {
+public class HouseLeft extends CollidingGameObject implements ShiftableGameObject, CollidingWithUserCar, HouseLeftReference {
 
     /**
      * This is the UI element for House on the left side.

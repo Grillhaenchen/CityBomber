@@ -53,12 +53,11 @@ class GameManager extends LevelManager {
     }
 
     private boolean endOfLevel() {
-        // return gameView.timer(3000, 0, this);
-        return false;
+        return userCar.isInFinish();
     }
 
     private boolean endOfGame() {
-        return lives == 0 || (!hasNextLevel() && endOfLevel());
+        return lives <= 0 || (!hasNextLevel() && endOfLevel());
     }
 
     @Override

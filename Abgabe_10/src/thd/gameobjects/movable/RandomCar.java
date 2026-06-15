@@ -12,6 +12,8 @@ import thd.gameobjects.unmovable.MoveStraightTrigger;
  */
 public class RandomCar extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject<UserCar>, RoadUser {
 
+    public static GameObject referenceObject;
+
     private enum State {
         Normal,
         Explode
@@ -34,13 +36,15 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
         speedInPixel = 5;
         distanceToBackground = 400;
         currentState = State.Normal;
+        referenceObject = null;
     }
 
     @Override
     public void reactToCollisionWith(CollidingGameObject other) {
-        if (other instanceof UserShot) {
+        if (other instanceof UserShot shot) {
             gamePlayManager.destroyGameObject(this);
             gamePlayManager.addPoints(30);
+            gamePlayManager.destroyGameObject(shot);
         } else if (other instanceof MoveLeftTrigger) {
             pattern = new MoveLeftMovementPattern();
             pattern.startPosition().ifPresent(targetPosition::updateCoordinates);
@@ -48,6 +52,7 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
             pattern = new MoveRightMovementPattern();
             pattern.startPosition().ifPresent(targetPosition::updateCoordinates);
         } else if (other instanceof MoveStraightTrigger) {
+            System.out.println(position);
             pattern = new StraightMoveMovmentPattern(position);
             pattern.startPosition().ifPresent(targetPosition::updateCoordinates);
         }
@@ -60,8 +65,7 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
                 pattern.nextPosition().ifPresent(targetPosition::updateCoordinates);
             }
 
-            double positionX = position.getX() + targetPosition.getX();
-            Position pos = new Position(positionX, position.getY() - 3);
+            double positionX = targetPosition.getX() + referenceObject.getPosition().getX();
             position.moveToPosition(targetPosition, speedInPixel);
         }
     }
@@ -73,11 +77,16 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
      */
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("car_blue.png", position.getX(), position.getY(), 1, 0);
+        super.hitBoxOffsets(8 + referenceObject.getPosition().getX(), 0, 0, 0);
+        gameView.addImageToCanvas("car_blue.png", position.getX() + referenceObject.getPosition().getX(), position.getY(), 1, 0);
     }
 
     @Override
     public boolean tryToActivate(UserCar info) {
         return true;
+    }
+
+    public void setReferenceObject(GameObject gameObject) {
+        this.referenceObject = gameObject;
     }
 }

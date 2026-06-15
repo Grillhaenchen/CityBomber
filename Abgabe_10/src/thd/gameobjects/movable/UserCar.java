@@ -6,6 +6,7 @@ import thd.gameobjects.base.CollidingGameObject;
 import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.MainCharacter;
 import thd.gameobjects.base.Position;
+import thd.gameobjects.unmovable.Finish;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -34,6 +35,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
     private final List<GameObject> roadUsers;
     private State currentState;
     private static final int CENTER_OFFSET = 250;
+    private boolean finished;
 
     /**
      * Creates a User car .
@@ -53,6 +55,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
         collidingGameObjectsForPathDecision = new LinkedList<CollidingGameObject>();
         roadUsers = new ArrayList<GameObject>();
         currentState = State.Normal;
+        finished = false;
     }
 
     /**
@@ -61,7 +64,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
      * @param collidingGameObject GameObject who can collide.
      */
     public void addGameObjectsForCollision(CollidingGameObject collidingGameObject) {
-        // collidingGameObjectsForPathDecision.add(collidingGameObject);
+        collidingGameObjectsForPathDecision.add(collidingGameObject);
     }
 
     /**
@@ -75,7 +78,9 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
 
     @Override
     public void reactToCollisionWith(CollidingGameObject other) {
-
+        if (other instanceof Finish) {
+            finished = true;
+        }
     }
 
     /**
@@ -116,8 +121,6 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
                 break;
             }
         }
-
-        shiftGameObjects(speedInPixel, 0);
     }
 
     /**
@@ -137,8 +140,6 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
                 break;
             }
         }
-
-        shiftGameObjects(-speedInPixel, 0);
     }
 
     /**
@@ -169,11 +170,17 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
 
     }
 
-    private void shiftGameObjects(double shiftX, double shiftY) {
-//        for (GameObject gameObject : roadUsers) {
-//            gameObject.getPosition().right(shiftX);
-//            gameObject.getPosition().down(shiftY);
-//        }
+    /**
+     * return True if UserCar is in the Finish.
+     *
+     * @return True if UserCar is in the Finish
+     */
+    public boolean isInFinish() {
+        return this.finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
     }
 }
 

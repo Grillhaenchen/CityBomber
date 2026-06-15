@@ -16,6 +16,7 @@ import java.util.ListIterator;
 class GameWorldManager extends GamePlayManager {
 
     private final List<GameObject> activatableGameObjects;
+    GameObject referenceObject = null;
 
     /**
      * Create a instance of GamePlayManager.
@@ -33,12 +34,14 @@ class GameWorldManager extends GamePlayManager {
         policeCar = new PoliceCar(gameView, this);
         randomCar = new RandomCar(gameView, this);
         score = new Score(gameView, this);
+        lives1 = new Lives(gameView, this);
         progressBarBlockImages = new ProgressBarBlockImages(gameView, this);
         houseLeft = new HouseLeft(gameView, this);
         houseRight = new HouseRight(gameView, this);
         countdown = new Countdown(gameView, this);
         overlay = new Overlay(gameView, this, "droidsansmono.ttf");
         activatableGameObjects = new LinkedList<>();
+        lives1.setLives(lives);
     }
 
     @Override
@@ -52,12 +55,13 @@ class GameWorldManager extends GamePlayManager {
         spawnGameObject(start);
         spawnGameObject(progressBarBlockImages);
         spawnGameObject(score);
-        spawnGameObject(countdown);
+        spawnGameObject(lives1);
         addActivatableGameObject(helicopter);
         spawnGameObject(overlay);
     }
 
     protected void initializeLevel() {
+        userCar.setFinished(false);
         activatableGameObjects.clear();
         destroyAllGameObjects();
         clearListsForPathDecisionsInGameObjects();
@@ -105,13 +109,17 @@ class GameWorldManager extends GamePlayManager {
                 }
             }
         }
+        setReferenceObject();
+    }
+
+    private void setReferenceObject() {
+        RandomCar.referenceObject = this.referenceObject;
     }
 
     private void addGameObjectForCollision(CollidingGameObject collidingGameObject) {
         if (collidingGameObject instanceof CollidingWithUserCar) {
             userCar.addGameObjectsForCollision(collidingGameObject);
         }
-
     }
 
     private GameObject createGameObject(int row, String lines) {
@@ -119,7 +127,14 @@ class GameWorldManager extends GamePlayManager {
         UiElementNames names = UiElementNames.fromChar(character);
 
         return switch (names) {
-            case UiElementNames.LEFT_HOUSE -> spawnLeftHouse();
+            case UiElementNames.LEFT_HOUSE -> {
+                if (referenceObject == null) {
+                    referenceObject = spawnLeftHouse();
+                    yield referenceObject;
+                } else {
+                    yield spawnLeftHouse();
+                }
+            }
             case UiElementNames.RIGHT_HOUSE -> spawnRightHouse();
 
             case UiElementNames.STREET -> new Street(gameView, this);
@@ -151,11 +166,6 @@ class GameWorldManager extends GamePlayManager {
 
     private void addActivatableGameObject(GameObject gameObject) {
         activatableGameObjects.add(gameObject);
-        addToShiftableGameObjectsIfShiftable(gameObject);
-    }
-
-    private void prepareSpawnGameObject(GameObject gameObject, double row, double column) {
-        gameObject.getPosition().updateCoordinates((row - level.worldOffsetLines), (column - level.worldOffsetColumns));
         addToShiftableGameObjectsIfShiftable(gameObject);
     }
 

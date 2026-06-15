@@ -9,7 +9,7 @@ import thd.gameobjects.base.ShiftableGameObject;
 /**
  * This is the UI element for the border on the left side.
  */
-public class Finish extends CollidingGameObject implements ShiftableGameObject, CollidingWithUserCar {
+public class Finish extends CollidingGameObject implements ShiftableGameObject {
 
     /**
      * This is the UI element for the border on the left side.
@@ -19,9 +19,9 @@ public class Finish extends CollidingGameObject implements ShiftableGameObject, 
      */
     public Finish(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
-        super.hitBoxOffsets(-120, 60, 0, 0);
+        super.hitBoxOffsets(0, 0, width, height);
         size = 0.5;
-        width = 150;
+        width = 1000;
         height = 100;
         distanceToBackground = 301;
     }

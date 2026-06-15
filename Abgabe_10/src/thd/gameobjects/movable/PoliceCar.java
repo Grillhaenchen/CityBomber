@@ -7,7 +7,7 @@ import thd.gameobjects.base.*;
 /**
  * PoliceCar can spawn more than one follows the UserCar.
  */
-public class PoliceCar extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject<UserCar>, RoadUser {
+public class PoliceCar extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject<UserCar> {
     private enum State {
         Normal,
         Explode
@@ -34,9 +34,10 @@ public class PoliceCar extends CollidingGameObject implements ShiftableGameObjec
 
     @Override
     public void reactToCollisionWith(CollidingGameObject other) {
-        if (other instanceof UserShot) {
+        if (other instanceof UserShot shot) {
             gamePlayManager.destroyGameObject(this);
             gamePlayManager.addPoints(30);
+            gamePlayManager.destroyGameObject(shot);
         }
     }
 

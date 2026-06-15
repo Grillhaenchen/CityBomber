@@ -10,16 +10,17 @@ public class Level3 extends Level {
     public Level3() {
 
         world = """
+                f             \s
                 L S  Rggg Rggg\s
                 L S  Rggg Rggg\s
-                L S  Rggg Rggg\s
+                L S  Rggf Rggg\s
                 L bS  R  S  gR\s
                 Lg bS   SggggR\s
                 Lgg bS  QggggR\s
                 Lgg BS  QggggR\s
                 Lg BS  QCggggR\s
                 L BS  RggggggR\s
-                L S  RgggggggR\s
+                L S  Rgggf ggR\s
                 L S  Rggg S  R\s
                 L S  Rggg S  R\s
                 L S  Rggg C  R\s

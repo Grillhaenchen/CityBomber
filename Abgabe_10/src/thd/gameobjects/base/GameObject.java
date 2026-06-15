@@ -21,6 +21,7 @@ public abstract class GameObject {
     protected double height;
     protected int distanceToBackground;
 
+
     /**
      * Create a new GameObject.
      *
@@ -39,7 +40,7 @@ public abstract class GameObject {
     /**
      * Crates a new GameObject.
      *
-     * @param gameView GameView to show the game object on.
+     * @param gameView        GameView to show the game object on.
      * @param gamePlayManager Instance of GamePlayManager
      */
     public GameObject(GameView gameView, GamePlayManager gamePlayManager) {
@@ -108,7 +109,7 @@ public abstract class GameObject {
     /**
      * Updates the Status of a GameObject.
      */
-    public void updateStatus(){
+    public void updateStatus() {
 //        if (position.getX() > 1280 || position.getX() < 0 || position.getY() < 0 || position.getY() > 720) {
 //            gamePlayManager.destroyGameObject(this);
 //        }
@@ -141,5 +142,14 @@ public abstract class GameObject {
     public int hashCode() {
         // Der Hash-Code muss auf denselben Feldern basieren wie die equals-Methode
         return Objects.hash(position, targetPosition, speedInPixel, rotation, size, width, height, distanceToBackground);
+    }
+
+    /**
+     * Return true if the object is moving and the shift can be ignored.
+     *
+     * @return true if its moving
+     */
+    public boolean isMoving() {
+        return false;
     }
 }

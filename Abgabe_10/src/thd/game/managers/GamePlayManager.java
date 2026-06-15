@@ -82,6 +82,7 @@ public class GamePlayManager extends WorldShiftManager {
      */
     public void lifeLost() {
         lives--;
+        lives1.setLives(lives);
     }
 
     /**
@@ -90,7 +91,7 @@ public class GamePlayManager extends WorldShiftManager {
      * @param points the amount of point you will add
      */
     public void addPoints(int points) {
-        this.points += points;
+        score.addPoints(points);
     }
 
     protected void processFrameUpdate() {

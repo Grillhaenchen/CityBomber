@@ -14,32 +14,32 @@ public class Level1 extends Level {
                 L S  Rggg\s
                 L SV Rggg\s
                 L bS  Qgg\s
-                L GbS  Qg\s
+                L GbSPPQg\s
                 L GGbSY Q\s
                 L GGBSV Q\s
-                L GBS  Qg\s
+                L GBSPPQg\s
                 L BS  Rgg\s
                 L SX Rggg\s
                 L S  Rggg\s
-                L S  Rggg\s
+                L SPPRggg\s
                 L S  Rggg\s
                 L SV Rggg\s
                 L bS  Qgg\s
                 L GbS  Qg\s
                 L GGbSY Q\s
                 L GGBSV Q\s
-                L GBS  Qg\s
+                L GBSPPQg\s
                 L BS  Rgg\s
                 L SY Rggg\s
                 L S  Rggg\s
-                L S  Rggg\s
+                L SPPRggg\s
                 L S  Rggg\s 
                 L SV Rggg\s 
                 L bS  Qgg\s 
                 L GbS  Qg\s 
                 L GGbSY Q\s 
                 L GGBSVPR\s 
-                L GBS  Qg\s 
+                L GBSPPQg\s 
                 L BS  Qgg\s 
                 L SCXRggg\s 
                 L S  Rggg\s 

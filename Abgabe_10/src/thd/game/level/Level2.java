@@ -10,6 +10,7 @@ public class Level2 extends Level {
     public Level2() {
 
         world = """
+                f       f     \s
                 L S  gggg S  R\s
                 L S  gggg S  R\s
                 L S  gggg S  R\s
@@ -25,7 +26,7 @@ public class Level2 extends Level {
                 L GGBS       R\s
                 L GBS        R\s
                 L BS         R\s
-                L S  R       R\s
+                L S  R   f   R\s
                 L S  R    S  R\s
                 L S  R C  S  R\s
                 L S  Rggg S  R\s

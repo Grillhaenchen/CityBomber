@@ -23,6 +23,7 @@ class UserControlledGameObjectPool {
     protected PoliceCar policeCar;
     protected RandomCar randomCar;
     protected Score score;
+    protected Lives lives1;
     protected HouseLeft houseLeft;
     protected HouseRight houseRight;
     protected ProgressBarBlockImages progressBarBlockImages;
