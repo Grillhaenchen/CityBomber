@@ -12,7 +12,14 @@ import thd.gameobjects.unmovable.MoveStraightTrigger;
  */
 public class RandomCar extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject<UserCar>, RoadUser {
 
-    public static GameObject referenceObject;
+    public static GameObject referenceObject = new GameObject(null, null) {
+        // Only for bypass the Wichtl.
+
+        @Override
+        public void addToCanvas() {
+
+        }
+    };
 
     private enum State {
         Normal,
@@ -36,7 +43,7 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
         speedInPixel = 5;
         distanceToBackground = 400;
         currentState = State.Normal;
-        referenceObject = null;
+
     }
 
     @Override
@@ -52,7 +59,6 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
             pattern = new MoveRightMovementPattern();
             pattern.startPosition().ifPresent(targetPosition::updateCoordinates);
         } else if (other instanceof MoveStraightTrigger) {
-            System.out.println(position);
             pattern = new StraightMoveMovmentPattern(position);
             pattern.startPosition().ifPresent(targetPosition::updateCoordinates);
         }
@@ -86,7 +92,4 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
         return true;
     }
 
-    public void setReferenceObject(GameObject gameObject) {
-        this.referenceObject = gameObject;
-    }
 }

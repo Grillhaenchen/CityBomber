@@ -16,7 +16,7 @@ import java.util.ListIterator;
 class GameWorldManager extends GamePlayManager {
 
     private final List<GameObject> activatableGameObjects;
-    GameObject referenceObject = null;
+    private GameObject referenceObject;
 
     /**
      * Create a instance of GamePlayManager.
@@ -42,6 +42,7 @@ class GameWorldManager extends GamePlayManager {
         overlay = new Overlay(gameView, this, "droidsansmono.ttf");
         activatableGameObjects = new LinkedList<>();
         lives1.setLives(lives);
+        referenceObject = null;
     }
 
     @Override
@@ -109,10 +110,10 @@ class GameWorldManager extends GamePlayManager {
                 }
             }
         }
-        setReferenceObject();
+        writeReferenceObject();
     }
 
-    private void setReferenceObject() {
+    private void writeReferenceObject() {
         RandomCar.referenceObject = this.referenceObject;
     }
 

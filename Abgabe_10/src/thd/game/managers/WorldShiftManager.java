@@ -80,7 +80,6 @@ public class WorldShiftManager extends UserControlledGameObjectPool {
     private void shiftGameObjects(double shiftX, double shiftY) {
         for (GameObject gameObject : shiftableGameObjects) {
             if (gameObject instanceof RandomCar) {
-                //gameObject.getPosition().down(shiftY);
                 continue;
             } else {
                 gameObject.getPosition().right(shiftX);

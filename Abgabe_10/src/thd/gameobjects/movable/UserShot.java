@@ -13,7 +13,7 @@ public class UserShot extends CollidingGameObject implements ShiftableGameObject
     /**
      * Creates a Bullet.
      *
-     * @param gameView    GameView instance
+     * @param gameView        GameView instance
      * @param gamePlayManager GamePlayManager Instance
      */
     public UserShot(GameView gameView, GamePlayManager gamePlayManager) {
@@ -23,7 +23,7 @@ public class UserShot extends CollidingGameObject implements ShiftableGameObject
         height = 20;
         super.hitBoxOffsets(5, 5, 0, 0);
         speedInPixel = 4;
-        distanceToBackground=400;
+        distanceToBackground = 400;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class UserShot extends CollidingGameObject implements ShiftableGameObject
     }
 
     @Override
-    public void updateStatus(){
+    public void updateStatus() {
         if (position.getY() < 20) {
             gamePlayManager.destroyGameObject(this);
         }

@@ -6,10 +6,19 @@ import thd.gameobjects.base.GameObject;
 
 import java.awt.*;
 
+/**
+ * Handels the lives in the code.
+ */
 public class Lives extends GameObject {
 
-    int lives;
+    private int lives;
 
+    /**
+     * create a live instance.
+     *
+     * @param gameView        instance of gameview.
+     * @param gamePlayManager instance of gamePlayManger.
+     */
     public Lives(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
         getPosition().updateCoordinates((double) GameView.WIDTH / 2 - 200, 0);
