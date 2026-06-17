@@ -71,7 +71,6 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
                 pattern.nextPosition().ifPresent(targetPosition::updateCoordinates);
             }
 
-            double positionX = targetPosition.getX() + referenceObject.getPosition().getX();
             position.moveToPosition(targetPosition, speedInPixel);
         }
     }

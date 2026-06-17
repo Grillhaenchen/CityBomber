@@ -22,7 +22,7 @@ public class UserShot extends CollidingGameObject implements ShiftableGameObject
         width = 20;
         height = 20;
         super.hitBoxOffsets(5, 5, 0, 0);
-        speedInPixel = 4;
+        speedInPixel = 25;
         distanceToBackground = 400;
     }
 

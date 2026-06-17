@@ -48,7 +48,7 @@ class GameObjectManager extends CollisionManager {
         removeFromGameObjects();
         addToGameObjects();
         if (gameObjects.size() > MAXIMUM_NUMBER_OF_GAME_OBJECTS) {
-            throw new TooManyGameObjectsException("Max Amount of GameElements reached (max " + MAXIMUM_NUMBER_OF_GAME_OBJECTS + ")");
+            throw new TooManyGameObjectsException("Max Amount of GameElements reached (max " + MAXIMUM_NUMBER_OF_GAME_OBJECTS + ") current: " + gameObjects.size());
 
         }
     }
