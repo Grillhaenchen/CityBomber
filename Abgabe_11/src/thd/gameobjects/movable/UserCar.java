@@ -51,11 +51,12 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
         size = 1;
         speedInPixel = 10;
         distanceToBackground = 500;
-        shotDurationInMilliseconds = 300;
+        shotDurationInMilliseconds = 200;
         collidingGameObjectsForPathDecision = new LinkedList<CollidingGameObject>();
         roadUsers = new ArrayList<GameObject>();
         currentState = State.Normal;
         finished = false;
+        shoot();
     }
 
     /**
@@ -116,7 +117,8 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
 
         for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
             if (collidesWith(collidingGameObject)) {
-                position.right(speedInPixel);
+                position.right((speedInPixel * 3));
+                System.out.println("Collision with " + collidingGameObject.getClass().getSimpleName());
                 gamePlayManager.lifeLost();
                 break;
             }
@@ -135,7 +137,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
         }
         for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
             if (collidesWith(collidingGameObject)) {
-                this.position.left(speedInPixel);
+                this.position.left((speedInPixel * 3));
                 gamePlayManager.lifeLost();
                 break;
             }

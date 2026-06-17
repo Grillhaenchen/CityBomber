@@ -72,8 +72,9 @@ public class GamePlayManager extends WorldShiftManager {
         if (gameView.timer(1000, 0, this) && currentNumberOfVisibleSquares < 5) {
             currentNumberOfVisibleSquares++;
         }
-        moveWorldDown(10);
+        moveWorldDown(15d);
         userCar.displayNormalState();
+        lives1.setLives(lives);
 
     }
 

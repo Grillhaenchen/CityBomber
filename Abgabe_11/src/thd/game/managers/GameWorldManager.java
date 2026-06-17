@@ -12,6 +12,7 @@ import thd.gameobjects.unmovable.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Random;
 
 class GameWorldManager extends GamePlayManager {
 
@@ -31,16 +32,31 @@ class GameWorldManager extends GamePlayManager {
         gate = new Gate(gameView, this);
         street = new Street(gameView, this);
         helicopter = new Helicopter(gameView, this);
-        policeCar = new PoliceCar(gameView, this);
         randomCar = new RandomCar(gameView, this);
         score = new Score(gameView, this);
         lives1 = new Lives(gameView, this);
         progressBarBlockImages = new ProgressBarBlockImages(gameView, this);
-        houseLeft = new HouseLeft(gameView, this);
-        houseRight = new HouseRight(gameView, this);
         countdown = new Countdown(gameView, this);
         overlay = new Overlay(gameView, this, "droidsansmono.ttf");
         activatableGameObjects = new LinkedList<>();
+        lives1.setLives(lives);
+        referenceObject = null;
+    }
+
+    private void initGame() {
+        userCar = new UserCar(gameView, this);
+        shot = new UserShot(gameView, this);
+        start = new Start(gameView, this);
+        gate = new Gate(gameView, this);
+        street = new Street(gameView, this);
+        helicopter = new Helicopter(gameView, this);
+        randomCar = new RandomCar(gameView, this);
+        score = new Score(gameView, this);
+        lives1 = new Lives(gameView, this);
+        progressBarBlockImages = new ProgressBarBlockImages(gameView, this);
+        countdown = new Countdown(gameView, this);
+        overlay = new Overlay(gameView, this, "droidsansmono.ttf");
+        activatableGameObjects.clear();
         lives1.setLives(lives);
         referenceObject = null;
     }
@@ -62,6 +78,7 @@ class GameWorldManager extends GamePlayManager {
     }
 
     protected void initializeLevel() {
+        initGame();
         userCar.setFinished(false);
         activatableGameObjects.clear();
         destroyAllGameObjects();
@@ -80,32 +97,47 @@ class GameWorldManager extends GamePlayManager {
             for (int column = 0; column < lines.length; column++) {
                 double y = (column - level.worldOffsetColumns) * WORLD_FACTOR;
                 double x = (row - level.worldOffsetLines) * WORLD_FACTOR;
-                GameObject spawnObject = createGameObject(row, lines[column]);
-                if (spawnObject instanceof CollidingGameObject collidingGameObject) {
-                    addGameObjectForCollision(collidingGameObject);
-                }
-                if (spawnObject instanceof RoadUser roadUser) {
-                    userCar.addRoadUsers((GameObject) roadUser);
-                }
+                if (lines[column].charAt(row) == UiElementNames.POLICE_ROADBLOCK.uiType) {
 
-                if (spawnObject != null) {
-                    spawnObject.getPosition().updateCoordinates(x, y);
-                    switch (spawnObject) {
-                        case Helicopter helicopter1 -> addActivatableGameObject(spawnObject);
-                        case Street street1 -> {
-                            spawnObject.getPosition().updateCoordinates(x - 130, y);
-                            spawnGameObject(spawnObject);
-                        }
-                        case HouseRight right -> {
+                    int roadBlockWidth = new Random().nextInt() % 5; // spawn 3-4 cars
+                    final double STREET_WIDTH = 800.0; // width of the street in pixels
 
-                            spawnObject.getPosition().updateCoordinates(x + 68, y);
-                            spawnGameObject(spawnObject);
+                    double spacing = STREET_WIDTH / roadBlockWidth;
+                    double startX = x - (STREET_WIDTH / 2.0) + (spacing / 2.0);
+                    for (int i = 0; i < roadBlockWidth; i++) {
+                        PoliceCar policecar = new PoliceCar(gameView, this);
+                        double carX = startX + (i * spacing);
+                        policecar.getPosition().updateCoordinates(carX, y - 130);
+                        spawnGameObject(policecar);
+                    }
+                } else {
+                    GameObject spawnObject = createGameObject(row, lines[column]);
+                    if (spawnObject instanceof CollidingGameObject collidingGameObject) {
+                        addGameObjectForCollision(collidingGameObject);
+                    }
+                    if (spawnObject instanceof RoadUser roadUser) {
+                        userCar.addRoadUsers((GameObject) roadUser);
+                    }
+
+                    if (spawnObject != null) {
+                        spawnObject.getPosition().updateCoordinates(x, y);
+                        switch (spawnObject) {
+                            case Helicopter helicopter1 -> addActivatableGameObject(spawnObject);
+                            case Street street1 -> {
+                                spawnObject.getPosition().updateCoordinates(x - 130, y);
+                                spawnGameObject(spawnObject);
+                            }
+                            case HouseRight right -> {
+
+                                spawnObject.getPosition().updateCoordinates(x + 68, y);
+                                spawnGameObject(spawnObject);
+                            }
+                            case UserCar car -> {
+                                userCar.getPosition().up(50);
+                                spawnGameObject(spawnObject);
+                            }
+                            default -> spawnGameObject(spawnObject);
                         }
-                        case UserCar car -> {
-                            userCar.getPosition().up(50);
-                            spawnGameObject(spawnObject);
-                        }
-                        default -> spawnGameObject(spawnObject);
                     }
                 }
             }
@@ -115,6 +147,7 @@ class GameWorldManager extends GamePlayManager {
 
     private void writeReferenceObject() {
         RandomCar.referenceObject = this.referenceObject;
+        RandomCar.referenceUserCar = this.userCar;
     }
 
     private void addGameObjectForCollision(CollidingGameObject collidingGameObject) {

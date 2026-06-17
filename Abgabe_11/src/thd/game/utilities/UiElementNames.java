@@ -17,6 +17,8 @@ public enum UiElementNames {
     GREEN_RIGHT('g'),
     GREEN_WITH_STREET('Q'),
 
+    POLICE_ROADBLOCK('p'),
+
     POLICE_CAR('P'),
     RANDOM_CAR('C'),
     USER_CAR('U'),
@@ -45,7 +47,7 @@ public enum UiElementNames {
         throw new IndexOutOfBoundsException("Map char not found: " + character);
     }
 
-    private char uiType;
+    public char uiType;
 
     private UiElementNames(char uiType) {
         this.uiType = uiType;

@@ -54,7 +54,6 @@ public class PoliceCar extends CollidingGameObject implements ShiftableGameObjec
     @Override
     public void addToCanvas() {
         gameView.addImageToCanvas("police_car.png", position.getX(), position.getY(), size, 0);
-
     }
 
     @Override

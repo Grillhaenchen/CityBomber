@@ -16,6 +16,7 @@ public class Level1 extends Level {
                 L S  Rg\s
                 L S  Rg\s
                 L S  Rg\s
+                L Sp Rg\s
                 L S  Rg\s
                 L S  Rg\s
                 L S  Rg\s
@@ -24,66 +25,65 @@ public class Level1 extends Level {
                 L S  Rg\s
                 L S  Rg\s
                 L S  Rg\s
+                L Sp Rg\s
                 L S  Rg\s
                 L S  Rg\s
                 L S  Rg\s
+                L Sp Rg\s
                 L S  Rg\s
                 L S  Rg\s
                 L S  Rg\s
                 L S  Rg\s
+                L Sp Rg\s
                 L S  Rg\s
                 L S  Rg\s
+                L Sp Rg\s
                 L S  Rg\s
                 L S  Rg\s
                 L S  Rg\s
+                L Sp Rg\s
                 L S  Rg\s
                 L S  Rg\s
+                L Sp Rg\s
                 L S  Rg\s
                 L S  Rg\s
                 L S  Rg\s
                 L S  Rg\s
+                L Sp Rg\s
                 L S  Rg\s
                 L S  Rg\s
+                L Sp Rg\s
                 L S  Rg\s
                 L S  Rg\s
+                L Sp Rg\s
                 L S  Rg\s
                 L S  Rg\s
+                L Sp Rg\s
                 L S  Rg\s
                 L S  Rg\s
+                L Sp Rg\s
                 L S  Rg\s
                 L S  Rg\s
+                L Sp Rg\s
                 L S  Rg\s
                 L S  Rg\s
                 L S  Rg\s
                 L S  Rg\s
+                L Sp Rg\s
                 L S  Rg\s
+                L SC Rg\s
                 L S  Rg\s
+                L SC Rg\s
+                L Sp Rg\s
+                L Sp Rg\s
+                L Sp Rg\s
                 L S  Rg\s
+                L Sp Rg\s
+                L Sp Rg\s
                 L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
-                L S  Rg\s
+                L Sp Rg\s
+                L Sp Rg\s
+                L S CRg\s
                 L S  Rg\s
                 L SU Rg\s
                 L S  Rg\s

@@ -20,12 +20,9 @@ class UserControlledGameObjectPool {
     protected Gate gate;
     protected Street street;
     protected Helicopter helicopter;
-    protected PoliceCar policeCar;
     protected RandomCar randomCar;
     protected Score score;
     protected Lives lives1;
-    protected HouseLeft houseLeft;
-    protected HouseRight houseRight;
     protected ProgressBarBlockImages progressBarBlockImages;
     protected Countdown countdown;
     protected Level level;
