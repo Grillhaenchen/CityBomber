@@ -32,7 +32,6 @@ class GameWorldManager extends GamePlayManager {
         gate = new Gate(gameView, this);
         street = new Street(gameView, this);
         helicopter = new Helicopter(gameView, this);
-        randomCar = new RandomCar(gameView, this);
         score = new Score(gameView, this);
         lives1 = new Lives(gameView, this);
         progressBarBlockImages = new ProgressBarBlockImages(gameView, this);
@@ -50,7 +49,6 @@ class GameWorldManager extends GamePlayManager {
         gate = new Gate(gameView, this);
         street = new Street(gameView, this);
         helicopter = new Helicopter(gameView, this);
-        randomCar = new RandomCar(gameView, this);
         score = new Score(gameView, this);
         lives1 = new Lives(gameView, this);
         progressBarBlockImages = new ProgressBarBlockImages(gameView, this);

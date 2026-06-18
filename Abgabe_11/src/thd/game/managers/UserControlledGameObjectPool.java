@@ -20,7 +20,6 @@ class UserControlledGameObjectPool {
     protected Gate gate;
     protected Street street;
     protected Helicopter helicopter;
-    protected RandomCar randomCar;
     protected Score score;
     protected Lives lives1;
     protected ProgressBarBlockImages progressBarBlockImages;
