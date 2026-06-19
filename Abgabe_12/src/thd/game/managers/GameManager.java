@@ -4,14 +4,8 @@ import thd.game.level.Difficulty;
 import thd.game.level.Level;
 import thd.game.utilities.FileAccess;
 import thd.game.utilities.GameView;
-import thd.gameobjects.movable.*;
-import thd.gameobjects.unmovable.Gate;
-import thd.gameobjects.unmovable.Score;
-import thd.gameobjects.unmovable.Start;
-import thd.gameobjects.unmovable.Street;
-
-import java.io.File;
-import java.util.Timer;
+import thd.screens.GameInfo;
+import thd.screens.Screens;
 
 /**
  * The GameManager handles all the Game Items and processes the Frame.
@@ -41,6 +35,7 @@ class GameManager extends LevelManager {
                 overlay.showMessage("Game Over", 2);
             } else {
                 overlay.stopShowing();
+                Screens.showEndScreen(gameView, "Du hast das Spiel durchgespielt. Wähle ob du nochmal starten willst.", "droidsansmono.ttf");
                 startNewGame();
             }
         } else if (endOfLevel()) {
@@ -77,11 +72,10 @@ class GameManager extends LevelManager {
     private void startNewGame() {
         FileAccess.readSaveGameFromDisc();
         FileAccess.readDifficultyFromDisc();
-        Level.difficulty = Difficulty.EASY;
+        String diff = Screens.showStartScreen(gameView, GameInfo.TITLE, GameInfo.DESCRIPTION, Level.difficulty.name, "droidsansmono.ttf");
+        Level.difficulty = Difficulty.fromName(diff);
         FileAccess.writeDifficultyToDisc();
         FileAccess.writeSaveGameToDisc();
         initializeGame();
-
-
     }
 }
