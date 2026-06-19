@@ -66,7 +66,7 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
         targetPosSet = false;
     }
 
-    int ctr;
+    private int ctr;
 
     @Override
     public void reactToCollisionWith(CollidingGameObject other) {
@@ -74,6 +74,7 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
             gamePlayManager.destroyGameObject(this);
             gamePlayManager.addPoints(30);
             gamePlayManager.destroyGameObject(shot);
+            gameView.playSound("car_explosion.wav", false, 100);
         } else if (other instanceof MoveLeftTrigger) {
             pattern = new MoveLeftMovementPattern();
             pattern.startPosition().ifPresent(targetPosition::updateCoordinates);
@@ -102,8 +103,8 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
             position.moveToPosition(targetPosition, speedInPixel);
         }
         if (isDistanceLow(distanceToUserCar)) {
-            position.updateCoordinates(CalcOffset(distanceToUserCar));
-            WriteTargetPos();
+            position.updateCoordinates(calcOffset(distanceToUserCar));
+            writeTargetPos();
             randomMovement();
         }
     }
@@ -112,13 +113,13 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
         return Math.abs(referenceUserCar.getPosition().getY() - position.getY()) <= distanceToUserCar;
     }
 
-    private Position CalcOffset(double distanceToUserCar) {
+    private Position calcOffset(double distanceToUserCar) {
         double x = position.getX();
         double y = referenceUserCar.getPosition().getY() - distanceToUserCar;
         return new Position(x, y);
     }
 
-    private void WriteTargetPos() {
+    private void writeTargetPos() {
         if (!targetPosSet) {
             targetPosition.updateCoordinates(position);
             targetPosSet = true;
@@ -127,12 +128,12 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
 
     private void randomMovement() {
         if (Math.abs(position.getX() - targetPosition.getX()) <= 1) {
-            targetPosition.updateCoordinates(CalcNewRandXPos());
+            targetPosition.updateCoordinates(calcNewRandXPos());
         }
         position.moveToPosition(targetPosition, speedInPixel);
     }
 
-    private Position CalcNewRandXPos() {
+    private Position calcNewRandXPos() {
         final int streetWidth = 800;
         double zeroPos = referenceObject.getPosition().getX() + referenceObject.getWidth();
         final double upperBound = zeroPos + streetWidth;
@@ -140,7 +141,6 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
         while (Math.abs(xPos - position.getX()) < 100) {
             xPos = RANDOM.nextDouble(upperBound - zeroPos) + zeroPos;
         }
-        System.out.println("RandPos " + xPos);
         return new Position(xPos, referenceUserCar.getPosition().getY() - 200);
     }
 
@@ -151,7 +151,7 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
      */
     @Override
     public void addToCanvas() {
-        //super.hitBoxOffsets(8 + referenceObject.getPosition().getX(), 0, 0, 0);
+        // super.hitBoxOffsets(8 + referenceObject.getPosition().getX(), 0, 0, 0);
         gameView.addImageToCanvas("car_blue.png", position.getX(), position.getY(), size, 0);
     }
 

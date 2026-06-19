@@ -2,6 +2,7 @@ package thd.game.managers;
 
 import thd.game.level.Difficulty;
 import thd.game.level.Level;
+import thd.game.utilities.FileAccess;
 import thd.game.utilities.GameView;
 import thd.gameobjects.movable.*;
 import thd.gameobjects.unmovable.Gate;
@@ -9,6 +10,7 @@ import thd.gameobjects.unmovable.Score;
 import thd.gameobjects.unmovable.Start;
 import thd.gameobjects.unmovable.Street;
 
+import java.io.File;
 import java.util.Timer;
 
 /**
@@ -73,7 +75,13 @@ class GameManager extends LevelManager {
     }
 
     private void startNewGame() {
+        FileAccess.readSaveGameFromDisc();
+        FileAccess.readDifficultyFromDisc();
         Level.difficulty = Difficulty.EASY;
+        FileAccess.writeDifficultyToDisc();
+        FileAccess.writeSaveGameToDisc();
         initializeGame();
+
+
     }
 }

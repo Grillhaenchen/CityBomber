@@ -26,7 +26,7 @@ public class GameViewManager {
         gameView.updateWindowIcon("car_red_flying.png");
         gameView.updateBackgroundColor(Color.GRAY);
         gameManager = new GameManager(gameView);
-
+        gameView.showStatistic(true);
         startGameLoop();
     }
 
