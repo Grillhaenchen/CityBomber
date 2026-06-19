@@ -45,12 +45,14 @@ class LevelManager extends GameWorldManager {
     }
 
     private void initializeGameObjects() {
+        gameView.stopAllSounds();
 //        Die Methode initializeGameObjects() soll in Zukunft dazu genutzt werden, um Spielelemente an ein neues Level anzupassen, z.B.
 //        Anpassungen für das Level am Hintergrund machen.
 //        Die Lebensanzeige aktualisieren.
 //        Den Punktestand aus dem vorherigen Level übernehmen.
 //        Einen Countdown neu starten.
 //        Kopieren Sie diesen Text als Kommentar zur Erinnerung für später in diese Methode.
+        gameView.playSound("music.wav", true, 0.5f);
     }
 
     protected void initializeGame() {

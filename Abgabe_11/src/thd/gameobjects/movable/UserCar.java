@@ -56,6 +56,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
         roadUsers = new ArrayList<GameObject>();
         currentState = State.Normal;
         finished = false;
+        gameView.playSound("motor.wav", true, 0.2f);
         shoot();
     }
 
@@ -119,7 +120,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
             if (collidesWith(collidingGameObject)) {
                 position.right((speedInPixel * 3));
                 gamePlayManager.lifeLost();
-                gameView.playSound("crash.wav", false, 100);
+                gameView.playSound("collison.wav", false, 1.0f);
                 break;
             }
         }
@@ -139,7 +140,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
             if (collidesWith(collidingGameObject)) {
                 this.position.left((speedInPixel * 3));
                 gamePlayManager.lifeLost();
-                gameView.playSound("crash.wav", false, 100);
+                gameView.playSound("collison.wav", false, 1.0f);
                 break;
             }
         }
@@ -160,7 +161,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
         if (gameView.timer(shotDurationInMilliseconds, 0, this)) {
             UserShot shot = new UserShot(gameView, gamePlayManager);
             shot.getPosition().updateCoordinates(new Position(position.getX() + 25, position.getY()));
-            gameView.playSound("shot.wav", false, 100);
+            gameView.playSound("shot.wav", false, 1.0f);
             gamePlayManager.spawnGameObject(shot);
         }
     }
