@@ -14,7 +14,7 @@ import java.util.EnumSet;
  * Handles the file access for the savegame. It can read and write the savegame to the disc. The savegame contains the difficulty of the game.
  */
 public class FileAccess {
-    private static final Path SAVEGAME_DIRECTORY = Path.of("C:\\Users\\Kilian\\savegame");
+    private static final Path SAVEGAME_DIRECTORY = Path.of(System.getProperty("user.home") + "/savegame");
     private static final String SAVEGAME_FILENAME = String.valueOf(Path.of("kilian_mayerhofer_savegame.txt"));
     private static final Path SAVEGAME_FILE = SAVEGAME_DIRECTORY.resolve(Path.of(SAVEGAME_FILENAME));
 
