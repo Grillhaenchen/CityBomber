@@ -3,18 +3,16 @@ package thd.game.utilities;
 import thd.game.level.Difficulty;
 import thd.game.level.Level;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.EnumSet;
 
 /**
  * Handles the file access for the savegame. It can read and write the savegame to the disc. The savegame contains the difficulty of the game.
  */
 public class FileAccess {
-    private static final Path SAVEGAME_DIRECTORY = Path.of("C:\\Users\\Kilian\\savegame");
+    private static final Path SAVEGAME_DIRECTORY = Path.of(System.getProperty("user.home") + "/savegame");
     private static final String SAVEGAME_FILENAME = String.valueOf(Path.of("kilian_mayerhofer_savegame.txt"));
     private static final Path SAVEGAME_FILE = SAVEGAME_DIRECTORY.resolve(Path.of(SAVEGAME_FILENAME));
 
