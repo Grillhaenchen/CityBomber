@@ -2,15 +2,12 @@ package thd.gameobjects.unmovable;
 
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
-import thd.gameobjects.base.CollidingGameObject;
-import thd.gameobjects.base.CollidingWithUserCar;
-import thd.gameobjects.base.GameObject;
-import thd.gameobjects.base.ShiftableGameObject;
+import thd.gameobjects.base.*;
 
 /**
  * This is the UI element for the border on the left side.
  */
-public class StreetBorderLeftMirror extends CollidingGameObject implements ShiftableGameObject, CollidingWithUserCar {
+public class StreetBorderLeftMirror extends CollidingGameObject implements ShiftableGameObject, CollidingWithUserCar, LeftObstacle {
 
     /**
      * This is the UI element for the border on the left side.

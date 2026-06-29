@@ -13,35 +13,35 @@ public class Level2 extends Level {
                 f       f     \s
                 L S  gggg S  R\s
                 L S  gggg S  R\s
+                L Sp gggg S  R\s
                 L S  gggg S  R\s
-                L S  gggg S  R\s
-                L D  gggg S  R\s
-                L D  gggg S  R\s
+                L Dp gggg S  R\s
+                L D Cgggg S  R\s
                 L D  gggg S  R\s
                 L bS  gg S   R\s
-                L GbS   S    R\s
+                L GbSp  S    R\s
                 L GGbS S     R\s
                 L GGGbS      R\s
-                L GGGBS      R\s
+                L GGGBSp     R\s
                 L GGBS       R\s
                 L GBS        R\s
                 L BS         R\s
                 L S  R   f   R\s
                 L S  R    S  R\s
-                L S  R C  S  R\s
-                L S  Rggg S  R\s
+                L Sp R    S  R\s
+                L S CRggg S  R\s
                 L D  Rggg S  R\s
-                L D  Rggg S PR\s
-                L bS  gggS  Rg\s
+                LVD  Rggg S PR\s
+                L bSp gggS  Rg\s
                 L GbS  gS  Rgg\s
                 L GGbS S  Rggg\s
-                L GGGbS  Rgggg\s
-                L GGGBS  Rgggg\s
+                LXGGGbSp Rgggg\s
+                LVGGGBS  Rgggg\s
                 L GGBS  Rggggg\s
-                L GBS  Rgggggg\s
-                L BS  Rggggggg\s
-                L S  Rgggggggg\s
-                L S  Rgggggggg\s
+                L GBSp Rgggggg\s
+                L BSp Rggggggg\s
+                LYS  Rgggggggg\s
+                L Sp Rgggggggg\s
                 L S  Rgggggggg\s
                 L SU Rgggggggg\s
                 L S  Rgggggggg\s

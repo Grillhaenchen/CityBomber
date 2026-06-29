@@ -17,7 +17,7 @@ class MoveRightMovementPattern extends MovementPattern {
      */
     MoveRightMovementPattern() {
         pattern = new Position[]{
-                new Position(900, 100),
+                new Position(700, 100),
                 new Position(1280, 100)};
     }
 

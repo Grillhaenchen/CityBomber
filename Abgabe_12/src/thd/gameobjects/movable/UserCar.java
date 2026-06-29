@@ -7,6 +7,8 @@ import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.MainCharacter;
 import thd.gameobjects.base.Position;
 import thd.gameobjects.unmovable.Finish;
+import thd.gameobjects.unmovable.StreetBorderLeft;
+import thd.gameobjects.unmovable.StreetBorderLeftMirror;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -82,8 +84,17 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
     public void reactToCollisionWith(CollidingGameObject other) {
         if (other instanceof Finish) {
             finished = true;
+        } else if (other instanceof StreetBorderLeft) {
+            gamePlayManager.lifeLost();
+            gameView.playSound("collison.wav", false, 1.0f);
+            position.right((speedInPixel * 50));
+        } else if (other instanceof StreetBorderLeftMirror) {
+            gamePlayManager.lifeLost();
+            gameView.playSound("collison.wav", false, 1.0f);
+            position.right((speedInPixel * 50));
         }
     }
+
 
     /**
      * Update the Position of the Game Piece on the GameView.

@@ -28,13 +28,11 @@ class GameWorldManager extends GamePlayManager {
         super(gameView);
         userCar = new UserCar(gameView, this);
         shot = new UserShot(gameView, this);
-        start = new Start(gameView, this);
-        gate = new Gate(gameView, this);
+
         street = new Street(gameView, this);
         helicopter = new Helicopter(gameView, this);
         score = new Score(gameView, this);
         lives1 = new Lives(gameView, this);
-        progressBarBlockImages = new ProgressBarBlockImages(gameView, this);
         countdown = new Countdown(gameView, this);
         overlay = new Overlay(gameView, this, "droidsansmono.ttf");
         activatableGameObjects = new LinkedList<>();
@@ -45,13 +43,11 @@ class GameWorldManager extends GamePlayManager {
     private void initGame() {
         userCar = new UserCar(gameView, this);
         shot = new UserShot(gameView, this);
-        start = new Start(gameView, this);
-        gate = new Gate(gameView, this);
+
         street = new Street(gameView, this);
         helicopter = new Helicopter(gameView, this);
         score = new Score(gameView, this);
         lives1 = new Lives(gameView, this);
-        progressBarBlockImages = new ProgressBarBlockImages(gameView, this);
         countdown = new Countdown(gameView, this);
         overlay = new Overlay(gameView, this, "droidsansmono.ttf");
         activatableGameObjects.clear();
@@ -66,9 +62,6 @@ class GameWorldManager extends GamePlayManager {
     }
 
     private void spawnGameObjects() {
-        spawnGameObject(gate);
-        spawnGameObject(start);
-        spawnGameObject(progressBarBlockImages);
         spawnGameObject(score);
         spawnGameObject(lives1);
         addActivatableGameObject(helicopter);

@@ -15,12 +15,12 @@ import java.util.Random;
  */
 public class RandomCar extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject<UserCar>, RoadUser {
 
-    static int carCounter = 1;
+    public static int carCounter = 1;
 
     private static final Random RANDOM = new Random();
 
     public static GameObject referenceObject = new GameObject(null, null) {
-        // Only for bypass the Wichtl.
+        // Only for bypass the Wichtl. the first house on the left side is the worldanker.
 
         @Override
         public void addToCanvas() {
@@ -71,8 +71,8 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
     @Override
     public void reactToCollisionWith(CollidingGameObject other) {
         if (other instanceof UserShot shot) {
-            gamePlayManager.destroyGameObject(this);
             gamePlayManager.addPoints(30);
+            currentState = State.Explode;
             gamePlayManager.destroyGameObject(shot);
             gameView.playSound("car_explosion.wav", false, 100);
         } else if (other instanceof MoveLeftTrigger) {
@@ -87,7 +87,13 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
         } else if (other instanceof HouseLeftReference) {
             position.right(2);
             targetPosSet = false;
-        } else if (other instanceof Finish) {
+        } else if (other instanceof HouseRightReference) {
+            position.left(2);
+            targetPosSet = false;
+        } else if (other instanceof LeftObstacle) {
+            position.right(100);
+        }
+        if (other instanceof Finish) {
             gamePlayManager.destroyGameObject(this);
         }
     }
@@ -152,7 +158,14 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
     @Override
     public void addToCanvas() {
         // super.hitBoxOffsets(8 + referenceObject.getPosition().getX(), 0, 0, 0);
-        gameView.addImageToCanvas("car_blue.png", position.getX(), position.getY(), size, 0);
+        if (currentState == State.Normal) {
+            gameView.addImageToCanvas("car_blue.png", position.getX(), position.getY(), size, 0);
+        } else if (currentState == State.Explode) {
+            gameView.addImageToCanvas("car_explosion.png", position.getX(), position.getY(), size, 0);
+            if (gameView.timer(250, 0, this)) {
+                gamePlayManager.destroyGameObject(this);
+            }
+        }
     }
 
     @Override

@@ -2,6 +2,7 @@ package thd.game.managers;
 
 import thd.game.level.*;
 import thd.game.utilities.GameView;
+import thd.gameobjects.movable.RandomCar;
 
 import java.util.List;
 
@@ -35,13 +36,13 @@ class LevelManager extends GameWorldManager {
         } else {
             throw new NoMoreLevelsAvailableException("No more levels available");
         }
-
     }
 
     @Override
     protected void initializeLevel() {
         super.initializeLevel();
         initializeGameObjects();
+        RandomCar.carCounter = 1;
     }
 
     private void initializeGameObjects() {
@@ -56,6 +57,7 @@ class LevelManager extends GameWorldManager {
     }
 
     protected void initializeGame() {
+        RandomCar.carCounter = 1;
         levels = List.of(new Level1(), new Level2(), new Level3());
         level = levels.get(0);
         lives = LIVES;

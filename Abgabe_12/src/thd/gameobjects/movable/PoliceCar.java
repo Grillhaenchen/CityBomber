@@ -2,7 +2,9 @@ package thd.gameobjects.movable;
 
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
-import thd.gameobjects.base.*;
+import thd.gameobjects.base.ActivatableGameObject;
+import thd.gameobjects.base.CollidingGameObject;
+import thd.gameobjects.base.ShiftableGameObject;
 
 /**
  * PoliceCar can spawn more than one follows the UserCar.
@@ -35,9 +37,12 @@ public class PoliceCar extends CollidingGameObject implements ShiftableGameObjec
     @Override
     public void reactToCollisionWith(CollidingGameObject other) {
         if (other instanceof UserShot shot) {
-            gamePlayManager.destroyGameObject(this);
+            currentState = State.Explode;
             gamePlayManager.addPoints(30);
-            gamePlayManager.destroyGameObject(shot);
+            gamePlayManager.destroyGameObject(other);
+        } else if (other instanceof UserCar) {
+            currentState = State.Explode;
+            gamePlayManager.addPoints(10);
         }
     }
 
@@ -53,7 +58,14 @@ public class PoliceCar extends CollidingGameObject implements ShiftableGameObjec
      */
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("police_car.png", position.getX(), position.getY(), size, 0);
+        if (currentState == State.Normal) {
+            gameView.addImageToCanvas("police_car.png", position.getX(), position.getY(), size, 0);
+        } else if (currentState == State.Explode) {
+            gameView.addImageToCanvas("car_explosion.png", position.getX(), position.getY(), size, 0);
+            if (gameView.timer(250, 0, this)) {
+                gamePlayManager.destroyGameObject(this);
+            }
+        }
     }
 
     @Override

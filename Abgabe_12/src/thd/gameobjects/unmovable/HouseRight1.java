@@ -4,12 +4,13 @@ import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.CollidingGameObject;
 import thd.gameobjects.base.CollidingWithUserCar;
+import thd.gameobjects.base.HouseRightReference;
 import thd.gameobjects.base.ShiftableGameObject;
 
 /**
  * This is the UI element for House on the right side.
  */
-public class HouseRight1 extends CollidingGameObject implements ShiftableGameObject, CollidingWithUserCar {
+public class HouseRight1 extends CollidingGameObject implements ShiftableGameObject, CollidingWithUserCar, HouseRightReference {
 
     /**
      * This is the UI element for House on the right side.

@@ -16,13 +16,10 @@ class UserControlledGameObjectPool {
     protected final GameView gameView;
     protected UserCar userCar;
     protected UserShot shot;
-    protected Start start;
-    protected Gate gate;
     protected Street street;
     protected Helicopter helicopter;
     protected Score score;
     protected Lives lives1;
-    protected ProgressBarBlockImages progressBarBlockImages;
     protected Countdown countdown;
     protected Level level;
     protected Overlay overlay;

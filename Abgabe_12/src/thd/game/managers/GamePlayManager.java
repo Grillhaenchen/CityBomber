@@ -1,5 +1,7 @@
 package thd.game.managers;
 
+import thd.game.level.Difficulty;
+import thd.game.level.Level;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.GameObject;
 
@@ -72,10 +74,14 @@ public class GamePlayManager extends WorldShiftManager {
         if (gameView.timer(1000, 0, this) && currentNumberOfVisibleSquares < 5) {
             currentNumberOfVisibleSquares++;
         }
-        moveWorldDown(15d);
+        if (Level.difficulty == Difficulty.EASY) {
+            moveWorldDown(7d);
+        } else {
+            moveWorldDown(15d);
+        }
+
         userCar.displayNormalState();
         lives1.setLives(lives);
-
     }
 
     /**

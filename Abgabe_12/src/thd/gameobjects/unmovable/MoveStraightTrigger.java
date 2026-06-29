@@ -36,7 +36,7 @@ public class MoveStraightTrigger extends BaseTrigger {
      */
     @Override
     public void addToCanvas() {
-        gameView.addRectangleToCanvas(0, position.getY(), width, height, 0, true, Color.ORANGE);
+        gameView.addRectangleToCanvas(0, position.getY(), width, height, 0, false, Color.ORANGE);
         super.hitBoxOffsets(-position.getX(), 0, 0, 0);
     }
 }
