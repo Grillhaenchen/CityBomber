@@ -7,7 +7,7 @@ import thd.gameobjects.base.*;
 /**
  * Class for the Helicopter who follow the UserCar and shot on it.
  */
-public class Helicopter extends GameObject implements ShiftableGameObject, ActivatableGameObject<UserCar>, RoadUser {
+public class Helicopter extends GameObject implements ActivatableGameObject<UserCar> {
     /**
      * Creates a Object of Helicopter.
      *
@@ -16,7 +16,8 @@ public class Helicopter extends GameObject implements ShiftableGameObject, Activ
      */
     public Helicopter(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
-        position.updateCoordinates(new Position(((double) GameView.WIDTH / 2), ((double) GameView.HEIGHT / 2) + 190));
+        distanceToBackground = 400;
+        position.updateCoordinates(new Position(((double) GameView.WIDTH / 2), ((double) GameView.HEIGHT / 2)));
     }
 
     @Override
@@ -32,7 +33,6 @@ public class Helicopter extends GameObject implements ShiftableGameObject, Activ
     @Override
     public void addToCanvas() {
         gameView.addImageToCanvas("helicopter.png", position.getX(), position.getY(), 1, 0);
-
     }
 
     @Override

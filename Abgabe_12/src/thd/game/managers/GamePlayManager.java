@@ -71,14 +71,14 @@ public class GamePlayManager extends WorldShiftManager {
     }
 
     private void gamePlayManagement() {
-        if (gameView.timer(1000, 0, this) && currentNumberOfVisibleSquares < 5) {
-            currentNumberOfVisibleSquares++;
-        }
-        if (Level.difficulty == Difficulty.EASY) {
-            moveWorldDown(7d);
-        } else {
-            moveWorldDown(15d);
-        }
+//        if (gameView.timer(1000, 0, this) && currentNumberOfVisibleSquares < 5) {
+//            currentNumberOfVisibleSquares++;
+//        }
+//        if (Level.difficulty == Difficulty.EASY) {
+//            moveWorldDown(7d);
+//        } else {
+//            moveWorldDown(15d);
+//        }
 
         userCar.displayNormalState();
         lives1.setLives(lives);

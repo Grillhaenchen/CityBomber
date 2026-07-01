@@ -28,7 +28,6 @@ class GameWorldManager extends GamePlayManager {
         super(gameView);
         userCar = new UserCar(gameView, this);
         shot = new UserShot(gameView, this);
-
         street = new Street(gameView, this);
         helicopter = new Helicopter(gameView, this);
         score = new Score(gameView, this);
@@ -64,7 +63,7 @@ class GameWorldManager extends GamePlayManager {
     private void spawnGameObjects() {
         spawnGameObject(score);
         spawnGameObject(lives1);
-        addActivatableGameObject(helicopter);
+        spawnGameObject(helicopter);
         spawnGameObject(overlay);
     }
 
