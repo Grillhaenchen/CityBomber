@@ -20,7 +20,7 @@ class GameWorldManager extends GamePlayManager {
     private GameObject referenceObject;
 
     /**
-     * Create a instance of GamePlayManager.
+     * Create an instance of GamePlayManager.
      *
      * @param gameView Instance of GameView.
      */
@@ -112,17 +112,17 @@ class GameWorldManager extends GamePlayManager {
                     if (spawnObject != null) {
                         spawnObject.getPosition().updateCoordinates(x, y);
                         switch (spawnObject) {
-                            case Helicopter helicopter1 -> addActivatableGameObject(spawnObject);
-                            case Street street1 -> {
+                            case Helicopter ignored -> addActivatableGameObject(spawnObject);
+                            case Street ignored -> {
                                 spawnObject.getPosition().updateCoordinates(x - 130, y);
                                 spawnGameObject(spawnObject);
                             }
-                            case HouseRight right -> {
+                            case HouseRight ignored -> {
 
                                 spawnObject.getPosition().updateCoordinates(x + 68, y);
                                 spawnGameObject(spawnObject);
                             }
-                            case UserCar car -> {
+                            case UserCar ignored -> {
                                 userCar.getPosition().up(50);
                                 spawnGameObject(spawnObject);
                             }

@@ -24,7 +24,7 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
         Right(+45),
         Normal(0);
 
-        private int angle;
+        private final int angle;
 
         State(int angle) {
             this.angle = angle;
@@ -54,8 +54,8 @@ public class UserCar extends CollidingGameObject implements MainCharacter {
         speedInPixel = 10;
         distanceToBackground = 500;
         shotDurationInMilliseconds = 200;
-        collidingGameObjectsForPathDecision = new LinkedList<CollidingGameObject>();
-        roadUsers = new ArrayList<GameObject>();
+        collidingGameObjectsForPathDecision = new LinkedList<>();
+        roadUsers = new ArrayList<>();
         currentState = State.Normal;
         finished = false;
         gameView.playSound("motor.wav", true, 0.2f);

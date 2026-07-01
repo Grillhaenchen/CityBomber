@@ -1,7 +1,5 @@
 package thd.game.utilities;
 
-import java.util.Optional;
-
 /**
  * Enum for UI Elements.
  */
@@ -47,9 +45,9 @@ public enum UiElementNames {
         throw new IndexOutOfBoundsException("Map char not found: " + character);
     }
 
-    public char uiType;
+    public final char uiType;
 
-    private UiElementNames(char uiType) {
+    UiElementNames(char uiType) {
         this.uiType = uiType;
     }
 }

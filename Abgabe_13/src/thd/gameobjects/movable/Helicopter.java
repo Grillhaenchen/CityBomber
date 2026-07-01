@@ -9,7 +9,10 @@ import thd.gameobjects.base.*;
  */
 public class Helicopter extends GameObject implements ActivatableGameObject<UserCar> {
 
-    public enum FlyAnimation {
+    /**
+     * This is the animation for the Helicopter.
+     */
+    private enum FlyAnimation {
         FIRST("helicopter_1.png"),
         SECOND("helicopter_2.png"),
         THIRD("helicopter_3.png"),
@@ -46,7 +49,7 @@ public class Helicopter extends GameObject implements ActivatableGameObject<User
             currentFlyAnimation = FlyAnimation.values()[(currentFlyAnimation.ordinal() + 1) % FlyAnimation.values().length];
         }
         if (position.similarTo(targetPosition)) {
-            pattern.nextPosition().ifPresent(p -> targetPosition.updateCoordinates((Position) p));
+            pattern.nextPosition().ifPresent(targetPosition::updateCoordinates);
         }
         position.moveToPosition(targetPosition, speedInPixel);
     }
@@ -63,9 +66,6 @@ public class Helicopter extends GameObject implements ActivatableGameObject<User
 
     @Override
     public boolean tryToActivate(UserCar info) {
-        if (info.getPosition().getY() != 5) {
-            return false;
-        }
-        return true;
+        return info.getPosition().getY() == 5;
     }
 }

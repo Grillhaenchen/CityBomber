@@ -2,7 +2,6 @@ package thd.gameobjects.base;
 
 import thd.game.utilities.GameView;
 
-import java.util.Comparator;
 import java.util.Objects;
 
 /**
@@ -186,9 +185,6 @@ public class Position implements Comparable<Position> {
      */
     public boolean similarTo(Position other, int accuacy) {
         return Math.abs(x - other.x) <= accuacy && Math.abs(y - other.y) <= accuacy;
-
-//        return ((int) (Math.pow(10, -1 * accuacy) * Math.round(x))) == ((int) (Math.pow(10, -1 * accuacy) * Math.round(other.x)))
-//                && ((int) (Math.pow(10, -1 * accuacy) * Math.round(y))) == ((int) (Math.pow(10, -1 * accuacy) * Math.round(other.y)));
     }
 
     /**

@@ -18,7 +18,7 @@ public class GamePlayManager extends WorldShiftManager {
     protected int points;
 
     /**
-     * Create a instance of GamePlayManager.
+     * Create an instance of GamePlayManager.
      *
      * @param gameView Instance of GameView.
      */
@@ -29,7 +29,7 @@ public class GamePlayManager extends WorldShiftManager {
     }
 
     /**
-     * spawn a object on the GameView.
+     * spawn an object on the GameView.
      *
      * @param gameObject Instance of some GameObject.
      */
@@ -71,14 +71,14 @@ public class GamePlayManager extends WorldShiftManager {
     }
 
     private void gamePlayManagement() {
-//        if (gameView.timer(1000, 0, this) && currentNumberOfVisibleSquares < 5) {
-//            currentNumberOfVisibleSquares++;
-//        }
-//        if (Level.difficulty == Difficulty.EASY) {
-//            moveWorldDown(7d);
-//        } else {
-//            moveWorldDown(15d);
-//        }
+        if (gameView.timer(1000, 0, this) && currentNumberOfVisibleSquares < 5) {
+            currentNumberOfVisibleSquares++;
+        }
+        if (Level.difficulty == Difficulty.EASY) {
+            moveWorldDown(7d);
+        } else {
+            moveWorldDown(15d);
+        }
 
         userCar.displayNormalState();
         lives1.setLives(lives);

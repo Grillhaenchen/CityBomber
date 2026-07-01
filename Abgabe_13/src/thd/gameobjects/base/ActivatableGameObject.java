@@ -10,7 +10,7 @@ public interface ActivatableGameObject<T> {
      * Checks if the GameObject can be activated.
      *
      * @param info Can be "null". But checks if the GameObject can be activated
-     * @return true if can Activated
+     * @return true if can Activate
      */
     boolean tryToActivate(T info);
 }

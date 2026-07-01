@@ -66,7 +66,7 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
         targetPosSet = false;
     }
 
-    private int ctr;
+    private final int ctr;
 
     @Override
     public void reactToCollisionWith(CollidingGameObject other) {
@@ -82,7 +82,7 @@ public class RandomCar extends CollidingGameObject implements ShiftableGameObjec
             pattern = new MoveRightMovementPattern();
             pattern.startPosition().ifPresent(targetPosition::updateCoordinates);
         } else if (other instanceof MoveStraightTrigger) {
-            pattern = new StraightMoveMovmentPattern(position);
+            pattern = new StraightMoveMovementPattern(position);
             pattern.startPosition().ifPresent(targetPosition::updateCoordinates);
         } else if (other instanceof HouseLeftReference) {
             position.right(2);

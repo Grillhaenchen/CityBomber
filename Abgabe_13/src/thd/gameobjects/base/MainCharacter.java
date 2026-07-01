@@ -7,5 +7,5 @@ public interface MainCharacter {
     /**
      * Displays shoot.
      */
-    public void shoot();
+    void shoot();
 }

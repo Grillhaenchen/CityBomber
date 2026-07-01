@@ -8,7 +8,7 @@ import java.util.Optional;
 /**
  * Movement Position for Helicopter.
  */
-public class HelicopterMovementPattern extends MovementPattern {
+class HelicopterMovementPattern extends MovementPattern {
     private final Position[] pattern;
     private int currentIndex;
 

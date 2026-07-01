@@ -11,7 +11,7 @@ import java.awt.*;
  */
 public class Countdown extends GameObject {
     /**
-     * Creates a instance of the Countdown.
+     * Creates an instance of the Countdown.
      *
      * @param gameView        Instance of GameView.
      * @param gamePlayManager Instance of GamePlayManager.

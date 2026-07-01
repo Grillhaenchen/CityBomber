@@ -23,11 +23,7 @@ class LevelManager extends GameWorldManager {
     }
 
     protected boolean hasNextLevel() {
-        if (levels.size() <= levels.indexOf(level) + 1) {
-            return false;
-        } else {
-            return true;
-        }
+        return levels.size() > levels.indexOf(level) + 1;
     }
 
     protected void switchToNextLevel() {
@@ -59,7 +55,7 @@ class LevelManager extends GameWorldManager {
     protected void initializeGame() {
         RandomCar.carCounter = 1;
         levels = List.of(new Level1(), new Level2(), new Level3());
-        level = levels.get(0);
+        level = levels.getFirst();
         lives = LIVES;
         points = 0;
     }

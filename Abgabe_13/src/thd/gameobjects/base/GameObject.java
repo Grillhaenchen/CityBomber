@@ -110,9 +110,6 @@ public abstract class GameObject {
      * Updates the Status of a GameObject.
      */
     public void updateStatus() {
-//        if (position.getX() > 1280 || position.getX() < 0 || position.getY() < 0 || position.getY() > 720) {
-//            gamePlayManager.destroyGameObject(this);
-//        }
     }
 
     @Override

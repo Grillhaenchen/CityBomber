@@ -3,7 +3,6 @@ package thd.game.managers;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.ShiftableGameObject;
-import thd.gameobjects.movable.RandomCar;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -79,13 +78,6 @@ public class WorldShiftManager extends UserControlledGameObjectPool {
 
     private void shiftGameObjects(double shiftX, double shiftY) {
         for (GameObject gameObject : shiftableGameObjects) {
-//            if (gameObject instanceof RandomCar) {
-//                gameObject.getPosition().down(shiftY);
-//            } else {
-//                gameObject.getPosition().right(shiftX);
-//                gameObject.getPosition().down(shiftY);
-//            }
-
             gameObject.getPosition().right(shiftX);
             gameObject.getPosition().down(shiftY);
         }

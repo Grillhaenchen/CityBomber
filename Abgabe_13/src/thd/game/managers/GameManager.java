@@ -71,10 +71,8 @@ class GameManager extends LevelManager {
 
     private void startNewGame() {
         FileAccess.readSaveGameFromDisc();
-        FileAccess.readDifficultyFromDisc();
         String diff = Screens.showStartScreen(gameView, GameInfo.TITLE, GameInfo.DESCRIPTION, Level.difficulty.name, "droidsansmono.ttf");
         Level.difficulty = Difficulty.fromName(diff);
-        FileAccess.writeDifficultyToDisc();
         FileAccess.writeSaveGameToDisc();
         initializeGame();
     }

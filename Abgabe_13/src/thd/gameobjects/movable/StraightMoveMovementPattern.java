@@ -5,11 +5,11 @@ import thd.gameobjects.base.Position;
 
 import java.util.Optional;
 
-class StraightMoveMovmentPattern extends MovementPattern {
+class StraightMoveMovementPattern extends MovementPattern {
     private final Position[] pattern;
     private int currentIndex;
 
-    StraightMoveMovmentPattern(Position position) {
+    StraightMoveMovementPattern(Position position) {
         pattern = new Position[]{
                 new Position(position.getX(), position.getY()),
                 new Position(position.getX(), position.getY())};
@@ -26,7 +26,7 @@ class StraightMoveMovmentPattern extends MovementPattern {
     @Override
     public Optional<Position> startPosition() {
         currentIndex = 0;
-        return nextPosition().filter(Position.class::isInstance).map(Position.class::cast);
+        return nextPosition();
     }
 
     @Override

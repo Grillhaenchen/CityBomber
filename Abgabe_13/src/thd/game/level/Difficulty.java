@@ -1,7 +1,6 @@
 package thd.game.level;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 /**
  * Describe the Difficulty of the Game.

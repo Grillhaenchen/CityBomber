@@ -15,7 +15,7 @@ public class Overlay extends GameObject {
     private String message;
     private int millisecondsToShow;
     private boolean messageShown;
-    private String fontName;
+    private final String fontName;
 
     /**
      * Crates a new GameObject.
