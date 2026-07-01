@@ -9,6 +9,9 @@ public class Jimmy extends GameObject {
 
     private enum State {RUNNING, JUMPING, HOVERING}
 
+    private static final RunningState[] RUNNING_STATES = RunningState.values();
+    private static final JumpingState[] JUMPING_STATES = JumpingState.values();
+
     public enum RunningState {
         RUNNING_1(JimmyBlockImages.RUNNING_1),
         RUNNING_2(JimmyBlockImages.RUNNING_2),
@@ -96,52 +99,11 @@ public class Jimmy extends GameObject {
     }
 
     private void switchToNextRunningState() {
-        switch (runningState) {
-            case RUNNING_1 -> {
-                runningState = RunningState.RUNNING_2;
-            }
-            case RUNNING_2 -> {
-                runningState = RunningState.RUNNING_3;
-            }
-            case RUNNING_3 -> {
-                runningState = RunningState.RUNNING_4;
-            }
-            case RUNNING_4 -> {
-                runningState = RunningState.RUNNING_5;
-            }
-            case RUNNING_5 -> {
-                runningState = RunningState.RUNNING_1;
-            }
-        }
+        runningState = RUNNING_STATES[(runningState.ordinal() + 1) % RUNNING_STATES.length];
     }
 
     private void switchToNextJumpingState() {
-        switch (jumpingState) {
-            case JUMPING_1 -> {
-                jumpingState = JumpingState.JUMPING_2;
-            }
-            case JUMPING_2 -> {
-                jumpingState = JumpingState.JUMPING_3;
-            }
-            case JUMPING_3 -> {
-                jumpingState = JumpingState.JUMPING_4;
-            }
-            case JUMPING_4 -> {
-                jumpingState = JumpingState.JUMPING_5;
-            }
-            case JUMPING_5 -> {
-                jumpingState = JumpingState.JUMPING_6;
-            }
-            case JUMPING_6 -> {
-                jumpingState = JumpingState.JUMPING_7;
-            }
-            case JUMPING_7 -> {
-                jumpingState = JumpingState.JUMPING_8;
-            }
-            case JUMPING_8 -> {
-                jumpingState = JumpingState.JUMPING_1;
-            }
-        }
+        jumpingState = JUMPING_STATES[(jumpingState.ordinal() + 1) % JUMPING_STATES.length];
     }
 
     private void resetStates() {

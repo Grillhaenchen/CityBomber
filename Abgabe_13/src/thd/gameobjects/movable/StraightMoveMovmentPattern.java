@@ -26,7 +26,7 @@ class StraightMoveMovmentPattern extends MovementPattern {
     @Override
     public Optional<Position> startPosition() {
         currentIndex = 0;
-        return nextPosition();
+        return nextPosition().filter(Position.class::isInstance).map(Position.class::cast);
     }
 
     @Override

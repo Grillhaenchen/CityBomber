@@ -8,6 +8,23 @@ import thd.gameobjects.base.*;
  * Class for the Helicopter who follow the UserCar and shot on it.
  */
 public class Helicopter extends GameObject implements ActivatableGameObject<UserCar> {
+
+    public enum FlyAnimation {
+        FIRST("helicopter_1.png"),
+        SECOND("helicopter_2.png"),
+        THIRD("helicopter_3.png"),
+        FOURTH("helicopter_4.png");
+
+        private final String imagePath;
+
+        FlyAnimation(String imagePath) {
+            this.imagePath = imagePath;
+        }
+    }
+
+    private FlyAnimation currentFlyAnimation;
+    private final MovementPattern pattern;
+
     /**
      * Creates a Object of Helicopter.
      *
@@ -17,12 +34,21 @@ public class Helicopter extends GameObject implements ActivatableGameObject<User
     public Helicopter(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
         distanceToBackground = 400;
-        position.updateCoordinates(new Position(((double) GameView.WIDTH / 2), ((double) GameView.HEIGHT / 2)));
+        currentFlyAnimation = FlyAnimation.FIRST;
+        size = 1;
+        pattern = new HelicopterMovementPattern();
+        speedInPixel = 5;
     }
 
     @Override
     public void updatePosition() {
-
+        if (gameView.timer(80, 0, this)) {
+            currentFlyAnimation = FlyAnimation.values()[(currentFlyAnimation.ordinal() + 1) % FlyAnimation.values().length];
+        }
+        if (position.similarTo(targetPosition)) {
+            pattern.nextPosition().ifPresent(p -> targetPosition.updateCoordinates((Position) p));
+        }
+        position.moveToPosition(targetPosition, speedInPixel);
     }
 
     /**
@@ -32,7 +58,7 @@ public class Helicopter extends GameObject implements ActivatableGameObject<User
      */
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("helicopter.png", position.getX(), position.getY(), 1, 0);
+        gameView.addImageToCanvas(currentFlyAnimation.imagePath, position.getX(), position.getY(), 0.5, 0);
     }
 
     @Override
