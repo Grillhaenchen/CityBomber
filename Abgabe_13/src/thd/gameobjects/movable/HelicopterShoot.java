@@ -5,7 +5,10 @@ import thd.game.utilities.GameView;
 import thd.gameobjects.base.CollidingGameObject;
 import thd.gameobjects.base.ShiftableGameObject;
 
-public class HelicopterShoot extends CollidingGameObject implements ShiftableGameObject {
+/**
+ * Shoot for Helicopter.
+ */
+class HelicopterShoot extends CollidingGameObject implements ShiftableGameObject {
 
     /**
      * Creates a Bullet.
@@ -15,7 +18,7 @@ public class HelicopterShoot extends CollidingGameObject implements ShiftableGam
      */
     public HelicopterShoot(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
-        size = 0.1;
+        size = 0.25;
         width = 70;
         height = 70;
         super.hitBoxOffsets(10, 10, 0, 0);
